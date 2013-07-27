@@ -7,7 +7,7 @@ Just create a `composer.json` file for your project:
 ```json
 {
     "require": {
-        "kphoen/sitemap-generator": "1.1.*"
+        "kphoen/sitemap-generator": "1.2.*"
     }
 }
 ```
