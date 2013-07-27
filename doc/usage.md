@@ -129,5 +129,5 @@ echo $sitemap->build();
 
 ## Next steps
 
-[Return to the index](https://github.com/K-Phoen/KPhoenSitemapBundle/blob/master/doc/index.md)
-or [go further](https://github.com/K-Phoen/KPhoenSitemapBundle/blob/master/doc/more.md)
+[Return to the index](https://github.com/K-Phoen/SitemapGenerator/blob/master/doc/index.md)
+or [go further](https://github.com/K-Phoen/SitemapGenerator/blob/master/doc/more.md)
