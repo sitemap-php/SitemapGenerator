@@ -15,6 +15,7 @@ And the following formatters are implemented:
 
   * TextFormatter: formats the sitemap as a simple text file that contains one URL per line
   * XmlFormatter: formats a classic XML sitemap
+  * RichXmlFormatter: formats a rich XML sitemap
   * SpacelessFormatter: wraps another formatter and remove the \n and \t characters
 
 The dumpers must implement the DumperInterface and the formatters the
