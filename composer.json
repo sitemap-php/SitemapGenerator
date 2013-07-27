@@ -1,8 +1,8 @@
 {
-    "name": "kphoen/sitemap-bundle",
+    "name": "kphoen/sitemap-generator",
     "description": "Provides a way to create/generate a sitemap using Propel, Doctrine, etc.",
-    "keywords": ["sitemap", "command", "seo"],
-    "type": "symfony-bundle",
+    "keywords": ["sitemap", "generator", "seo"],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -11,12 +11,10 @@
             "homepage": "http://www.kevingomez.fr/"
         }
     ],
-    "require": {
-        "symfony/symfony": ">=2.1.0",
-        "symfony/framework-bundle": ">=2.1.0"
+    "require-dev": {
+        "phpunit/phpunit": ">=3.7.0"
     },
     "autoload": {
-        "psr-0": { "KPhoen\\SitemapBundle": "" }
-    },
-    "target-dir": "KPhoen/SitemapBundle"
+        "psr-0": { "SitemapGenerator": "src/" }
+    }
 }
