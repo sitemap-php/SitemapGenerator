@@ -253,7 +253,17 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
         $this->assertEquals("<sitemap>\n".
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n".
-"\t<lastmod>2013-07-26T23:42:00+02:00</lastmod>\n".
+sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')).
+"</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
+    }
+
+    public function testFormatSitemapIndexNoLastMod()
+    {
+        $sitemapIndex = new SitemapIndex();
+        $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
+
+        $this->assertEquals("<sitemap>\n".
+"\t<loc>http://www.example.com/sitemap-1.xml</loc>\n".
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
