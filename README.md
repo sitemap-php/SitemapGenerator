@@ -1,7 +1,7 @@
-KPhoenSitemapBundle [![Build Status](https://travis-ci.org/K-Phoen/KPhoenSitemapBundle.png?branch=master)](https://travis-ci.org/K-Phoen/KPhoenSitemapBundle)
-===================
+SitemapGenerator [![Build Status](https://travis-ci.org/K-Phoen/SitemapGenerator.png?branch=master)](https://travis-ci.org/K-Phoen/SitemapGenerator)
+================
 
-The KPhoenSitemapBundle provides a way to create a xml sitemap using any source
+The SitemapGenerator provides a way to create a xml sitemap using any source
 you want (Doctrine, Propel, MongoDB, Faker, etc.).
 
 This bundle aims to generate standards compliant sitemaps. For more information
@@ -20,16 +20,16 @@ Main features
 Documentation
 -------------
 
-The documentation can be found in the `Resources/doc/` directory.
+The documentation can be found in the `doc/` directory.
 
-[Read the Documentation](https://github.com/K-Phoen/KPhoenSitemapBundle/blob/master/Resources/doc/index.md)
+[Read the Documentation](https://github.com/K-Phoen/SitemapGenerator/blob/master/doc/index.md)
 
 Installation
 ------------
 
-All the installation instructions are in the [documentation](https://github.com/K-Phoen/KPhoenSitemapBundle/blob/master/Resources/doc/installation.md).
+All the installation instructions are in the [documentation](https://github.com/K-Phoen/SitemapGenerator/blob/master/doc/installation.md).
 
 License
 -------
 
-This bundle is under the [MIT](https://github.com/K-Phoen/KPhoenSitemapBundle/blob/master/Resources/meta/LICENCE) licence.
+This library is under the [MIT](https://github.com/K-Phoen/SitemapGenerator/blob/master/LICENCE) licence.
