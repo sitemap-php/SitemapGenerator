@@ -1,7 +1,7 @@
 SitemapGenerator [![Build Status](https://travis-ci.org/K-Phoen/SitemapGenerator.png?branch=master)](https://travis-ci.org/K-Phoen/SitemapGenerator)
 ================
 
-The SitemapGenerator provides a way to create a xml sitemap using any source
+The SitemapGenerator provides a way to create xml sitemaps using any source
 you want (Doctrine, Propel, MongoDB, Faker, etc.).
 
 This bundle aims to generate standards compliant sitemaps. For more information
@@ -13,6 +13,7 @@ Main features
 
   * static sitemap generation
   * dynamic sitemap generation
+  * sitemap indexes support
   * memory efficient
   * datasource independant
   * support for media content (currently images and videos)
