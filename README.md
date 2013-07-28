@@ -15,7 +15,7 @@ Main features
   * dynamic sitemap generation
   * sitemap indexes support
   * memory efficient
-  * datasource independant
+  * datasource independent
   * support for media content (currently images and videos)
 
 Documentation
