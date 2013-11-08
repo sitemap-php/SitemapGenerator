@@ -9,7 +9,6 @@ use Symfony\Component\Routing\RouterInterface;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Sitemap\Sitemap;
 
-
 /**
  * Populate a sitemap using a Doctrine entity.
  *
@@ -46,13 +45,12 @@ class DoctrineProvider implements ProviderInterface
         'changefreq'    => null,
     );
 
-
     /**
      * Constructor
      *
-     * @param Entitymanager $em Doctrine entity manager.
-     * @param RouterInterface $router The application router.
-     * @param array $options The options (see the class comment).
+     * @param Entitymanager   $em      Doctrine entity manager.
+     * @param RouterInterface $router  The application router.
+     * @param array           $options The options (see the class comment).
      */
     public function __construct(EntityManager $em, RouterInterface $router, array $options)
     {

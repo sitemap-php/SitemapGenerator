@@ -4,11 +4,9 @@ namespace SitemapGenerator\Tests\Dumper;
 
 use SitemapGenerator\Dumper\FileDumper;
 
-
 class FileDumperTest extends \PHPUnit_Framework_TestCase
 {
     protected $file;
-
 
     public function setUp()
     {

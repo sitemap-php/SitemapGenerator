@@ -4,7 +4,6 @@ namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\SitemapIndex;
 
-
 interface SitemapIndexFormatterInterface extends FormatterInterface
 {
     public function getSitemapIndexStart();

@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Dumper;
 
-
 /*
  * The dumper takes care of the sitemap's persistance (file, compressed file,
  * memory) and the formatter formats it.

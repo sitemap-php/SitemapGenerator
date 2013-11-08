@@ -11,7 +11,6 @@ use SitemapGenerator\Formatter\TextFormatter;
 use SitemapGenerator\Provider\ProviderInterface;
 use SitemapGenerator\Sitemap\Sitemap;
 
-
 class TestableSitemap extends Sitemap
 {
     public function getProviders()
@@ -42,7 +41,6 @@ class TestableProvider implements ProviderInterface
         $sitemap->add($url);
     }
 }
-
 
 class SitemapTest extends \PHPUnit_Framework_TestCase
 {

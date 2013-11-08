@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Formatter;
 
-
 abstract class BaseFormatter
 {
     protected function escape($string)

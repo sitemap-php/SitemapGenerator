@@ -6,7 +6,6 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter\FormatterInterface;
 use SitemapGenerator\Formatter\SpacelessFormatter;
 
-
 class TestableFormatter implements FormatterInterface
 {
     public function getSitemapStart()

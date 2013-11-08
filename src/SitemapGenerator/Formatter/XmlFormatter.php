@@ -7,7 +7,6 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Entity\SitemapIndex;
 
-
 class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterface
 {
     public function getSitemapStart()

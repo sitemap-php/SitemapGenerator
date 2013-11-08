@@ -8,7 +8,6 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Formatter\RichXmlFormatter;
 
-
 class RichXmlFormatterTest extends XmlFormatterTest
 {
     protected function setUp()

@@ -5,11 +5,9 @@ namespace SitemapGenerator\Formatter;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 
-
 class SpacelessFormatter implements SitemapIndexFormatterInterface
 {
     protected $formatter;
-
 
     public function __construct(FormatterInterface $formatter)
     {

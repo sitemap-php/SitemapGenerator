@@ -4,7 +4,6 @@ namespace SitemapGenerator\Tests\Dumper;
 
 use SitemapGenerator\Dumper\MemoryDumper;
 
-
 class MemoryDumperTest extends \PHPUnit_Framework_TestCase
 {
     public function testDumper()

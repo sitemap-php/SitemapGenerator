@@ -4,7 +4,6 @@ namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\Url;
 
-
 /**
  * Sitemaps formatted using this class will contain only one URL per line and
  * no other information.

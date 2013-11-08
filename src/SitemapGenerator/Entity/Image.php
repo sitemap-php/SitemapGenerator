@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Entity;
 
-
 /**
  * Represents an image in a sitemap entry.
  *
@@ -36,10 +35,10 @@ class Image
      */
     protected $license = null;
 
-
     public function setLoc($loc)
     {
         $this->loc = $loc;
+
         return $this;
     }
 
@@ -51,6 +50,7 @@ class Image
     public function setCaption($caption)
     {
         $this->caption = $caption;
+
         return $this;
     }
 
@@ -62,6 +62,7 @@ class Image
     public function setGeoLocation($geo_location)
     {
         $this->geo_location = $geo_location;
+
         return $this;
     }
 
@@ -73,6 +74,7 @@ class Image
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -84,6 +86,7 @@ class Image
     public function setLicense($license)
     {
         $this->license = $license;
+
         return $this;
     }
 

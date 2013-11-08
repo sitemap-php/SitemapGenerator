@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Dumper;
 
-
 /**
  * Dump the sitemap into a file.
  *
@@ -12,7 +11,6 @@ class FileDumper implements DumperFileInterface
 {
     protected $filename = null;
     protected $handle = null;
-
 
     /**
      * Constructor.

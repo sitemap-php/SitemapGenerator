@@ -4,11 +4,9 @@ namespace SitemapGenerator\Tests\Dumper;
 
 use SitemapGenerator\Dumper\GzFileDumper;
 
-
 class GzFileDumperTest extends \PHPUnit_Framework_TestCase
 {
     protected $file;
-
 
     public function setUp()
     {

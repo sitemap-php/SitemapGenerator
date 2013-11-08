@@ -8,7 +8,6 @@ use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Formatter\XmlFormatter;
 
-
 class TestableXmlFormatter extends XmlFormatter
 {
     public function testFormatVideo(Video $video)
@@ -16,7 +15,6 @@ class TestableXmlFormatter extends XmlFormatter
         return $this->formatVideo($video);
     }
 }
-
 
 class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 {
@@ -267,10 +265,10 @@ sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
-
     protected function dateFormatW3C($date)
     {
         $date = new \DateTime($date);
+
         return $date->format(\DateTime::W3C);
     }
 }

@@ -5,7 +5,6 @@ namespace SitemapGenerator\Formatter;
 use SitemapGenerator\Entity\RichUrl;
 use SitemapGenerator\Entity\Url;
 
-
 class RichXmlFormatter extends XmlFormatter
 {
     public function getSitemapStart()

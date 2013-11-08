@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Dumper;
 
-
 /**
  * Dump the sitemap into a file and compress it.
  *
@@ -12,7 +11,6 @@ class GzFileDumper implements DumperFileInterface
 {
     protected $filename = null;
     protected $handle = null;
-
 
     /**
      * Constructor.

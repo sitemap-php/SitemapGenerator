@@ -5,7 +5,6 @@ namespace SitemapGenerator\Tests\Formatter;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter\TextFormatter;
 
-
 class TextFormatterTest extends \PHPUnit_Framework_TestCase
 {
     public function testSitemapStart()

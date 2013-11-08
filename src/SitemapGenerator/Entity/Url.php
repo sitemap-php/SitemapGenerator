@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Entity;
 
-
 /**
  * Represents a sitemap entry.
  *
@@ -69,7 +68,6 @@ class Url
      * Images related to this entry.
      */
     protected $images = array();
-
 
     /**
      * Sets the object location.
@@ -163,12 +161,14 @@ class Url
     public function addVideo(Video $video)
     {
         $this->videos[] = $video;
+
         return $this;
     }
 
     public function setVideos($videos)
     {
         $this->videos = $videos;
+
         return $this;
     }
 
@@ -180,12 +180,14 @@ class Url
     public function addImage(Image $image)
     {
         $this->images[] = $image;
+
         return $this;
     }
 
     public function setImages($images)
     {
         $this->images = $images;
+
         return $this;
     }
 

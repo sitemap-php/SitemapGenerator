@@ -4,7 +4,6 @@ namespace SitemapGenerator\Provider;
 
 use SitemapGenerator\Sitemap\Sitemap;
 
-
 /**
  * Describe a provider.
  *

@@ -10,7 +10,6 @@ use SitemapGenerator\Formatter\FormatterInterface;
 use SitemapGenerator\Formatter\SitemapIndexFormatterInterface;
 use SitemapGenerator\Provider\ProviderInterface;
 
-
 /**
  * Sitemap generator.
  *
@@ -31,15 +30,14 @@ class Sitemap
     protected $sitemapIndexes = array();
     protected $originalFilename = null;
 
-
     /**
      * Constructor.
      *
-     * @param DumperInterface $dumper The dumper to use.
-     * @param FormatterInterface $formatter The formatter to use.
-     * @param string $base_host The base URl for all the links (well only be used for relative URLs).
-     * @param string $base_host_sitemap The base URl for the sitemap.
-     * @param integer $limit The URL limit for each sitemap (only used in a sitemap index context)
+     * @param DumperInterface    $dumper            The dumper to use.
+     * @param FormatterInterface $formatter         The formatter to use.
+     * @param string             $base_host         The base URl for all the links (well only be used for relative URLs).
+     * @param string             $base_host_sitemap The base URl for the sitemap.
+     * @param integer            $limit             The URL limit for each sitemap (only used in a sitemap index context)
      */
     public function __construct(DumperInterface $dumper, FormatterInterface $formatter, $base_host = null, $base_host_sitemap = null, $limit = 0)
     {
@@ -63,6 +61,7 @@ class Sitemap
     public function addProvider(ProviderInterface $provider)
     {
         $this->providers[] = $provider;
+
         return $this;
     }
 
@@ -76,6 +75,7 @@ class Sitemap
     public function setDumper(DumperInterface $dumper)
     {
         $this->dumper = $dumper;
+
         return $this;
     }
 

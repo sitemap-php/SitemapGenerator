@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Entity;
 
-
 /**
  * Represents a sitemap index.
  *
@@ -37,7 +36,6 @@ class SitemapIndex
      * @var integer
      */
     protected $urlCount = 0;
-
 
     /**
      * Sets the object location.

@@ -4,7 +4,6 @@ namespace SitemapGenerator\Tests\Entity;
 
 use SitemapGenerator\Entity\Video;
 
-
 class VideoTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -128,7 +127,6 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $video->setPlatforms(array(Video::PLATFORM_TV => Video::RESTRICTION_DENY, Video::PLATFORM_MOBILE => 'foo'));
     }
 
-
     public function invalidDurationProvider()
     {
         return array(
@@ -157,6 +155,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     protected function dateFormatW3C($date)
     {
         $date = new \DateTime($date);
+
         return $date->format(\DateTime::W3C);
     }
 }

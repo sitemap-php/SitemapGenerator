@@ -7,7 +7,6 @@ use Symfony\Component\Routing\RouterInterface;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Sitemap\Sitemap;
 
-
 /**
  * Populate a sitemap using a Propel model.
  *
@@ -43,12 +42,11 @@ class PropelProvider implements ProviderInterface
         'changefreq'    => null,
     );
 
-
     /**
      * Constructor
      *
-     * @param RouterInterface $router The application router.
-     * @param array $options The options (see the class comment).
+     * @param RouterInterface $router  The application router.
+     * @param array           $options The options (see the class comment).
      */
     public function __construct(RouterInterface $router, array $options)
     {

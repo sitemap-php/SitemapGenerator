@@ -4,7 +4,6 @@ namespace SitemapGenerator\Tests\Entity;
 
 use SitemapGenerator\Entity\Url;
 
-
 class UrlTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -58,7 +57,6 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected_lastmod, $url->getLastmod());
     }
 
-
     public function lastmodProvider()
     {
         return array(
@@ -96,6 +94,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     protected function dateFormatW3C($date)
     {
         $date = new \DateTime($date);
+
         return $date->format(\DateTime::W3C);
     }
 }

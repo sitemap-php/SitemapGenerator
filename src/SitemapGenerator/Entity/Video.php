@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Entity;
 
-
 /**
  * Represents a video in a sitemap entry.
  *
@@ -158,6 +157,7 @@ class Video
         }
 
         $this->title = $title;
+
         return $this;
     }
 
@@ -169,6 +169,7 @@ class Video
     public function setThumbnailLoc($loc)
     {
         $this->thumbnail_loc = $loc;
+
         return $this;
     }
 
@@ -184,6 +185,7 @@ class Video
         }
 
         $this->description = $description;
+
         return $this;
     }
 
@@ -195,6 +197,7 @@ class Video
     public function setContentLoc($loc)
     {
         $this->content_loc = $loc;
+
         return $this;
     }
 
@@ -205,9 +208,9 @@ class Video
 
     public function setPlayerLoc($loc, $allow_embed = true, $autoplay = null)
     {
-        if ($loc === null)
-        {
+        if ($loc === null) {
             $this->player_loc = null;
+
             return $this;
         }
 
@@ -216,6 +219,7 @@ class Video
             'allow_embed'   => $allow_embed,
             'autoplay'      => $autoplay !== null ? $autoplay : null,
         );
+
         return $this;
     }
 
@@ -233,6 +237,7 @@ class Video
         }
 
         $this->duration = $duration;
+
         return $this;
     }
 
@@ -248,6 +253,7 @@ class Video
         }
 
         $this->expiration_date = $date;
+
         return $this;
     }
 
@@ -269,6 +275,7 @@ class Video
         }
 
         $this->rating = $rating;
+
         return $this;
     }
 
@@ -286,6 +293,7 @@ class Video
         }
 
         $this->view_count = $count;
+
         return $this;
     }
 
@@ -301,6 +309,7 @@ class Video
         }
 
         $this->publication_date = $date;
+
         return $this;
     }
 
@@ -316,6 +325,7 @@ class Video
     public function setFamilyFriendly($friendly)
     {
         $this->family_friendly = (bool) $friendly;
+
         return $this;
     }
 
@@ -328,6 +338,7 @@ class Video
     {
         if ($tags === null) {
             $this->tags = null;
+
             return $this;
         }
 
@@ -336,6 +347,7 @@ class Video
         }
 
         $this->tags = $tags;
+
         return $this;
     }
 
@@ -351,6 +363,7 @@ class Video
         }
 
         $this->category = $category;
+
         return $this;
     }
 
@@ -363,6 +376,7 @@ class Video
     {
         if ($restrictions === null) {
             $this->restrictions = null;
+
             return $this;
         }
 
@@ -387,6 +401,7 @@ class Video
     {
         if ($loc === null) {
             $this->gallery_loc = null;
+
             return $this;
         }
 
@@ -406,6 +421,7 @@ class Video
     public function setRequiresSubscription($requires_subscription)
     {
         $this->requires_subscription = (bool) $requires_subscription;
+
         return $this;
     }
 
@@ -418,6 +434,7 @@ class Video
     {
         if ($uploader === null) {
             $this->uploader = null;
+
             return $this;
         }
 
@@ -425,6 +442,7 @@ class Video
             'name' => $uploader,
             'info' => $info,
         );
+
         return $this;
     }
 
@@ -437,6 +455,7 @@ class Video
     {
         if ($platforms === null) {
             $this->platforms = null;
+
             return $this;
         }
 
@@ -452,6 +471,7 @@ class Video
         }
 
         $this->platforms = $platforms;
+
         return $this;
     }
 
@@ -463,6 +483,7 @@ class Video
     public function setLive($live)
     {
         $this->live = (bool) $live;
+
         return $this;
     }
 
