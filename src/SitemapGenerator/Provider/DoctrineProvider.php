@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Symfony\Component\Routing\RouterInterface;
 
-use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Sitemap\Sitemap;
 
 /**

@@ -4,7 +4,6 @@ namespace SitemapGenerator\Provider;
 
 use Symfony\Component\Routing\RouterInterface;
 
-use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Sitemap\Sitemap;
 
 /**
