@@ -29,7 +29,7 @@ use SitemapGenerator\Sitemap\Sitemap;
  *
  * @note This provider uses an "on demand" hydration.
  */
-class PropelProvider implements ProviderInterface
+class PropelProvider extends AbstractProvider
 {
     protected $router = null;
 
@@ -50,8 +50,7 @@ class PropelProvider implements ProviderInterface
      */
     public function __construct(RouterInterface $router, array $options)
     {
-        $this->router = $router;
-        $this->options = array_merge($this->options, $options);
+        parent::__construct($router, $options);
 
         if (!class_exists($options['model'])) {
             throw new \LogicException('Can\'t find class ' . $options['model']);
@@ -76,53 +75,6 @@ class PropelProvider implements ProviderInterface
         foreach ($query->find() as $result) {
             $sitemap->add($this->resultToUrl($result));
         }
-    }
-
-    protected function resultToUrl($result)
-    {
-        $url = new Url();
-        $url->setLoc($this->getResultLoc($result));
-
-        if ($this->options['priority'] !== null) {
-            $url->setPriority($this->options['priority']);
-        }
-
-        if ($this->options['changefreq'] !== null) {
-            $url->setChangefreq($this->options['changefreq']);
-        }
-
-        if ($this->options['lastmod'] !== null) {
-            $url->setLastmod($this->getColumnValue($result, $this->options['lastmod']));
-        }
-
-        return $url;
-    }
-
-    protected function getResultLoc($result)
-    {
-        $route = $this->options['loc']['route'];
-        $params = array();
-
-        if (!isset($this->options['loc']['params'])) {
-            $this->options['loc']['params'] = array();
-        }
-
-        foreach ($this->options['loc']['params'] as $key => $column) {
-            $params[$key] = $this->getColumnValue($result, $column);
-        }
-
-        return $this->router->generate($route, $params);
-    }
-
-    protected function getColumnValue($result, $column)
-    {
-        $method = 'get'.$column;
-
-        if (!method_exists($result, $method)) {
-            throw new \RuntimeException(sprintf('"%s" method not found in "%s"', $method, $this->options['model']));
-        }
-
-        return $result->$method();
     }
 
     protected function getQuery($model)

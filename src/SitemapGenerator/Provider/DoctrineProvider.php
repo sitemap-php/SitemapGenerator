@@ -54,9 +54,9 @@ class DoctrineProvider implements ProviderInterface
      */
     public function __construct(EntityManager $em, RouterInterface $router, array $options)
     {
-        $this->router = $router;
+        parent::__construct($router, $options);
+
         $this->em = $em;
-        $this->options = array_merge($this->options, $options);
     }
 
     /**
@@ -77,57 +77,10 @@ class DoctrineProvider implements ProviderInterface
         }
     }
 
-    protected function resultToUrl($result)
-    {
-        $url = new Url();
-        $url->setLoc($this->getResultLoc($result));
-
-        if ($this->options['priority'] !== null) {
-            $url->setPriority($this->options['priority']);
-        }
-
-        if ($this->options['changefreq'] !== null) {
-            $url->setChangefreq($this->options['changefreq']);
-        }
-
-        if ($this->options['lastmod'] !== null) {
-            $url->setLastmod($this->getColumnValue($result, $this->options['lastmod']));
-        }
-
-        return $url;
-    }
-
-    protected function getResultLoc($result)
-    {
-        $route = $this->options['loc']['route'];
-        $params = array();
-
-        if (!isset($this->options['loc']['params'])) {
-            $this->options['loc']['params'] = array();
-        }
-
-        foreach ($this->options['loc']['params'] as $key => $column) {
-            $params[$key] = $this->getColumnValue($result, $column);
-        }
-
-        return $this->router->generate($route, $params);
-    }
-
-    protected function getColumnValue($result, $column)
-    {
-        $method = 'get'.$column;
-
-        if (!method_exists($result, $method)) {
-            throw new \RuntimeException(sprintf('"%s" method not found in "%s"', $method, $this->options['entity']));
-        }
-
-        return $result->$method();
-    }
-
     protected function getQuery($entity, $method)
     {
         $repo = $this->em->getRepository($entity);
-        $query = call_user_func(array($repo, $method));
+        $query = $repo->$method();
 
         if (!$query instanceof Query) {
             throw new \RuntimeException(sprintf('Expected instance of Query, got %s (see method %s:%s)', get_class($query), $entity, $method));
