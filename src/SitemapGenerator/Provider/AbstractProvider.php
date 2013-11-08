@@ -3,11 +3,9 @@
 namespace SitemapGenerator\Provider;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query;
 use Symfony\Component\Routing\RouterInterface;
 
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Sitemap\Sitemap;
 
 /**
  * Abstract class containing common methods used by Propel and Doctrine providers.
@@ -26,8 +24,8 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * Constructor
      *
-     * @param Entitymanager   $em      Doctrine entity manager.
-     * @param array           $options The options (see the class comment).
+     * @param Entitymanager $em      Doctrine entity manager.
+     * @param array         $options The options (see the class comment).
      */
     public function __construct(RouterInterface $router, array $options)
     {
