@@ -120,14 +120,14 @@ class Url
 
     public function setChangefreq($changefreq)
     {
-        $valid_freqs = array(
+        $validFreqs = array(
             self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY, self::CHANGEFREQ_DAILY,
             self::CHANGEFREQ_WEEKLY, self::CHANGEFREQ_MONTHLY, self::CHANGEFREQ_YEARLY,
             self::CHANGEFREQ_NEVER, null
         );
 
-        if (!in_array($changefreq, $valid_freqs)) {
-            throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $valid_freqs)));
+        if (!in_array($changefreq, $validFreqs)) {
+            throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $validFreqs)));
         }
 
         $this->changefreq = $changefreq;

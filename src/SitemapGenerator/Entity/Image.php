@@ -23,7 +23,7 @@ class Image
     /**
      * The geographic location of the image.
      */
-    protected $geo_location = null;
+    protected $geoLocation = null;
 
     /**
      * The title of the image.
@@ -59,16 +59,16 @@ class Image
         return $this->caption;
     }
 
-    public function setGeoLocation($geo_location)
+    public function setGeoLocation($geoLocation)
     {
-        $this->geo_location = $geo_location;
+        $this->geoLocation = $geoLocation;
 
         return $this;
     }
 
     public function getGeoLocation()
     {
-        return $this->geo_location;
+        return $this->geoLocation;
     }
 
     public function setTitle($title)

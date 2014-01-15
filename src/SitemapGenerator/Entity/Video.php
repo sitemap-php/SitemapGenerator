@@ -25,7 +25,7 @@ class Video
      * least 160x90 pixels and at most 1920x1080 pixels. We recommend images
      * in .jpg, .png, or. gif formats.
      */
-    protected $thumbnail_loc = null;
+    protected $thumbnailLoc = null;
 
     /**
      * The title of the video. Maximum 100 characters.
@@ -42,16 +42,16 @@ class Video
      *********************/
 
     /**
-     * You must specify at least one of player_loc or content_loc attributes.
+     * You must specify at least one of playerLoc or contentLoc attributes.
      *
      * A URL pointing to the actual video media file. This file should be in
      * .mpg, .mpeg, .mp4, .m4v, .mov, .wmv, .asf, .avi, .ra, .ram, .rm, .flv,
      * or other video file format.
      */
-    protected $content_loc = null;
+    protected $contentLoc = null;
 
     /**
-     * You must specify at least one of player_loc or content_loc.
+     * You must specify at least one of playerLoc or contentLoc.
      *
      * A URL pointing to a player for a specific video. Usually this is the
      * information in the src element of an <embed> tag and should not be the
@@ -67,7 +67,7 @@ class Video
      *
      * Example player URL for Dailymotion: http://www.dailymotion.com/swf/x1o2g
      */
-    protected $player_loc = null;
+    protected $playerLoc = null;
 
     /**
      * The duration of the video in seconds. Value must be between 0 and
@@ -79,7 +79,7 @@ class Video
      * The date after which the video will no longer be available. Don't
      * supply this information if your video does not expire.
      */
-    protected $expiration_date = null;
+    protected $expirationDate = null;
 
     /**
      * The rating of the video. Allowed values are float numbers in the range
@@ -90,17 +90,17 @@ class Video
     /**
      * The number of times the video has been viewed.
      */
-    protected $view_count = null;
+    protected $viewCount = null;
 
     /**
      * The date the video was first published
      */
-    protected $publication_date = null;
+    protected $publicationDate = null;
 
     /**
      * No if the video should be available only to users with SafeSearch turned off.
      */
-    protected $family_friendly = null;
+    protected $familyFriendly = null;
 
     /**
      * Tags associated with the video.
@@ -124,12 +124,12 @@ class Video
     /**
      * A link to the gallery (collection of videos) in which this video appears.
      */
-    protected $gallery_loc = null;
+    protected $galleryLoc = null;
 
     /**
      * Indicates whether a subscription (either paid or free) is required to view the video.
      */
-    protected $requires_subscription = null;
+    protected $requiresSubscription = null;
 
     /**
      * The video uploader's name.
@@ -168,14 +168,14 @@ class Video
 
     public function setThumbnailLoc($loc)
     {
-        $this->thumbnail_loc = $loc;
+        $this->thumbnailLoc = $loc;
 
         return $this;
     }
 
     public function getThumbnailLoc()
     {
-        return $this->thumbnail_loc;
+        return $this->thumbnailLoc;
     }
 
     public function setDescription($description)
@@ -196,27 +196,27 @@ class Video
 
     public function setContentLoc($loc)
     {
-        $this->content_loc = $loc;
+        $this->contentLoc = $loc;
 
         return $this;
     }
 
     public function getContentLoc()
     {
-        return $this->content_loc;
+        return $this->contentLoc;
     }
 
-    public function setPlayerLoc($loc, $allow_embed = true, $autoplay = null)
+    public function setPlayerLoc($loc, $allowEmbed = true, $autoplay = null)
     {
         if ($loc === null) {
-            $this->player_loc = null;
+            $this->playerLoc = null;
 
             return $this;
         }
 
-        $this->player_loc = array(
+        $this->playerLoc = array(
             'loc'           => $loc,
-            'allow_embed'   => $allow_embed,
+            'allow_embed'   => $allowEmbed,
             'autoplay'      => $autoplay !== null ? $autoplay : null,
         );
 
@@ -225,7 +225,7 @@ class Video
 
     public function getPlayerLoc()
     {
-        return $this->player_loc;
+        return $this->playerLoc;
     }
 
     public function setDuration($duration)
@@ -252,18 +252,18 @@ class Video
             $date = new \DateTime($date);
         }
 
-        $this->expiration_date = $date;
+        $this->expirationDate = $date;
 
         return $this;
     }
 
     public function getExpirationDate()
     {
-        if ($this->expiration_date === null) {
+        if ($this->expirationDate === null) {
             return null;
         }
 
-        return $this->expiration_date->format(\DateTime::W3C);
+        return $this->expirationDate->format(\DateTime::W3C);
     }
 
     public function setRating($rating)
@@ -292,14 +292,14 @@ class Video
             throw new \DomainException('The view count must be positive');
         }
 
-        $this->view_count = $count;
+        $this->viewCount = $count;
 
         return $this;
     }
 
     public function getViewCount()
     {
-        return $this->view_count;
+        return $this->viewCount;
     }
 
     public function setPublicationDate($date)
@@ -308,30 +308,30 @@ class Video
             $date = new \DateTime($date);
         }
 
-        $this->publication_date = $date;
+        $this->publicationDate = $date;
 
         return $this;
     }
 
     public function getPublicationDate()
     {
-        if ($this->publication_date === null) {
+        if ($this->publicationDate === null) {
             return null;
         }
 
-        return $this->publication_date->format(\DateTime::W3C);
+        return $this->publicationDate->format(\DateTime::W3C);
     }
 
     public function setFamilyFriendly($friendly)
     {
-        $this->family_friendly = (bool) $friendly;
+        $this->familyFriendly = (bool) $friendly;
 
         return $this;
     }
 
     public function getFamilyFriendly()
     {
-        return $this->family_friendly;
+        return $this->familyFriendly;
     }
 
     public function setTags($tags)
@@ -400,12 +400,12 @@ class Video
     public function setGalleryLoc($loc, $title = null)
     {
         if ($loc === null) {
-            $this->gallery_loc = null;
+            $this->galleryLoc = null;
 
             return $this;
         }
 
-        $this->gallery_loc = array(
+        $this->galleryLoc = array(
             'loc'   => $loc,
             'title' => $title
         );
@@ -415,19 +415,19 @@ class Video
 
     public function getGalleryLoc()
     {
-        return $this->gallery_loc;
+        return $this->galleryLoc;
     }
 
-    public function setRequiresSubscription($requires_subscription)
+    public function setRequiresSubscription($requiresSubscription)
     {
-        $this->requires_subscription = (bool) $requires_subscription;
+        $this->requiresSubscription = (bool) $requiresSubscription;
 
         return $this;
     }
 
     public function getRequiresSubscription()
     {
-        return $this->requires_subscription;
+        return $this->requiresSubscription;
     }
 
     public function setUploader($uploader, $info = null)

@@ -12,7 +12,7 @@ class RichUrl extends Url
     /**
      * Alternate urls list, locale indexed.
      */
-    protected $alternate_url = array();
+    protected $alternateUrl = array();
 
     /**
      * Add an alternate url to the current one.
@@ -33,13 +33,13 @@ class RichUrl extends Url
      */
     public function addAlternateUrl($locale, $url)
     {
-        $this->alternate_url[$locale] = $url;
+        $this->alternateUrl[$locale] = $url;
 
         return $this;
     }
 
     public function getAlternateUrls()
     {
-        return $this->alternate_url;
+        return $this->alternateUrl;
     }
 }

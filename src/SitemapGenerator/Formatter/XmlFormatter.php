@@ -93,11 +93,11 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         }
 
         if ($video->getPlayerLoc() !== null) {
-            $player_loc = $video->getPlayerLoc();
-            $allow_embed = $player_loc['allow_embed'] ? 'yes' : 'no';
-            $autoplay = $player_loc['autoplay'] !== null ? sprintf(' autoplay="%s"', $this->escape($player_loc['autoplay'])) : '';
+            $playerLoc = $video->getPlayerLoc();
+            $allowEmbed = $playerLoc['allow_embed'] ? 'yes' : 'no';
+            $autoplay = $playerLoc['autoplay'] !== null ? sprintf(' autoplay="%s"', $this->escape($playerLoc['autoplay'])) : '';
 
-            $buffer .= "\t\t" . sprintf('<video:player_loc allow_embed="%s"%s>', $allow_embed, $autoplay) . $this->escape($player_loc['loc']) . '</video:player_loc>' . "\n";
+            $buffer .= "\t\t" . sprintf('<video:player_loc allow_embed="%s"%s>', $allowEmbed, $autoplay) . $this->escape($playerLoc['loc']) . '</video:player_loc>' . "\n";
         }
 
         if ($video->getDuration() !== null) {
@@ -142,10 +142,10 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         }
 
         if ($video->getGalleryLoc() !== null) {
-            $gallery_loc = $video->getGalleryLoc();
-            $title = $gallery_loc['title'] !== null ? sprintf(' title="%s"', $this->escape($gallery_loc['title'])) : '';
+            $galleryLoc = $video->getGalleryLoc();
+            $title = $galleryLoc['title'] !== null ? sprintf(' title="%s"', $this->escape($galleryLoc['title'])) : '';
 
-            $buffer .= "\t\t" . sprintf('<video:gallery_loc%s>', $title) . $this->escape($gallery_loc['loc']) . '</video:gallery_loc>' . "\n";
+            $buffer .= "\t\t" . sprintf('<video:gallery_loc%s>', $title) . $this->escape($galleryLoc['loc']) . '</video:gallery_loc>' . "\n";
         }
 
         if ($video->getRequiresSubscription() !== null) {

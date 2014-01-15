@@ -25,7 +25,7 @@ class Sitemap
     protected $providers = array();
     protected $dumper = null;
     protected $formatter = null;
-    protected $base_host = null;
+    protected $baseHost = null;
     protected $limit = 0;
     protected $sitemapIndexes = array();
     protected $originalFilename = null;
@@ -35,16 +35,16 @@ class Sitemap
      *
      * @param DumperInterface    $dumper            The dumper to use.
      * @param FormatterInterface $formatter         The formatter to use.
-     * @param string             $base_host         The base URl for all the links (well only be used for relative URLs).
-     * @param string             $base_host_sitemap The base URl for the sitemap.
+     * @param string             $baseHost         The base URl for all the links (well only be used for relative URLs).
+     * @param string             $baseHost_sitemap The base URl for the sitemap.
      * @param integer            $limit             The URL limit for each sitemap (only used in a sitemap index context)
      */
-    public function __construct(DumperInterface $dumper, FormatterInterface $formatter, $base_host = null, $base_host_sitemap = null, $limit = 0)
+    public function __construct(DumperInterface $dumper, FormatterInterface $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;
-        $this->base_host = $base_host;
-        $this->base_host_sitemap = $base_host_sitemap;
+        $this->baseHost = $baseHost;
+        $this->baseHostSitemap = $baseHostSitemap;
         $this->limit = $limit;
         if ($this->isSitemapIndexable()) {
             $this->originalFilename = $dumper->getFilename();
@@ -131,38 +131,38 @@ class Sitemap
             throw new \InvalidArgumentException('The url MUST have a loc attribute');
         }
 
-        if ($this->base_host !== null) {
+        if ($this->baseHost !== null) {
             if ($this->needHost($loc)) {
-                $url->setLoc($this->base_host.$loc);
+                $url->setLoc($this->baseHost.$loc);
             }
 
             foreach ($url->getVideos() as $video) {
                 if ($this->needHost($video->getThumbnailLoc())) {
-                    $video->setThumbnailLoc($this->base_host.$video->getThumbnailLoc());
+                    $video->setThumbnailLoc($this->baseHost.$video->getThumbnailLoc());
                 }
 
                 if ($this->needHost($video->getContentLoc())) {
-                    $video->setContentLoc($this->base_host.$video->getContentLoc());
+                    $video->setContentLoc($this->baseHost.$video->getContentLoc());
                 }
 
                 $player = $video->getPlayerLoc();
                 if ($player !== null && $this->needHost($player['loc'])) {
-                    $video->setPlayerLoc($this->base_host.$player['loc'], $player['allow_embed'], $player['autoplay']);
+                    $video->setPlayerLoc($this->baseHost.$player['loc'], $player['allow_embed'], $player['autoplay']);
                 }
 
                 $gallery = $video->getGalleryLoc();
                 if ($gallery !== null && $this->needHost($gallery['loc'])) {
-                    $video->setGalleryLoc($this->base_host.$gallery['loc'], $gallery['title']);
+                    $video->setGalleryLoc($this->baseHost.$gallery['loc'], $gallery['title']);
                 }
             }
 
             foreach ($url->getImages() as $image) {
                 if ($this->needHost($image->getLoc())) {
-                    $image->setLoc($this->base_host.$image->getLoc());
+                    $image->setLoc($this->baseHost.$image->getLoc());
                 }
 
                 if ($this->needHost($image->getLicense())) {
-                    $image->setLicense($this->base_host.$image->getLicense());
+                    $image->setLicense($this->baseHost.$image->getLicense());
                 }
             }
         }
@@ -195,8 +195,8 @@ class Sitemap
         $sitemapIndexFilename = $this->getSitemapIndexFilename($this->originalFilename);
         $sitemapIndex = new SitemapIndex();
         $loc = DIRECTORY_SEPARATOR . basename($sitemapIndexFilename);
-        if ($this->base_host_sitemap !== null) {
-            $sitemapIndex->setLoc($this->base_host_sitemap.$loc);
+        if ($this->baseHostSitemap !== null) {
+            $sitemapIndex->setLoc($this->baseHostSitemap.$loc);
         }
 
         $sitemapIndex->setLastMod(new \DateTime());
