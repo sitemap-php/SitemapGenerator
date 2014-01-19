@@ -58,10 +58,10 @@ All the providers implement the `ProviderInterface`, which define the
 `populate()` method.
 
 
-#### Propel provider
+#### Built-in providers
 
-A propel provider is included in the library. It allows to populate a sitemap
-with the content of a table.
+A Propel and a Doctrine provider are included in the library. They allow to
+populate a sitemap with the content of a table.
 
 
 ### Registering providers
