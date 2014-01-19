@@ -76,10 +76,15 @@ class DoctrineProvider extends AbstractProvider
         }
     }
 
-    protected function getQuery($entity, $method)
+    protected function getQuery($entity, $method = null)
     {
         $repo = $this->em->getRepository($entity);
-        $query = $repo->$method();
+
+        if ($method !== null) {
+            $query = $repo->$method();
+        } else {
+            $query = $repo->createQueryBuilder('o')->getQuery();
+        }
 
         if (!$query instanceof Query) {
             throw new \RuntimeException(sprintf('Expected instance of Query, got %s (see method %s:%s)', get_class($query), $entity, $method));
