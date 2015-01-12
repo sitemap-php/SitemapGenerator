@@ -123,7 +123,7 @@ class Url
         $validFreqs = array(
             self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY, self::CHANGEFREQ_DAILY,
             self::CHANGEFREQ_WEEKLY, self::CHANGEFREQ_MONTHLY, self::CHANGEFREQ_YEARLY,
-            self::CHANGEFREQ_NEVER, null
+            self::CHANGEFREQ_NEVER, null,
         );
 
         if (!in_array($changefreq, $validFreqs)) {

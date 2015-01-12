@@ -407,7 +407,7 @@ class Video
 
         $this->galleryLoc = array(
             'loc'   => $loc,
-            'title' => $title
+            'title' => $title,
         );
 
         return $this;

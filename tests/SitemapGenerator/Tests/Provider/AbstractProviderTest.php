@@ -16,7 +16,7 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
         $valueMap = array();
         foreach ($results as $news) {
             $valueMap[] = array('show_news', array(
-                'id' => $news->slug
+                'id' => $news->slug,
             ), false, '/news/'.$news->slug);
         }
 

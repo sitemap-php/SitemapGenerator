@@ -33,11 +33,11 @@ class Sitemap
     /**
      * Constructor.
      *
-     * @param DumperInterface    $dumper            The dumper to use.
-     * @param FormatterInterface $formatter         The formatter to use.
+     * @param DumperInterface    $dumper           The dumper to use.
+     * @param FormatterInterface $formatter        The formatter to use.
      * @param string             $baseHost         The base URl for all the links (well only be used for relative URLs).
      * @param string             $baseHost_sitemap The base URl for the sitemap.
-     * @param integer            $limit             The URL limit for each sitemap (only used in a sitemap index context)
+     * @param integer            $limit            The URL limit for each sitemap (only used in a sitemap index context)
      */
     public function __construct(DumperInterface $dumper, FormatterInterface $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {

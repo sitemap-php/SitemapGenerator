@@ -2,9 +2,7 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
-use \Mockery;
-
-use SitemapGenerator\Entity\Url;
+use Mockery;
 use SitemapGenerator\Provider\PropelProvider;
 use SitemapGenerator\Tests\Fixtures\News;
 
