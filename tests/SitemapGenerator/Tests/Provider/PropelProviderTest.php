@@ -8,9 +8,6 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\PropelProvider;
 use SitemapGenerator\Tests\Fixtures\News;
 
-/**
- * @runTestsInSeparateProcesses
- */
 class PropelProviderTest extends AbstractProviderTest
 {
     /**
