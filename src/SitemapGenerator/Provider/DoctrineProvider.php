@@ -4,6 +4,7 @@ namespace SitemapGenerator\Provider;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
 
 use SitemapGenerator\Sitemap\Sitemap;
@@ -84,6 +85,10 @@ class DoctrineProvider extends AbstractProvider
             $query = $repo->$method();
         } else {
             $query = $repo->createQueryBuilder('o')->getQuery();
+        }
+
+        if ($query instanceof QueryBuilder) {
+            $query = $query->getQuery();
         }
 
         if (!$query instanceof Query) {
