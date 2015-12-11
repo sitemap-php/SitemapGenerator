@@ -18,7 +18,7 @@
         "symfony/routing": "~2.0,<2.8"
     },
     "autoload": {
-        "psr-0": { "SitemapGenerator": "src/" }
+        "psr-4": { "SitemapGenerator\\": "src/" }
     },
     "extra": {
         "branch-alias": {
