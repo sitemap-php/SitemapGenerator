@@ -334,7 +334,7 @@ class Video
         return $this->familyFriendly;
     }
 
-    public function setTags($tags)
+    public function setTags(array $tags)
     {
         if ($tags === null) {
             $this->tags = null;
@@ -451,7 +451,7 @@ class Video
         return $this->uploader;
     }
 
-    public function setPlatforms($platforms)
+    public function setPlatforms(array $platforms)
     {
         if ($platforms === null) {
             $this->platforms = null;

@@ -165,7 +165,7 @@ class Url
         return $this;
     }
 
-    public function setVideos($videos)
+    public function setVideos(array $videos)
     {
         $this->videos = $videos;
 
@@ -184,7 +184,7 @@ class Url
         return $this;
     }
 
-    public function setImages($images)
+    public function setImages(array $images)
     {
         $this->images = $images;
 
