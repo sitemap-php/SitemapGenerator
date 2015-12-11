@@ -19,5 +19,10 @@
     },
     "autoload": {
         "psr-0": { "SitemapGenerator": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
     }
 }
