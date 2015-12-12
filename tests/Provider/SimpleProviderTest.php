@@ -2,9 +2,7 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
-use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\SimpleProvider;
-use SitemapGenerator\Tests\Fixtures\News;
 
 class SimpleProviderTest extends AbstractProviderTest
 {

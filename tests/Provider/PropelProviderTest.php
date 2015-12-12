@@ -4,7 +4,6 @@ namespace SitemapGenerator\Tests\Provider;
 
 use Mockery;
 use SitemapGenerator\Provider\PropelProvider;
-use SitemapGenerator\Tests\Fixtures\News;
 
 class PropelProviderTest extends AbstractProviderTest
 {
