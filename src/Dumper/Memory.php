@@ -8,6 +8,9 @@ namespace SitemapGenerator\Dumper;
  */
 class Memory implements Dumper
 {
+    /**
+     * @var string
+     */
     protected $buffer = '';
 
     /**
@@ -17,6 +20,11 @@ class Memory implements Dumper
     {
         $this->buffer .= $string;
 
+        return $this->buffer;
+    }
+
+    public function getBuffer()
+    {
         return $this->buffer;
     }
 }

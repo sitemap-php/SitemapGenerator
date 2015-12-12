@@ -2,12 +2,11 @@
 
 namespace SitemapGenerator\Tests\Sitemap;
 
-use SitemapGenerator\Dumper\Memory as MemoryDumper;
-use SitemapGenerator\Dumper\File;
+use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
-use SitemapGenerator\Formatter\Text;
+use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 
@@ -21,14 +20,6 @@ class TestableSitemap extends Sitemap
     public function getDumper()
     {
         return $this->dumper;
-    }
-}
-
-class TestableMemoryDumper extends MemoryDumper
-{
-    public function getContent()
-    {
-        return $this->buffer;
     }
 }
 
@@ -46,7 +37,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 {
     public function testAddProvider()
     {
-        $sitemap = new TestableSitemap(new MemoryDumper(), new Text());
+        $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text());
         $this->assertEquals(0, count($sitemap->getProviders()));
 
         $sitemap->addProvider(new TestableProvider());
@@ -55,55 +46,55 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
     public function testSetDumper()
     {
-        $dumper = new MemoryDumper();
-        $sitemap = new TestableSitemap($dumper, new Text());
+        $dumper = new Dumper\Memory();
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text());
         $this->assertEquals($dumper, $sitemap->getDumper());
 
-        $other_dumper = new File('joe');
+        $other_dumper = new Dumper\File('joe');
         $sitemap->setDumper($other_dumper);
         $this->assertEquals($other_dumper, $sitemap->getDumper());
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testAddUrlNoLoc()
     {
-        $sitemap = new TestableSitemap(new MemoryDumper(), new Text(), 'http://www.google.fr');
+        $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text(), 'http://www.google.fr');
         $url = new Url();
         $sitemap->add($url);
     }
 
     public function testAddUrlNoBaseHost()
     {
-        $dumper = new TestableMemoryDumper();
-        $sitemap = new TestableSitemap($dumper, new Text(), 'http://www.google.fr');
+        $dumper = new Dumper\Memory();
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
         $url = new Url();
         $url->setLoc('/search');
 
         $sitemap->add($url);
 
         $this->assertEquals('http://www.google.fr/search', $url->getLoc());
-        $this->assertEquals('http://www.google.fr/search' . "\n", $dumper->getContent());
+        $this->assertEquals('http://www.google.fr/search' . "\n", $dumper->getBuffer());
     }
 
     public function testAddUrlBaseHost()
     {
-        $dumper = new TestableMemoryDumper();
-        $sitemap = new TestableSitemap($dumper, new Text(), 'http://www.google.fr');
+        $dumper = new Dumper\Memory();
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
         $url = new Url();
         $url->setLoc('http://www.joe.fr/search');
 
         $sitemap->add($url);
 
         $this->assertEquals('http://www.joe.fr/search', $url->getLoc());
-        $this->assertEquals('http://www.joe.fr/search' . "\n", $dumper->getContent());
+        $this->assertEquals('http://www.joe.fr/search' . "\n", $dumper->getBuffer());
     }
 
     public function testAddUrlBaseHostToImages()
     {
-        $dumper = new TestableMemoryDumper();
-        $sitemap = new TestableSitemap($dumper, new Text(), 'http://www.google.fr');
+        $dumper = new Dumper\Memory();
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
         $url = new Url();
         $url->setLoc('http://www.joe.fr/search');
 
@@ -121,8 +112,8 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
     public function testAddUrlBaseHostToVideos()
     {
-        $dumper = new TestableMemoryDumper();
-        $sitemap = new TestableSitemap($dumper, new Text(), 'http://www.google.fr');
+        $dumper = new Dumper\Memory();
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
         $url = new Url();
         $url->setLoc('http://www.joe.fr/search');
 
@@ -145,7 +136,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
     public function testBuild()
     {
-        $sitemap = new TestableSitemap(new MemoryDumper(), new Text(), 'http://www.google.fr');
+        $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text(), 'http://www.google.fr');
         $sitemap->addProvider(new TestableProvider());
 
         $this->assertEquals('http://www.google.fr/search' . "\n", $sitemap->build());
