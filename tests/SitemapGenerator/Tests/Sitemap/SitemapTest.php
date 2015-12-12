@@ -8,7 +8,7 @@ use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Formatter\Text;
-use SitemapGenerator\Provider\ProviderInterface;
+use SitemapGenerator\Provider\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 
 class TestableSitemap extends Sitemap
@@ -32,7 +32,7 @@ class TestableMemoryDumper extends MemoryDumper
     }
 }
 
-class TestableProvider implements ProviderInterface
+class TestableProvider implements Provider
 {
     public function populate(Sitemap $sitemap)
     {

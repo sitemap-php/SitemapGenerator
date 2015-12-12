@@ -10,7 +10,7 @@ use SitemapGenerator\Entity\Url;
 /**
  * Abstract class containing common methods used by Propel and Doctrine providers.
  */
-abstract class AbstractProvider implements ProviderInterface
+abstract class AbstractProvider implements Provider
 {
     protected $router;
 
@@ -24,8 +24,8 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * Constructor
      *
-     * @param Entitymanager $em      Doctrine entity manager.
-     * @param array         $options The options (see the class comment).
+     * @param RouterInterface $router  The application router.
+     * @param array           $options The options (see the class comment).
      */
     public function __construct(RouterInterface $router, array $options)
     {

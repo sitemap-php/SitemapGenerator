@@ -37,10 +37,10 @@ Exemple provider:
 namespace SitemapGenerator\Provider;
 
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Provider\ProviderInterface;
+use SitemapGenerator\Provider\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 
-class DummyProvider implements ProviderInterface
+class DummyProvider implements Provider
 {
     public function populate(Sitemap $sitemap)
     {
@@ -53,8 +53,7 @@ class DummyProvider implements ProviderInterface
 }
 ```
 
-All the providers implement the `ProviderInterface`, which define the
-`populate()` method.
+All the providers implement the `Provider` interface, which defines the `populate()` method.
 
 
 #### Built-in providers
@@ -99,10 +98,10 @@ filesystem.
 use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider\ProviderInterface;
+use SitemapGenerator\Provider\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 
-class DummyProvider implements ProviderInterface
+class DummyProvider implements Provider
 {
     public function populate(Sitemap $sitemap)
     {

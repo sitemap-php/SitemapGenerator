@@ -7,7 +7,7 @@ use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider\ProviderInterface;
+use SitemapGenerator\Provider\Provider;
 
 /**
  * Sitemap generator.
@@ -22,7 +22,7 @@ use SitemapGenerator\Provider\ProviderInterface;
 class Sitemap
 {
     /**
-     * @var ProviderInterface[]
+     * @var Provider[]
      */
     protected $providers = array();
     protected $dumper = null;
@@ -56,11 +56,11 @@ class Sitemap
     /**
      * Add a provider to the sitemap.
      *
-     * @param ProviderInterface $provider The provider.
+     * @param Provider $provider The provider.
      *
      * @return Sitemap The current sitemap (for fluent interface).
      */
-    public function addProvider(ProviderInterface $provider)
+    public function addProvider(Provider $provider)
     {
         $this->providers[] = $provider;
 

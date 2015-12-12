@@ -9,7 +9,7 @@ use SitemapGenerator\Sitemap\Sitemap;
  *
  * Providers are responsible for adding Url's into the sitemap.
  */
-interface ProviderInterface
+interface Provider
 {
     /**
      * Populate a sitemap.
