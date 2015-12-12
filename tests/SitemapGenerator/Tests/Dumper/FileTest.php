@@ -2,9 +2,9 @@
 
 namespace SitemapGenerator\Tests\Dumper;
 
-use SitemapGenerator\Dumper\FileDumper;
+use SitemapGenerator\Dumper\File;
 
-class FileDumperTest extends \PHPUnit_Framework_TestCase
+class FileTest extends \PHPUnit_Framework_TestCase
 {
     protected $file;
 
@@ -20,7 +20,7 @@ class FileDumperTest extends \PHPUnit_Framework_TestCase
 
     public function testDumper()
     {
-        $dumper = new FileDumper($this->file);
+        $dumper = new File($this->file);
 
         $dumper->dump('joe');
         $this->assertTrue(file_exists($this->file));

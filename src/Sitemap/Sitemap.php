@@ -2,8 +2,8 @@
 
 namespace SitemapGenerator\Sitemap;
 
-use SitemapGenerator\Dumper\DumperInterface;
-use SitemapGenerator\Dumper\DumperFileInterface;
+use SitemapGenerator\Dumper\Dumper;
+use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Formatter\FormatterInterface;
@@ -33,13 +33,13 @@ class Sitemap
     /**
      * Constructor.
      *
-     * @param DumperInterface    $dumper           The dumper to use.
+     * @param Dumper             $dumper           The dumper to use.
      * @param FormatterInterface $formatter        The formatter to use.
      * @param string             $baseHost         The base URl for all the links (well only be used for relative URLs).
-     * @param string             $baseHost_sitemap The base URl for the sitemap.
+     * @param string             $baseHostSitemap  The base URl for the sitemap.
      * @param integer            $limit            The URL limit for each sitemap (only used in a sitemap index context)
      */
-    public function __construct(DumperInterface $dumper, FormatterInterface $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
+    public function __construct(Dumper $dumper, FormatterInterface $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;
@@ -68,11 +68,11 @@ class Sitemap
     /**
      * Overrides the used dumper.
      *
-     * @param DumperInterface $dumper The new dumper to use.
+     * @param Dumper $dumper The new dumper to use.
      *
      * @return Sitemap The current sitemap (for fluent interface).
      */
-    public function setDumper(DumperInterface $dumper)
+    public function setDumper(Dumper $dumper)
     {
         $this->dumper = $dumper;
 
@@ -187,7 +187,7 @@ class Sitemap
 
     protected function isSitemapIndexable()
     {
-        return ($this->limit > 0 && $this->dumper instanceof DumperFileInterface && $this->formatter instanceof SitemapIndexFormatterInterface);
+        return ($this->limit > 0 && $this->dumper instanceof File && $this->formatter instanceof SitemapIndexFormatterInterface);
     }
 
     protected function createSitemapIndex()

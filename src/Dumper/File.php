@@ -3,20 +3,15 @@
 namespace SitemapGenerator\Dumper;
 
 /**
- * Dump the sitemap into a file and compress it.
+ * Dump the sitemap into a file.
  *
- * @see SitemapGenerator\Dumper\FileDumper
+ * @see SitemapGenerator\Dumper\GzFileDumper
  */
-class GzFileDumper implements DumperFileInterface
+class File implements FileDumper
 {
     protected $filename = null;
     protected $handle = null;
 
-    /**
-     * Constructor.
-     *
-     * @param string $filename The filename. Must be acessible in write mode.
-     */
     public function __construct($filename)
     {
         $this->filename = $filename;
@@ -45,7 +40,7 @@ class GzFileDumper implements DumperFileInterface
     public function clearHandle()
     {
         if ($this->handle !== null) {
-            gzclose($this->handle);
+            fclose($this->handle);
             $this->handle = null;
         }
     }
@@ -59,12 +54,12 @@ class GzFileDumper implements DumperFileInterface
             $this->openFile();
         }
 
-        gzwrite($this->handle, $string);
+        fwrite($this->handle, $string);
     }
 
     protected function openFile()
     {
-        $this->handle = gzopen($this->filename, 'w9');
+        $this->handle = fopen($this->filename, 'w');
 
         if ($this->handle === false) {
             throw new \RuntimeException(sprintf('Impossible to open the file %s in write mode', $this->filename));

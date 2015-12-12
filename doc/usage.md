@@ -7,11 +7,11 @@ Here is the minimal code required to get a working sitemap generator:
 ```php
 <?php
 
-use SitemapGenerator\Dumper\MemoryDumper;
+use SitemapGenerator\Dumper;
 use SitemapGenerator\Formatter\XmlFormatter;
 use SitemapGenerator\Sitemap\Sitemap;
 
-$dumper = new MemoryDumper();
+$dumper = new Dumper\Memory();
 $formatter = new XmlFormatter();
 $sitemap = new Sitemap($dumper, $formatter);
 ```
@@ -97,7 +97,7 @@ filesystem.
 ```php
 <?php
 
-use SitemapGenerator\Dumper\MemoryDumper;
+use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter\XmlFormatter;
 use SitemapGenerator\Provider\ProviderInterface;
@@ -116,7 +116,7 @@ class DummyProvider implements ProviderInterface
     }
 }
 
-$dumper = new MemoryDumper();
+$dumper = new Dumper\Memory();
 $formatter = new XmlFormatter();
 $provider = new DummyProvider();
 

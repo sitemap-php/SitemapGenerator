@@ -2,9 +2,9 @@
 
 namespace SitemapGenerator\Tests\Dumper;
 
-use SitemapGenerator\Dumper\GzFileDumper;
+use SitemapGenerator\Dumper\GzFile;
 
-class GzFileDumperTest extends \PHPUnit_Framework_TestCase
+class GzFileTest extends \PHPUnit_Framework_TestCase
 {
     protected $file;
 
@@ -20,7 +20,7 @@ class GzFileDumperTest extends \PHPUnit_Framework_TestCase
 
     public function testDumper()
     {
-        $dumper = new GzFileDumper($this->file);
+        $dumper = new GzFile($this->file);
 
         $dumper->dump('joe');
         $dumper->dump('-hell yeah!');

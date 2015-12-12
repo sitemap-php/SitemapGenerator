@@ -2,8 +2,8 @@
 
 namespace SitemapGenerator\Tests\Sitemap;
 
-use SitemapGenerator\Dumper\MemoryDumper;
-use SitemapGenerator\Dumper\FileDumper;
+use SitemapGenerator\Dumper\Memory as MemoryDumper;
+use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
@@ -59,7 +59,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $sitemap = new TestableSitemap($dumper, new TextFormatter());
         $this->assertEquals($dumper, $sitemap->getDumper());
 
-        $other_dumper = new FileDumper('joe');
+        $other_dumper = new File('joe');
         $sitemap->setDumper($other_dumper);
         $this->assertEquals($other_dumper, $sitemap->getDumper());
     }

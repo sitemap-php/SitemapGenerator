@@ -7,9 +7,9 @@ memory, in a file, etc.) and the formatter formats the sitemap.
 
 Currently, the following dumpers are implemented:
 
-  * FileDumper: dumps the sitemap into a file
-  * GzFileDumper: dumps the sitemap into a gz compressed file
-  * MemoryDumper: dumps the sitemap in memory
+  * File: dumps the sitemap into a file
+  * GzFile: dumps the sitemap into a gz compressed file
+  * Memory: dumps the sitemap in memory
 
 And the following formatters are implemented:
 
@@ -45,8 +45,8 @@ $sitemap = new Sitemap($dumper, $formatter, $base_host = 'http://www.website.com
 In order to be able to generate a sitemap index, the sitemap generator
 configuration must follow these rules:
 
-  * use a `DumperFileInterface` instance as dumper (like `FileDumper` or
-    `GzFileDumper`)
+  * use a `\SitemapGenerator\Dumper\FileDumper` instance as dumper (like
+    `\SitemapGenerator\Dumper\File` or `\SitemapGenerator\Dumper\GzFile`)
   * use a `SitemapIndexFormatterInterface` instance as formatter (like
     `XmlFormatter` or `RichXmlFormatter`
   * and have a `limit` parameter strictly greater to `0`.
@@ -56,5 +56,5 @@ If all these rules are respected, the generator will build a sitemap index.
 Here is how you prepare the generator for a sitemap index:
 
 ```php
-$sitemap = new Sitemap($dumper, $formatter, $base_host = 'http://www.website.com', $sitemapindex_base_host = 'http://www.website.com/sitemap', $limit = 50000);
+$sitemap = new Sitemap($dumper, $formatter, $base_host = 'http://www.website.com', $sitemapIndexBaseHost = 'http://www.website.com/sitemap', $limit = 50000);
 ```
