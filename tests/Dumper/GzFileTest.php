@@ -4,20 +4,8 @@ namespace SitemapGenerator\Tests\Dumper;
 
 use SitemapGenerator\Dumper\GzFile;
 
-class GzFileTest extends \PHPUnit_Framework_TestCase
+class GzFileTest extends FileTestCase
 {
-    protected $file;
-
-    public function setUp()
-    {
-        $this->file = sys_get_temp_dir() . '/SitemapGeneratorGzFileDumperTest';
-    }
-
-    public function tearDown()
-    {
-        unlink($this->file);
-    }
-
     public function testDumper()
     {
         $dumper = new GzFile($this->file);
@@ -26,15 +14,9 @@ class GzFileTest extends \PHPUnit_Framework_TestCase
         $dumper->dump('-hell yeah!');
 
         $this->assertTrue(file_exists($this->file));
-        unset($dumper); // force the dumper to close the file
+        $dumper->clearHandle(); // force the dumper to close the file
 
-        // readgzfile reads the content of the file and also prints it...
-        ob_start();
-        readgzfile($this->file);
-        $content = ob_get_contents();
-        ob_clean();
-
-        $this->assertEquals('joe-hell yeah!', $content);
+        $this->assertEquals('joe-hell yeah!', file_get_contents('compress.zlib://'.$this->file));
         $this->assertNotEquals('joe-hell yeah!', file_get_contents($this->file), 'The file\'s content is compressed');
     }
 }

@@ -5,7 +5,7 @@ namespace SitemapGenerator\Dumper;
 /**
  * Dump the sitemap into a file.
  *
- * @see SitemapGenerator\Dumper\GzFileDumper
+ * @see SitemapGenerator\Dumper\GzFile
  */
 class File implements FileDumper
 {

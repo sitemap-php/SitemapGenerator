@@ -4,20 +4,8 @@ namespace SitemapGenerator\Tests\Dumper;
 
 use SitemapGenerator\Dumper\File;
 
-class FileTest extends \PHPUnit_Framework_TestCase
+class FileTest extends FileTestCase
 {
-    protected $file;
-
-    public function setUp()
-    {
-        $this->file = sys_get_temp_dir() . '/SitemapGeneratorFileDumperTest';
-    }
-
-    public function tearDown()
-    {
-        unlink($this->file);
-    }
-
     public function testDumper()
     {
         $dumper = new File($this->file);
