@@ -78,6 +78,8 @@ class Video
     /**
      * The date after which the video will no longer be available. Don't
      * supply this information if your video does not expire.
+     *
+     * @var \DateTime
      */
     protected $expirationDate = null;
 
@@ -94,6 +96,8 @@ class Video
 
     /**
      * The date the video was first published
+     *
+     * @var \DateTime
      */
     protected $publicationDate = null;
 
@@ -105,7 +109,7 @@ class Video
     /**
      * Tags associated with the video.
      */
-    protected $tags = array();
+    protected $tags = [];
 
     /**
      * The video's category. For example, cooking. The value should be a
@@ -214,11 +218,11 @@ class Video
             return $this;
         }
 
-        $this->playerLoc = array(
+        $this->playerLoc = [
             'loc'           => $loc,
             'allow_embed'   => $allowEmbed,
             'autoplay'      => $autoplay !== null ? $autoplay : null,
-        );
+        ];
 
         return $this;
     }
@@ -384,10 +388,10 @@ class Video
             throw new \InvalidArgumentException('The relationship must be deny or allow');
         }
 
-        $this->restrictions = array(
+        $this->restrictions = [
             'countries'     => $restrictions,
             'relationship'  => $relationship,
-        );
+        ];
 
         return $this;
     }
@@ -405,10 +409,10 @@ class Video
             return $this;
         }
 
-        $this->galleryLoc = array(
+        $this->galleryLoc = [
             'loc'   => $loc,
             'title' => $title,
-        );
+        ];
 
         return $this;
     }
@@ -438,10 +442,10 @@ class Video
             return $this;
         }
 
-        $this->uploader = array(
+        $this->uploader = [
             'name' => $uploader,
             'info' => $info,
-        );
+        ];
 
         return $this;
     }
@@ -459,7 +463,7 @@ class Video
             return $this;
         }
 
-        $valid_platforms = array(self::PLATFORM_TV, self::PLATFORM_WEB, self::PLATFORM_MOBILE);
+        $valid_platforms = [self::PLATFORM_TV, self::PLATFORM_WEB, self::PLATFORM_MOBILE];
         foreach ($platforms as $platform => $relationship) {
             if (!in_array($platform, $valid_platforms)) {
                 throw new \DomainException(sprintf('Invalid platform given. Valid values are: %s', implode(', ', $valid_platforms)));

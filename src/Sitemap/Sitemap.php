@@ -24,12 +24,12 @@ class Sitemap
     /**
      * @var Provider[]
      */
-    protected $providers = array();
+    protected $providers = [];
     protected $dumper = null;
     protected $formatter = null;
     protected $baseHost = null;
     protected $limit = 0;
-    protected $sitemapIndexes = array();
+    protected $sitemapIndexes = [];
     protected $originalFilename = null;
 
     /**
@@ -84,7 +84,7 @@ class Sitemap
     /**
      * Build the sitemap.
      *
-     * @return string The sitemap's content if available.
+     * @return string|null The sitemap's content if available.
      */
     public function build()
     {

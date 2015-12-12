@@ -32,14 +32,14 @@ class PropelProvider extends AbstractProvider
 {
     protected $router = null;
 
-    protected $options = array(
+    protected $options = [
         'model'         => null,
-        'loc'           => array(),
-        'filters'       => array(),
+        'loc'           => [],
+        'filters'       => [],
         'lastmod'       => null,
         'priority'      => null,
         'changefreq'    => null,
-    );
+    ];
 
     /**
      * Constructor

@@ -36,14 +36,14 @@ class DoctrineProvider extends AbstractProvider
     protected $router;
     protected $em;
 
-    protected $options = array(
+    protected $options = [
         'entity'        => null,
-        'loc'           => array(),
+        'loc'           => [],
         'query_method'  => null,
         'lastmod'       => null,
         'priority'      => null,
         'changefreq'    => null,
-    );
+    ];
 
     /**
      * Constructor

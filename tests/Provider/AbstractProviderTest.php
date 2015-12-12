@@ -13,11 +13,11 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $valueMap = array();
+        $valueMap = [];
         foreach ($results as $news) {
-            $valueMap[] = array('show_news', array(
+            $valueMap[] = ['show_news', [
                 'id' => $news->slug,
-            ), false, '/news/'.$news->slug);
+            ], false, '/news/'.$news->slug];
         }
 
         $router
@@ -64,9 +64,9 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
         $urlSecond = new Url();
         $urlSecond->setLoc('/news/second');
 
-        return array(
-            array(array(), array()),
-            array(array($first, $second), array($urlFirst, $urlSecond)),
-        );
+        return [
+            [[], []],
+            [[$first, $second], [$urlFirst, $urlSecond]],
+        ];
     }
 }

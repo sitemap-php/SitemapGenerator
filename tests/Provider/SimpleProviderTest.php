@@ -19,15 +19,15 @@ class SimpleProviderTest extends AbstractProviderTest
 
     protected function getNewsProvider(array $results)
     {
-        $routes = array();
-        foreach ($results as $result) {
-            $routes[] = array(
-                'name' => 'show_news',
-                'params' => array('id' => $result->slug)
-            );
-        }
-        return new SimpleProvider($this->getRouter($results), array(
+        $routes = array_map(function($result) {
+            return [
+                'name'   => 'show_news',
+                'params' => ['id' => $result->slug]
+            ];
+        }, $results);
+
+        return new SimpleProvider($this->getRouter($results), [
             'routes' => $routes,
-        ));
+        ]);
     }
 }

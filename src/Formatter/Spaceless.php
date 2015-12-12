@@ -58,6 +58,6 @@ class Spaceless implements SitemapIndex
 
     protected function stripSpaces($string)
     {
-        return str_replace(array("\t", "\r", "\n"), '', $string);
+        return str_replace(["\t", "\r", "\n"], '', $string);
     }
 }

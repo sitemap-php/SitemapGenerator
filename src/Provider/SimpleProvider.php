@@ -7,19 +7,19 @@ use SitemapGenerator\Entity\Url;
 
 class SimpleProvider extends AbstractProvider
 {
-    protected $options = array(
-        'routes'        => array(),
+    protected $options = [
+        'routes'        => [],
         'lastmod'       => null,
         'priority'      => null,
         'changefreq'    => null,
-    );
+    ];
 
-    protected $defaultRoute = array(
-        'params'        => array(),
+    protected $defaultRoute = [
+        'params'        => [],
         'priority'      => null,
         'changefreq'    => null,
         'lastmod'      => null,
-    );
+    ];
 
     public function populate(Sitemap $sitemap)
     {

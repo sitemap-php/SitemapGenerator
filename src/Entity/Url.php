@@ -62,12 +62,12 @@ class Url
     /**
      * Videos related to this entry.
      */
-    protected $videos = array();
+    protected $videos = [];
 
     /**
      * Images related to this entry.
      */
-    protected $images = array();
+    protected $images = [];
 
     /**
      * Sets the object location.
@@ -111,7 +111,7 @@ class Url
             return null;
         }
 
-        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), array(self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY))) {
+        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY])) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 
@@ -120,11 +120,11 @@ class Url
 
     public function setChangefreq($changefreq)
     {
-        $validFreqs = array(
+        $validFreqs = [
             self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY, self::CHANGEFREQ_DAILY,
             self::CHANGEFREQ_WEEKLY, self::CHANGEFREQ_MONTHLY, self::CHANGEFREQ_YEARLY,
             self::CHANGEFREQ_NEVER, null,
-        );
+        ];
 
         if (!in_array($changefreq, $validFreqs)) {
             throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $validFreqs)));

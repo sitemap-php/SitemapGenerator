@@ -18,6 +18,9 @@ class TestableXml extends Formatter\Xml
 
 class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Formatter\SitemapIndex
+     */
     protected $formatter;
 
     protected function setUp()
@@ -176,16 +179,16 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setRating(2.2);
         $video->setViewCount(42);
         $video->setFamilyFriendly(false);
-        $video->setTags(array('test', 'video'));
+        $video->setTags(['test', 'video']);
         $video->setCategory('test category');
-        $video->setRestrictions(array('fr', 'us'), Video::RESTRICTION_DENY);
+        $video->setRestrictions(['fr', 'us'], Video::RESTRICTION_DENY);
         $video->setGalleryLoc('http://www.example.com/gallery/foo', 'Foo gallery');
         $video->setRequiresSubscription(true);
         $video->setUploader('K-Phoen', 'http://www.kevingomez.fr');
-        $video->setPlatforms(array(
+        $video->setPlatforms([
             Video::PLATFORM_TV  => Video::RESTRICTION_ALLOW,
             Video::PLATFORM_WEB => Video::RESTRICTION_ALLOW,
-        ));
+        ]);
         $video->setLive(false);
 
         $this->assertEquals(
@@ -247,7 +250,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
     {
         $sitemapIndex = new SitemapIndex();
         $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
-        $sitemapIndex->setLastMod(new \DateTime('2013-07-26 23:42:00'));
+        $sitemapIndex->setLastmod(new \DateTime('2013-07-26 23:42:00'));
 
         $this->assertEquals("<sitemap>\n".
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n".
@@ -267,8 +270,6 @@ sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')
 
     protected function dateFormatW3C($date)
     {
-        $date = new \DateTime($date);
-
-        return $date->format(\DateTime::W3C);
+        return (new \DateTime($date))->format(\DateTime::W3C);
     }
 }

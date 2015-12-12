@@ -21,14 +21,14 @@ class PropelProviderTest extends AbstractProviderTest
     }
 
     /**
-     * @expectedException           LogicException
+     * @expectedException           \LogicException
      * @expectedExceptionMessage    Can't find class \Lala
      */
     public function testPopulateWithUnknownModel()
     {
-        new PropelProvider($this->getRouter(array()), array(
+        new PropelProvider($this->getRouter([]), [
             'model' => '\Lala',
-        ));
+        ]);
     }
 
     protected function getPropelQuery($model, $results)
@@ -38,7 +38,7 @@ class PropelProviderTest extends AbstractProviderTest
         $mock
             ->shouldReceive('from')
             ->once()
-            ->with('SitemapGenerator\Tests\Fixtures\News')
+            ->with($model)
             ->andReturn(\Mockery::self());
 
         $mock
@@ -57,9 +57,9 @@ class PropelProviderTest extends AbstractProviderTest
 
     protected function getNewsProvider(array $results)
     {
-        return new PropelProvider($this->getRouter($results), array(
+        return new PropelProvider($this->getRouter($results), [
             'model' => 'SitemapGenerator\Tests\Fixtures\News',
-            'loc'   => array('route' => 'show_news', 'params' => array('id' => 'slug')),
-        ));
+            'loc'   => ['route' => 'show_news', 'params' => ['id' => 'slug']],
+        ]);
     }
 }

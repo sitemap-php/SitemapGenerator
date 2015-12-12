@@ -14,12 +14,12 @@ abstract class AbstractProvider implements Provider
 {
     protected $router;
 
-    protected $options = array(
-        'loc'           => array(),
+    protected $options = [
+        'loc'           => [],
         'lastmod'       => null,
         'priority'      => null,
         'changefreq'    => null,
-    );
+    ];
 
     /**
      * Constructor
@@ -56,10 +56,10 @@ abstract class AbstractProvider implements Provider
     protected function getResultLoc($result)
     {
         $route = $this->options['loc']['route'];
-        $params = array();
+        $params = [];
 
         if (!isset($this->options['loc']['params'])) {
-            $this->options['loc']['params'] = array();
+            $this->options['loc']['params'] = [];
         }
 
         foreach ($this->options['loc']['params'] as $key => $column) {
