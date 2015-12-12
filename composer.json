@@ -23,6 +23,9 @@
     "autoload": {
         "psr-4": { "SitemapGenerator\\": "src/" }
     },
+    "autoload-dev": {
+        "psr-4": { "SitemapGenerator\\Tests\\": "tests/" }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
