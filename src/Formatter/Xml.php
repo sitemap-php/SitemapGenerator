@@ -2,12 +2,9 @@
 
 namespace SitemapGenerator\Formatter;
 
-use SitemapGenerator\Entity\Image;
-use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Entity\Video;
-use SitemapGenerator\Entity\SitemapIndex;
+use SitemapGenerator\Entity;
 
-class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterface
+class Xml extends BaseFormatter implements SitemapIndex
 {
     public function getSitemapStart()
     {
@@ -32,12 +29,12 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         return '</sitemapindex>';
     }
 
-    public function formatUrl(Url $url)
+    public function formatUrl(Entity\Url $url)
     {
         return '<url>' . "\n" . $this->formatBody($url) . '</url>' . "\n";
     }
 
-    protected function formatBody(Url $url)
+    protected function formatBody(Entity\Url $url)
     {
         $buffer = "\t" . '<loc>' . $this->escape($url->getLoc()) . '</loc>' . "\n";
 
@@ -64,12 +61,12 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         return $buffer;
     }
 
-    public function formatSitemapIndex(SitemapIndex $sitemapIndex)
+    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex)
     {
         return '<sitemap>' . "\n" . $this->formatSitemapIndexBody($sitemapIndex) . '</sitemap>' . "\n";
     }
 
-    protected function formatSitemapIndexBody(SitemapIndex $sitemapIndex)
+    protected function formatSitemapIndexBody(Entity\SitemapIndex $sitemapIndex)
     {
         $buffer = "\t" . '<loc>' . $this->escape($sitemapIndex->getLoc()) . '</loc>' . "\n";
 
@@ -80,7 +77,7 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         return $buffer;
     }
 
-    protected function formatVideo(Video $video)
+    protected function formatVideo(Entity\Video $video)
     {
         $buffer = "\t" . '<video:video>' . "\n";
 
@@ -172,7 +169,7 @@ class XmlFormatter extends BaseFormatter implements SitemapIndexFormatterInterfa
         return $buffer . "\t" . '</video:video>' . "\n";
     }
 
-    protected function formatImage(Image $image)
+    protected function formatImage(Entity\Image $image)
     {
         $buffer = "\t" . '<image:image>' . "\n";
 

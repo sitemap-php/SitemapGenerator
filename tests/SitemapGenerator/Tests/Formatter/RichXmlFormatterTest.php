@@ -2,17 +2,15 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
-use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\RichUrl;
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Entity\Video;
-use SitemapGenerator\Formatter\RichXmlFormatter;
+use SitemapGenerator\Formatter;
 
 class RichXmlFormatterTest extends XmlFormatterTest
 {
     protected function setUp()
     {
-        $this->formatter = new RichXmlFormatter();
+        $this->formatter = new Formatter\RichXml();
     }
 
     public function testSitemapStart()

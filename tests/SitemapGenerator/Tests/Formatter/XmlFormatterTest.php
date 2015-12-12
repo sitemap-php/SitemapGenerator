@@ -6,9 +6,9 @@ use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Entity\SitemapIndex;
-use SitemapGenerator\Formatter\XmlFormatter;
+use SitemapGenerator\Formatter;
 
-class TestableXmlFormatter extends XmlFormatter
+class TestableXml extends Formatter\Xml
 {
     public function testFormatVideo(Video $video)
     {
@@ -22,7 +22,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->formatter = new XmlFormatter();
+        $this->formatter = new Formatter\Xml();
     }
 
     public function testSitemapStart()
@@ -163,7 +163,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatFullVideo()
     {
-        $formatter = new TestableXmlFormatter();
+        $formatter = new TestableXml();
 
         $video = new Video();
         $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');

@@ -4,7 +4,7 @@ namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\Url;
 
-interface FormatterInterface
+interface Sitemap
 {
     public function getSitemapStart();
     public function getSitemapEnd();

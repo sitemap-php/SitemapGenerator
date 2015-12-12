@@ -3,13 +3,13 @@
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Entity\SitemapIndex;
+use SitemapGenerator\Entity\SitemapIndex as SitemapIndexEntity;
 
-class SpacelessFormatter implements SitemapIndexFormatterInterface
+class Spaceless implements SitemapIndex
 {
     protected $formatter;
 
-    public function __construct(FormatterInterface $formatter)
+    public function __construct(Sitemap $formatter)
     {
         $this->formatter = $formatter;
     }
@@ -31,7 +31,7 @@ class SpacelessFormatter implements SitemapIndexFormatterInterface
 
     public function getSitemapIndexStart()
     {
-        if (!$this->formatter instanceof SitemapIndexFormatterInterface) {
+        if (!$this->formatter instanceof SitemapIndex) {
             return '';
         }
 
@@ -40,16 +40,16 @@ class SpacelessFormatter implements SitemapIndexFormatterInterface
 
     public function getSitemapIndexEnd()
     {
-        if (!$this->formatter instanceof SitemapIndexFormatterInterface) {
+        if (!$this->formatter instanceof SitemapIndex) {
             return '';
         }
 
         return $this->stripSpaces($this->formatter->getSitemapIndexEnd());
     }
 
-    public function formatSitemapIndex(SitemapIndex $sitemapIndex)
+    public function formatSitemapIndex(SitemapIndexEntity $sitemapIndex)
     {
-        if (!$this->formatter instanceof SitemapIndexFormatterInterface) {
+        if (!$this->formatter instanceof SitemapIndex) {
             return '';
         }
 

@@ -172,6 +172,9 @@ class Url
         return $this;
     }
 
+    /**
+     * @return Video[]
+     */
     public function getVideos()
     {
         return $this->videos;
@@ -191,6 +194,9 @@ class Url
         return $this;
     }
 
+    /**
+     * @return Image[]
+     */
     public function getImages()
     {
         return $this->images;

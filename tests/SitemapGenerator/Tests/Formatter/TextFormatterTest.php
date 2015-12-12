@@ -3,25 +3,25 @@
 namespace SitemapGenerator\Tests\Formatter;
 
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Formatter\TextFormatter;
+use SitemapGenerator\Formatter;
 
 class TextFormatterTest extends \PHPUnit_Framework_TestCase
 {
     public function testSitemapStart()
     {
-        $formatter = new TextFormatter();
+        $formatter = new Formatter\Text();
         $this->assertEquals('', $formatter->getSitemapStart());
     }
 
     public function testSitemapEnd()
     {
-        $formatter = new TextFormatter();
+        $formatter = new Formatter\Text();
         $this->assertEquals('', $formatter->getSitemapEnd());
     }
 
     public function testFormatUrl()
     {
-        $formatter = new TextFormatter();
+        $formatter = new Formatter\Text();
 
         $url = new Url();
         $url->setLoc('http://www.google.fr');

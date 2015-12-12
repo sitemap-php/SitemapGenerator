@@ -13,15 +13,15 @@ Currently, the following dumpers are implemented:
 
 And the following formatters are implemented:
 
-  * TextFormatter: formats the sitemap as a simple text file that contains one URL per line
-  * XmlFormatter: formats a classic XML sitemap
-  * RichXmlFormatter: formats a rich XML sitemap
-  * SpacelessFormatter: wraps another formatter and remove the \n and \t characters
+  * Text: formats the sitemap as a simple text file that contains one URL per line
+  * Xml: formats a classic XML sitemap
+  * RichXml: formats a rich XML sitemap
+  * Spaceless: wraps another formatter and remove the \n and \t characters
 
-The dumpers must implement the DumperInterface and the formatters the
-FormatterInterface.
+The dumpers must implement the `Dumper` interface and the formatters the
+`Formatter` interface.
 
-The default sitemap service uses a GzFileDumper and a XmlFormatter. You can
+The default sitemap service uses a `GzFile` dumper and a `Xml` formatter. You can
 change this by overriding the sitemap service definition:
 
 ### Images and videos
@@ -47,8 +47,8 @@ configuration must follow these rules:
 
   * use a `\SitemapGenerator\Dumper\FileDumper` instance as dumper (like
     `\SitemapGenerator\Dumper\File` or `\SitemapGenerator\Dumper\GzFile`)
-  * use a `SitemapIndexFormatterInterface` instance as formatter (like
-    `XmlFormatter` or `RichXmlFormatter`
+  * use a `\SitemapGenerator\Formatter\SitemapIndex` instance as formatter (like
+    `SitemapGenerator\Formatter\Xml` or `SitemapGenerator\Formatter\RichXml`
   * and have a `limit` parameter strictly greater to `0`.
 
 If all these rules are respected, the generator will build a sitemap index.

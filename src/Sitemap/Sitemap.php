@@ -6,8 +6,7 @@ use SitemapGenerator\Dumper\Dumper;
 use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
-use SitemapGenerator\Formatter\FormatterInterface;
-use SitemapGenerator\Formatter\SitemapIndexFormatterInterface;
+use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\ProviderInterface;
 
 /**
@@ -22,6 +21,9 @@ use SitemapGenerator\Provider\ProviderInterface;
  */
 class Sitemap
 {
+    /**
+     * @var ProviderInterface[]
+     */
     protected $providers = array();
     protected $dumper = null;
     protected $formatter = null;
@@ -33,13 +35,13 @@ class Sitemap
     /**
      * Constructor.
      *
-     * @param Dumper             $dumper           The dumper to use.
-     * @param FormatterInterface $formatter        The formatter to use.
-     * @param string             $baseHost         The base URl for all the links (well only be used for relative URLs).
-     * @param string             $baseHostSitemap  The base URl for the sitemap.
-     * @param integer            $limit            The URL limit for each sitemap (only used in a sitemap index context)
+     * @param Dumper  $dumper              The dumper to use.
+     * @param Formatter\Sitemap $formatter The formatter to use.
+     * @param string  $baseHost            The base URl for all the links (well only be used for relative URLs).
+     * @param string  $baseHostSitemap     The base URl for the sitemap.
+     * @param integer $limit               The URL limit for each sitemap (only used in a sitemap index context)
      */
-    public function __construct(Dumper $dumper, FormatterInterface $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
+    public function __construct(Dumper $dumper, Formatter\Sitemap $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;
@@ -187,7 +189,7 @@ class Sitemap
 
     protected function isSitemapIndexable()
     {
-        return ($this->limit > 0 && $this->dumper instanceof File && $this->formatter instanceof SitemapIndexFormatterInterface);
+        return ($this->limit > 0 && $this->dumper instanceof File && $this->formatter instanceof Formatter\SitemapIndex);
     }
 
     protected function createSitemapIndex()
@@ -199,7 +201,7 @@ class Sitemap
             $sitemapIndex->setLoc($this->baseHostSitemap.$loc);
         }
 
-        $sitemapIndex->setLastMod(new \DateTime());
+        $sitemapIndex->setLastmod(new \DateTime());
 
         return $sitemapIndex;
     }

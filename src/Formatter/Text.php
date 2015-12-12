@@ -10,7 +10,7 @@ use SitemapGenerator\Entity\Url;
  *
  * @see http://www.sitemaps.org/protocol.html#otherformats
  */
-class TextFormatter extends BaseFormatter implements FormatterInterface
+class Text extends BaseFormatter implements Sitemap
 {
     public function getSitemapStart()
     {
