@@ -18,7 +18,8 @@
         "phpunit/phpunit": "~5.0",
         "mockery/mockery": "~0.8",
         "propel/propel1": "~1.6",
-        "symfony/routing": "~2.0,<2.8"
+        "symfony/routing": "~2.0,<2.8",
+        "fabpot/php-cs-fixer": "~1.11"
     },
     "autoload": {
         "psr-4": { "SitemapGenerator\\": "src/" }
