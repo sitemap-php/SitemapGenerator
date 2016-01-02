@@ -14,6 +14,8 @@ tool](http://cs.sensiolabs.org/).
 
 You MUST run the test suite.
 
+You MUST run the coding standard fixer tool.
+
 You MUST write (or update) unit tests.
 
 You SHOULD write documentation.
@@ -35,3 +37,8 @@ Thank you!
 Ensure that the required vendors are installed by running `composer install`.
 
 Run the tests with the `./vendor/bin/phpunit` command.
+
+## Running the coding standard fixer tool
+
+The library comes with a basic setup of [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer).
+It can be executed with the `./vendor/bin/php-cs-fixer` command
