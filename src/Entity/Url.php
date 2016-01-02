@@ -10,17 +10,6 @@ namespace SitemapGenerator\Entity;
 class Url
 {
     /**
-     * Page change frequency constants.
-     */
-    const CHANGEFREQ_ALWAYS     = 'always';
-    const CHANGEFREQ_HOURLY     = 'hourly';
-    const CHANGEFREQ_DAILY      = 'daily';
-    const CHANGEFREQ_WEEKLY     = 'weekly';
-    const CHANGEFREQ_MONTHLY    = 'monthly';
-    const CHANGEFREQ_YEARLY     = 'yearly';
-    const CHANGEFREQ_NEVER      = 'never';
-
-    /**
      * URL of the page.
      * Should NOT begin with the protocol (as it will be added later) but MUST
      * end with a trailing slash, if your web server requires it. This value
@@ -111,7 +100,7 @@ class Url
             return null;
         }
 
-        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY])) {
+        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY])) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 
@@ -121,12 +110,12 @@ class Url
     public function setChangefreq($changefreq)
     {
         $validFreqs = [
-            self::CHANGEFREQ_ALWAYS, self::CHANGEFREQ_HOURLY, self::CHANGEFREQ_DAILY,
-            self::CHANGEFREQ_WEEKLY, self::CHANGEFREQ_MONTHLY, self::CHANGEFREQ_YEARLY,
-            self::CHANGEFREQ_NEVER, null,
+            ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY, ChangeFrequency::DAILY,
+            ChangeFrequency::WEEKLY, ChangeFrequency::MONTHLY, ChangeFrequency::YEARLY,
+            ChangeFrequency::NEVER,
         ];
 
-        if (!in_array($changefreq, $validFreqs)) {
+        if ($changefreq !== null && !in_array($changefreq, $validFreqs)) {
             throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $validFreqs)));
         }
 

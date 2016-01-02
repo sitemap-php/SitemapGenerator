@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
+use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
@@ -63,7 +64,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
 
         $this->assertEquals("<url>\n".
 "\t<loc>http://www.google.fr</loc>\n".
@@ -77,7 +78,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
 
         $video = new Video();
         $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
@@ -109,7 +110,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
 
         $image = new Image();
         $image->setLoc('http://www.example.com/thumbs/123.jpg');
@@ -133,7 +134,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
 
         $video = new Video();
         $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
@@ -221,7 +222,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
         $url = new Url();
         $url->setLoc('http://www.google.fr/?s=joe"');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
 
         $image = new Image();
         $image->setLoc('http://www.example.com/thumbs/123.jpg');

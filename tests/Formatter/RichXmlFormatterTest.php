@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
+use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\RichUrl;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
@@ -23,7 +24,7 @@ class RichXmlFormatterTest extends XmlFormatterTest
         $url = new RichUrl();
         $url->setLoc('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
         $url->addAlternateUrl('en', 'http://www.google.com');
         $url->addAlternateUrl('es-es', 'http://www.google.es');
 

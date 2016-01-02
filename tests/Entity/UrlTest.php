@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests\Entity;
 
+use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
 
 class UrlTest extends \PHPUnit_Framework_TestCase
@@ -59,36 +60,36 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 
     public function lastmodProvider()
     {
-        return array(
-            array(null, null, null),
-            array(null, Url::CHANGEFREQ_YEARLY, null),
-            array('2012-12-20 18:44', null, $this->dateFormatW3C('2012-12-20 18:44')),
-            array('2012-12-20 18:44', Url::CHANGEFREQ_HOURLY, $this->dateFormatW3C('2012-12-20 18:44')),
-            array('2012-12-20 18:44', Url::CHANGEFREQ_ALWAYS, $this->dateFormatW3C('2012-12-20 18:44')),
-            array('2012-12-20 18:44', Url::CHANGEFREQ_DAILY, '2012-12-20'),
-        );
+        return [
+            [null, null, null],
+            [null, ChangeFrequency::YEARLY, null],
+            ['2012-12-20 18:44', null, $this->dateFormatW3C('2012-12-20 18:44')],
+            ['2012-12-20 18:44', ChangeFrequency::HOURLY, $this->dateFormatW3C('2012-12-20 18:44')],
+            ['2012-12-20 18:44', ChangeFrequency::ALWAYS, $this->dateFormatW3C('2012-12-20 18:44')],
+            ['2012-12-20 18:44', ChangeFrequency::DAILY, '2012-12-20'],
+        ];
     }
 
     public function changefreqProvider()
     {
-        return array(
-            array(null),
-            array(Url::CHANGEFREQ_ALWAYS),
-            array(Url::CHANGEFREQ_HOURLY),
-            array(Url::CHANGEFREQ_DAILY),
-            array(Url::CHANGEFREQ_WEEKLY),
-            array(Url::CHANGEFREQ_MONTHLY),
-            array(Url::CHANGEFREQ_YEARLY),
-            array(Url::CHANGEFREQ_NEVER),
-        );
+        return [
+            [null],
+            [ChangeFrequency::ALWAYS],
+            [ChangeFrequency::HOURLY],
+            [ChangeFrequency::DAILY],
+            [ChangeFrequency::WEEKLY],
+            [ChangeFrequency::MONTHLY],
+            [ChangeFrequency::YEARLY],
+            [ChangeFrequency::NEVER],
+        ];
     }
 
     public function invalidPriorityProvider()
     {
-        return array(
-            array(-0.1),
-            array(1.1),
-        );
+        return [
+            [-0.1],
+            [1.1],
+        ];
     }
 
     protected function dateFormatW3C($date)
