@@ -111,36 +111,36 @@ class Sitemap
 
         if ($this->baseHost !== null) {
             if ($this->needHost($loc)) {
-                $url->setLoc($this->baseHost.$loc);
+                $url->setLoc($this->baseHost . $loc);
             }
 
             foreach ($url->getVideos() as $video) {
                 if ($this->needHost($video->getThumbnailLoc())) {
-                    $video->setThumbnailLoc($this->baseHost.$video->getThumbnailLoc());
+                    $video->setThumbnailLoc($this->baseHost . $video->getThumbnailLoc());
                 }
 
                 if ($this->needHost($video->getContentLoc())) {
-                    $video->setContentLoc($this->baseHost.$video->getContentLoc());
+                    $video->setContentLoc($this->baseHost . $video->getContentLoc());
                 }
 
                 $player = $video->getPlayerLoc();
                 if ($player !== null && $this->needHost($player['loc'])) {
-                    $video->setPlayerLoc($this->baseHost.$player['loc'], $player['allow_embed'], $player['autoplay']);
+                    $video->setPlayerLoc($this->baseHost . $player['loc'], $player['allow_embed'], $player['autoplay']);
                 }
 
                 $gallery = $video->getGalleryLoc();
                 if ($gallery !== null && $this->needHost($gallery['loc'])) {
-                    $video->setGalleryLoc($this->baseHost.$gallery['loc'], $gallery['title']);
+                    $video->setGalleryLoc($this->baseHost . $gallery['loc'], $gallery['title']);
                 }
             }
 
             foreach ($url->getImages() as $image) {
                 if ($this->needHost($image->getLoc())) {
-                    $image->setLoc($this->baseHost.$image->getLoc());
+                    $image->setLoc($this->baseHost . $image->getLoc());
                 }
 
                 if ($this->needHost($image->getLicense())) {
-                    $image->setLicense($this->baseHost.$image->getLicense());
+                    $image->setLicense($this->baseHost . $image->getLicense());
                 }
             }
         }
@@ -174,7 +174,7 @@ class Sitemap
         $sitemapIndex = new SitemapIndex();
         $loc = DIRECTORY_SEPARATOR . basename($sitemapIndexFilename);
         if ($this->baseHostSitemap !== null) {
-            $sitemapIndex->setLoc($this->baseHostSitemap.$loc);
+            $sitemapIndex->setLoc($this->baseHostSitemap . $loc);
         }
 
         $sitemapIndex->setLastmod(new \DateTime());
@@ -213,9 +213,9 @@ class Sitemap
         $index = count($this->sitemapIndexes) + 1;
         $extPosition = strrpos($sitemapIndexFilename, ".");
         if ($extPosition !== false) {
-            $sitemapIndexFilename = substr($sitemapIndexFilename, 0, $extPosition).'-'.$index.substr($sitemapIndexFilename, $extPosition);
+            $sitemapIndexFilename = substr($sitemapIndexFilename, 0, $extPosition) . '-' . $index . substr($sitemapIndexFilename, $extPosition);
         } else {
-            $sitemapIndexFilename .= '-'.$index;
+            $sitemapIndexFilename .= '-' . $index;
         }
 
         $sitemapIndexFilename = dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;

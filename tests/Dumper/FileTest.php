@@ -13,9 +13,9 @@ class FileTest extends FileTestCase
         $dumper->dump('joe');
         $this->assertTrue(file_exists($this->file));
 
-        $this->assertEquals('joe', file_get_contents($this->file));
+        $this->assertSame('joe', file_get_contents($this->file));
 
         $dumper->dump('-hell yeah!');
-        $this->assertEquals('joe-hell yeah!', file_get_contents($this->file));
+        $this->assertSame('joe-hell yeah!', file_get_contents($this->file));
     }
 }

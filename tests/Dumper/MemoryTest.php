@@ -9,7 +9,7 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
     public function testDumper()
     {
         $dumper = new Memory();
-        $this->assertEquals('foo', $dumper->dump('foo'));
-        $this->assertEquals('foo-bar', $dumper->dump('-bar'));
+        $this->assertSame('foo', $dumper->dump('foo'));
+        $this->assertSame('foo-bar', $dumper->dump('-bar'));
     }
 }

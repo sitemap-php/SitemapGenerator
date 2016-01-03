@@ -38,21 +38,21 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
     public function testAddProvider()
     {
         $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text());
-        $this->assertEquals(0, count($sitemap->getProviders()));
+        $this->assertSame(0, count($sitemap->getProviders()));
 
         $sitemap->addProvider(new TestableProvider());
-        $this->assertEquals(1, count($sitemap->getProviders()));
+        $this->assertSame(1, count($sitemap->getProviders()));
     }
 
     public function testSetDumper()
     {
         $dumper = new Dumper\Memory();
         $sitemap = new TestableSitemap($dumper, new Formatter\Text());
-        $this->assertEquals($dumper, $sitemap->getDumper());
+        $this->assertSame($dumper, $sitemap->getDumper());
 
         $other_dumper = new Dumper\File('joe');
         $sitemap->setDumper($other_dumper);
-        $this->assertEquals($other_dumper, $sitemap->getDumper());
+        $this->assertSame($other_dumper, $sitemap->getDumper());
     }
 
     /**
@@ -74,8 +74,8 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
         $sitemap->add($url);
 
-        $this->assertEquals('http://www.google.fr/search', $url->getLoc());
-        $this->assertEquals('http://www.google.fr/search' . "\n", $dumper->getBuffer());
+        $this->assertSame('http://www.google.fr/search', $url->getLoc());
+        $this->assertSame('http://www.google.fr/search' . "\n", $dumper->getBuffer());
     }
 
     public function testAddUrlBaseHost()
@@ -87,8 +87,8 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
         $sitemap->add($url);
 
-        $this->assertEquals('http://www.joe.fr/search', $url->getLoc());
-        $this->assertEquals('http://www.joe.fr/search' . "\n", $dumper->getBuffer());
+        $this->assertSame('http://www.joe.fr/search', $url->getLoc());
+        $this->assertSame('http://www.joe.fr/search' . "\n", $dumper->getBuffer());
     }
 
     public function testAddUrlBaseHostToImages()
@@ -106,8 +106,8 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
         $sitemap->add($url);
 
-        $this->assertEquals('http://www.google.fr/thumbs/123.jpg', $image->getLoc());
-        $this->assertEquals('http://www.google.fr/lic/MIT.txt', $image->getLicense());
+        $this->assertSame('http://www.google.fr/thumbs/123.jpg', $image->getLoc());
+        $this->assertSame('http://www.google.fr/lic/MIT.txt', $image->getLicense());
     }
 
     public function testAddUrlBaseHostToVideos()
@@ -126,12 +126,12 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
         $sitemap->add($url);
 
-        $this->assertEquals('http://www.google.fr/thumbs/123.jpg', $video->getThumbnailLoc());
-        $this->assertEquals('http://www.google.fr/content/123.avi', $video->getContentLoc());
+        $this->assertSame('http://www.google.fr/thumbs/123.jpg', $video->getThumbnailLoc());
+        $this->assertSame('http://www.google.fr/content/123.avi', $video->getContentLoc());
         $player =  $video->getPlayerLoc();
-        $this->assertEquals('http://www.google.fr/player/123.swf', $player['loc']);
+        $this->assertSame('http://www.google.fr/player/123.swf', $player['loc']);
         $gallery =  $video->getGalleryLoc();
-        $this->assertEquals('http://www.google.fr/gallery/123', $gallery['loc']);
+        $this->assertSame('http://www.google.fr/gallery/123', $gallery['loc']);
     }
 
     public function testBuild()
@@ -139,6 +139,6 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text(), 'http://www.google.fr');
         $sitemap->addProvider(new TestableProvider());
 
-        $this->assertEquals('http://www.google.fr/search' . "\n", $sitemap->build());
+        $this->assertSame('http://www.google.fr/search' . "\n", $sitemap->build());
     }
 }

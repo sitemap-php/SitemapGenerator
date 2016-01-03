@@ -10,13 +10,13 @@ class TextFormatterTest extends \PHPUnit_Framework_TestCase
     public function testSitemapStart()
     {
         $formatter = new Formatter\Text();
-        $this->assertEquals('', $formatter->getSitemapStart());
+        $this->assertSame('', $formatter->getSitemapStart());
     }
 
     public function testSitemapEnd()
     {
         $formatter = new Formatter\Text();
-        $this->assertEquals('', $formatter->getSitemapEnd());
+        $this->assertSame('', $formatter->getSitemapEnd());
     }
 
     public function testFormatUrl()
@@ -26,6 +26,6 @@ class TextFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
 
-        $this->assertEquals('http://www.google.fr' . "\n", $formatter->formatUrl($url));
+        $this->assertSame('http://www.google.fr' . "\n", $formatter->formatUrl($url));
     }
 }

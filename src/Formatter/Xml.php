@@ -8,9 +8,9 @@ class Xml extends BaseFormatter implements SitemapIndex
 {
     public function getSitemapStart()
     {
-        return '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset '.
-               'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '.
-               'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" '.
+        return '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset ' .
+               'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' .
+               'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" ' .
                'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n";
     }
 
@@ -39,15 +39,15 @@ class Xml extends BaseFormatter implements SitemapIndex
         $buffer = "\t" . '<loc>' . $this->escape($url->getLoc()) . '</loc>' . "\n";
 
         if ($url->getLastmod() !== null) {
-            $buffer .= "\t" . '<lastmod>' . $this->escape($url->getLastmod()) .'</lastmod>' . "\n";
+            $buffer .= "\t" . '<lastmod>' . $this->escape($url->getLastmod()) . '</lastmod>' . "\n";
         }
 
         if ($url->getChangefreq() !== null) {
-            $buffer .= "\t" . '<changefreq>' . $this->escape($url->getChangefreq()) .'</changefreq>' . "\n";
+            $buffer .= "\t" . '<changefreq>' . $this->escape($url->getChangefreq()) . '</changefreq>' . "\n";
         }
 
         if ($url->getPriority() !== null) {
-            $buffer .= "\t" . '<priority>' . $this->escape($url->getPriority()) .'</priority>' . "\n";
+            $buffer .= "\t" . '<priority>' . $this->escape($url->getPriority()) . '</priority>' . "\n";
         }
 
         foreach ($url->getVideos() as $video) {
@@ -71,7 +71,7 @@ class Xml extends BaseFormatter implements SitemapIndex
         $buffer = "\t" . '<loc>' . $this->escape($sitemapIndex->getLoc()) . '</loc>' . "\n";
 
         if ($sitemapIndex->getLastmod() !== null) {
-            $buffer .= "\t" . '<lastmod>' . $this->escape($sitemapIndex->getLastmod()) .'</lastmod>' . "\n";
+            $buffer .= "\t" . '<lastmod>' . $this->escape($sitemapIndex->getLastmod()) . '</lastmod>' . "\n";
         }
 
         return $buffer;
@@ -135,7 +135,7 @@ class Xml extends BaseFormatter implements SitemapIndex
             $restrictions = $video->getRestrictions();
             $relationship = $this->escape($restrictions['relationship']);
 
-            $buffer .= "\t\t" . '<video:restriction relationship="' . $relationship . '">'. $this->escape(implode(' ', $restrictions['countries'])) . '</video:restriction>' . "\n";
+            $buffer .= "\t\t" . '<video:restriction relationship="' . $relationship . '">' . $this->escape(implode(' ', $restrictions['countries'])) . '</video:restriction>' . "\n";
         }
 
         if ($video->getGalleryLoc() !== null) {
@@ -158,7 +158,7 @@ class Xml extends BaseFormatter implements SitemapIndex
 
         if ($video->getPlatforms() !== null) {
             foreach ($video->getPlatforms() as $platform => $relationship) {
-                $buffer .= "\t\t" . '<video:platform relationship="' . $this->escape($relationship) . '">'. $this->escape($platform) . '</video:platform>' . "\n";
+                $buffer .= "\t\t" . '<video:platform relationship="' . $this->escape($relationship) . '">' . $this->escape($platform) . '</video:platform>' . "\n";
             }
         }
 

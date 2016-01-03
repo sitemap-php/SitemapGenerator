@@ -28,13 +28,13 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
     public function testSitemapStart()
     {
         $formatter = new Formatter\Spaceless(new TestableSitemapFormatter());
-        $this->assertEquals('joe', $formatter->getSitemapStart());
+        $this->assertSame('joe', $formatter->getSitemapStart());
     }
 
     public function testSitemapEnd()
     {
         $formatter = new Formatter\Spaceless(new TestableSitemapFormatter());
-        $this->assertEquals('foo', $formatter->getSitemapEnd());
+        $this->assertSame('foo', $formatter->getSitemapEnd());
     }
 
     public function testFormatUrl()
@@ -44,6 +44,6 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
 
-        $this->assertEquals('http://www.google.fr', $formatter->formatUrl($url));
+        $this->assertSame('http://www.google.fr', $formatter->formatUrl($url));
     }
 }

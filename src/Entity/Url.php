@@ -90,7 +90,7 @@ class Url
             return null;
         }
 
-        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY])) {
+        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 
@@ -105,7 +105,7 @@ class Url
             ChangeFrequency::NEVER,
         ];
 
-        if ($changefreq !== null && !in_array($changefreq, $validFreqs)) {
+        if ($changefreq !== null && !in_array($changefreq, $validFreqs, true)) {
             throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $validFreqs)));
         }
 

@@ -47,7 +47,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     {
         $video = new Video();
         $video->setExpirationDate($date);
-        $this->assertEquals($video->getExpirationDate(), $expected_date);
+        $this->assertSame($video->getExpirationDate(), $expected_date);
     }
 
     /**
@@ -57,7 +57,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     {
         $video = new Video();
         $video->setPublicationDate($date);
-        $this->assertEquals($video->getPublicationDate(), $expected_date);
+        $this->assertSame($video->getPublicationDate(), $expected_date);
     }
 
     /**
@@ -85,7 +85,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     public function testInvalidTagsCount()
     {
         $video = new Video();
-        $video->setTags(array_pad(array(), 33, 'tag'));
+        $video->setTags(array_pad([], 33, 'tag'));
     }
 
     /**
@@ -106,7 +106,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     public function testInvalidRestriction()
     {
         $video = new Video();
-        $video->setRestrictions(array('fr', 'en'), 'foo');
+        $video->setRestrictions(['fr', 'en'], 'foo');
     }
 
     /**
@@ -115,7 +115,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     public function testInvalidPlatform()
     {
         $video = new Video();
-        $video->setPlatforms(array(Video::PLATFORM_TV => Video::RESTRICTION_DENY, 'foo' => Video::RESTRICTION_DENY));
+        $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, 'foo' => Video::RESTRICTION_DENY]);
     }
 
     /**
@@ -124,32 +124,32 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     public function testInvalidPlatformRelationship()
     {
         $video = new Video();
-        $video->setPlatforms(array(Video::PLATFORM_TV => Video::RESTRICTION_DENY, Video::PLATFORM_MOBILE => 'foo'));
+        $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, Video::PLATFORM_MOBILE => 'foo']);
     }
 
     public function invalidDurationProvider()
     {
-        return array(
-            array(-1),
-            array(28801),
-        );
+        return [
+            [-1],
+            [28801],
+        ];
     }
 
     public function invalidRatingProvider()
     {
-        return array(
-            array(-1),
-            array(6),
-        );
+        return [
+            [-1],
+            [6],
+        ];
     }
 
     public function dateProvider()
     {
-        return array(
-            array(null, null),
-            array('2012-12-20 18:44', $this->dateFormatW3C('2012-12-20 18:44')),
-            array('2012-12-20', $this->dateFormatW3C('2012-12-20')),
-        );
+        return [
+            [null, null],
+            ['2012-12-20 18:44', $this->dateFormatW3C('2012-12-20 18:44')],
+            ['2012-12-20', $this->dateFormatW3C('2012-12-20')],
+        ];
     }
 
     protected function dateFormatW3C($date)

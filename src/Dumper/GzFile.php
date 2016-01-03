@@ -11,6 +11,6 @@ class GzFile extends File
 {
     public function __construct($filename)
     {
-        parent::__construct('compress.zlib://'.$filename);
+        parent::__construct('compress.zlib://' . $filename);
     }
 }

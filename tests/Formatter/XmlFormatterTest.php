@@ -31,22 +31,22 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testSitemapStart()
     {
-        $this->assertEquals('<?xml version="1.0" encoding="UTF-8"?>'."\n".'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'."\n", $this->formatter->getSitemapStart());
+        $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n", $this->formatter->getSitemapStart());
     }
 
     public function testSitemapEnd()
     {
-        $this->assertEquals('</urlset>', $this->formatter->getSitemapEnd());
+        $this->assertSame('</urlset>', $this->formatter->getSitemapEnd());
     }
 
     public function testSitemapIndexStart()
     {
-        $this->assertEquals('<?xml version="1.0" encoding="UTF-8"?>'."\n".'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n", $this->formatter->getSitemapIndexStart());
+        $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n", $this->formatter->getSitemapIndexStart());
     }
 
     public function testSitemapIndexEnd()
     {
-        $this->assertEquals('</sitemapindex>', $this->formatter->getSitemapIndexEnd());
+        $this->assertSame('</sitemapindex>', $this->formatter->getSitemapIndexEnd());
     }
 
     public function testFormatUrlOnlyLoc()
@@ -54,8 +54,8 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setLoc('http://www.google.fr');
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr</loc>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -66,10 +66,10 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr</loc>\n".
-"\t<changefreq>never</changefreq>\n".
-"\t<priority>0.2</priority>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
+"\t<changefreq>never</changefreq>\n" .
+"\t<priority>0.2</priority>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -90,18 +90,18 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
         $url->addVideo($video);
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr</loc>\n".
-"\t<changefreq>never</changefreq>\n".
-"\t<priority>0.2</priority>\n".
-"\t<video:video>\n".
-"\t\t<video:title>Grilling steaks for summer</video:title>\n".
-"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n".
-"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n".
-"\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n".
-"\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n".
-"\t\t<video:duration>600</video:duration>\n".
-"\t</video:video>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
+"\t<changefreq>never</changefreq>\n" .
+"\t<priority>0.2</priority>\n" .
+"\t<video:video>\n" .
+"\t\t<video:title>Grilling steaks for summer</video:title>\n" .
+"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n" .
+"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n" .
+"\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n" .
+"\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n" .
+"\t\t<video:duration>600</video:duration>\n" .
+"\t</video:video>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -118,14 +118,14 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
         $url->addImage($image);
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr</loc>\n".
-"\t<changefreq>never</changefreq>\n".
-"\t<priority>0.2</priority>\n".
-"\t<image:image>\n".
-"\t\t<image:loc>http://www.example.com/thumbs/123.jpg</image:loc>\n".
-"\t\t<image:title>Grilling steaks for summer</image:title>\n".
-"\t</image:image>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
+"\t<changefreq>never</changefreq>\n" .
+"\t<priority>0.2</priority>\n" .
+"\t<image:image>\n" .
+"\t\t<image:loc>http://www.example.com/thumbs/123.jpg</image:loc>\n" .
+"\t\t<image:title>Grilling steaks for summer</image:title>\n" .
+"\t</image:image>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -148,20 +148,20 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setDescription('Alkis shows you how to get perfectly done steaks every time - 2');
         $url->addVideo($video);
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr</loc>\n".
-"\t<changefreq>never</changefreq>\n".
-"\t<priority>0.2</priority>\n".
-"\t<video:video>\n".
-"\t\t<video:title>Grilling steaks for summer</video:title>\n".
-"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n".
-"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n".
-"\t</video:video>\n".
-"\t<video:video>\n".
-"\t\t<video:title>Grilling steaks for summer - 2</video:title>\n".
-"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time - 2</video:description>\n".
-"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/456.jpg</video:thumbnail_loc>\n".
-"\t</video:video>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
+"\t<changefreq>never</changefreq>\n" .
+"\t<priority>0.2</priority>\n" .
+"\t<video:video>\n" .
+"\t\t<video:title>Grilling steaks for summer</video:title>\n" .
+"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n" .
+"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n" .
+"\t</video:video>\n" .
+"\t<video:video>\n" .
+"\t\t<video:title>Grilling steaks for summer - 2</video:title>\n" .
+"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time - 2</video:description>\n" .
+"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/456.jpg</video:thumbnail_loc>\n" .
+"\t</video:video>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -192,28 +192,28 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         ]);
         $video->setLive(false);
 
-        $this->assertEquals(
-"\t<video:video>\n".
-"\t\t<video:title>Grilling steaks for summer</video:title>\n".
-"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n".
-"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n".
-"\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n".
-"\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n".
-"\t\t<video:duration>600</video:duration>\n".
-sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFormatW3C('2012-12-23')).
-"\t\t<video:rating>2.2</video:rating>\n".
-"\t\t<video:view_count>42</video:view_count>\n".
-"\t\t<video:family_friendly>no</video:family_friendly>\n".
-"\t\t<video:tag>test</video:tag>\n".
-"\t\t<video:tag>video</video:tag>\n".
-"\t\t<video:category>test category</video:category>\n".
-"\t\t<video:restriction relationship=\"deny\">fr us</video:restriction>\n".
-"\t\t<video:gallery_loc title=\"Foo gallery\">http://www.example.com/gallery/foo</video:gallery_loc>\n".
-"\t\t<video:requires_subscription>yes</video:requires_subscription>\n".
-"\t\t<video:uploader info=\"http://www.kevingomez.fr\">K-Phoen</video:uploader>\n".
-"\t\t<video:platform relationship=\"allow\">tv</video:platform>\n".
-"\t\t<video:platform relationship=\"allow\">web</video:platform>\n".
-"\t\t<video:live>no</video:live>\n".
+        $this->assertSame(
+"\t<video:video>\n" .
+"\t\t<video:title>Grilling steaks for summer</video:title>\n" .
+"\t\t<video:description>Alkis shows you how to get perfectly done steaks every time</video:description>\n" .
+"\t\t<video:thumbnail_loc>http://www.example.com/thumbs/123.jpg</video:thumbnail_loc>\n" .
+"\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n" .
+"\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n" .
+"\t\t<video:duration>600</video:duration>\n" .
+sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFormatW3C('2012-12-23')) .
+"\t\t<video:rating>2.2</video:rating>\n" .
+"\t\t<video:view_count>42</video:view_count>\n" .
+"\t\t<video:family_friendly>no</video:family_friendly>\n" .
+"\t\t<video:tag>test</video:tag>\n" .
+"\t\t<video:tag>video</video:tag>\n" .
+"\t\t<video:category>test category</video:category>\n" .
+"\t\t<video:restriction relationship=\"deny\">fr us</video:restriction>\n" .
+"\t\t<video:gallery_loc title=\"Foo gallery\">http://www.example.com/gallery/foo</video:gallery_loc>\n" .
+"\t\t<video:requires_subscription>yes</video:requires_subscription>\n" .
+"\t\t<video:uploader info=\"http://www.kevingomez.fr\">K-Phoen</video:uploader>\n" .
+"\t\t<video:platform relationship=\"allow\">tv</video:platform>\n" .
+"\t\t<video:platform relationship=\"allow\">web</video:platform>\n" .
+"\t\t<video:live>no</video:live>\n" .
 "\t</video:video>\n", $formatter->testFormatVideo($video));
     }
 
@@ -233,17 +233,17 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
         $url->addImage($image);
 
-        $this->assertEquals("<url>\n".
-"\t<loc>http://www.google.fr/?s=joe&quot;</loc>\n".
-"\t<changefreq>never</changefreq>\n".
-"\t<priority>0.2</priority>\n".
-"\t<image:image>\n".
-"\t\t<image:loc>http://www.example.com/thumbs/123.jpg</image:loc>\n".
-"\t\t<image:caption>Some caption</image:caption>\n".
-"\t\t<image:geo_location>France</image:geo_location>\n".
-"\t\t<image:title>Grilling steaks for &quot;summer&quot;</image:title>\n".
-"\t\t<image:license>http://opensource.org/licenses/mit-license.php</image:license>\n".
-"\t</image:image>\n".
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr/?s=joe&quot;</loc>\n" .
+"\t<changefreq>never</changefreq>\n" .
+"\t<priority>0.2</priority>\n" .
+"\t<image:image>\n" .
+"\t\t<image:loc>http://www.example.com/thumbs/123.jpg</image:loc>\n" .
+"\t\t<image:caption>Some caption</image:caption>\n" .
+"\t\t<image:geo_location>France</image:geo_location>\n" .
+"\t\t<image:title>Grilling steaks for &quot;summer&quot;</image:title>\n" .
+"\t\t<image:license>http://opensource.org/licenses/mit-license.php</image:license>\n" .
+"\t</image:image>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
@@ -253,9 +253,9 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
         $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
         $sitemapIndex->setLastmod(new \DateTime('2013-07-26 23:42:00'));
 
-        $this->assertEquals("<sitemap>\n".
-"\t<loc>http://www.example.com/sitemap-1.xml</loc>\n".
-sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')).
+        $this->assertSame("<sitemap>\n" .
+"\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .
+sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')) .
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
@@ -264,8 +264,8 @@ sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')
         $sitemapIndex = new SitemapIndex();
         $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
 
-        $this->assertEquals("<sitemap>\n".
-"\t<loc>http://www.example.com/sitemap-1.xml</loc>\n".
+        $this->assertSame("<sitemap>\n" .
+"\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 

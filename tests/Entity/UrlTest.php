@@ -13,7 +13,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     public function testLocMaxLength()
     {
         $url = new Url();
-        $url->setLoc('http://google.fr/?q='.str_repeat('o', 2048));
+        $url->setLoc('http://google.fr/?q=' . str_repeat('o', 2048));
     }
 
     /**
@@ -43,7 +43,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         $url = new Url();
         $url->setChangefreq($changefreq);
 
-        $this->assertEquals($changefreq, $url->getChangefreq());
+        $this->assertSame($changefreq, $url->getChangefreq());
     }
 
     /**
@@ -55,7 +55,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         $url->setLastmod($lastmod);
         $url->setChangefreq($changefreq);
 
-        $this->assertEquals($expected_lastmod, $url->getLastmod());
+        $this->assertSame($expected_lastmod, $url->getLastmod());
     }
 
     public function lastmodProvider()

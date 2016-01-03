@@ -50,7 +50,7 @@ class File implements FileDumper
      */
     public function dump($string)
     {
-        if ($this->handle == null) {
+        if ($this->handle === null) {
             $this->openFile();
         }
 

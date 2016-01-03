@@ -465,7 +465,7 @@ class Video
 
         $valid_platforms = [self::PLATFORM_TV, self::PLATFORM_WEB, self::PLATFORM_MOBILE];
         foreach ($platforms as $platform => $relationship) {
-            if (!in_array($platform, $valid_platforms)) {
+            if (!in_array($platform, $valid_platforms, true)) {
                 throw new \DomainException(sprintf('Invalid platform given. Valid values are: %s', implode(', ', $valid_platforms)));
             }
 

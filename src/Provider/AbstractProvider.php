@@ -65,7 +65,7 @@ abstract class AbstractProvider implements Provider
 
     protected function getColumnValue($result, $column)
     {
-        $method = 'get'.ucfirst($column);
+        $method = 'get' . ucfirst($column);
 
         if (!method_exists($result, $method)) {
             throw new \RuntimeException(sprintf('"%s" method not found in "%s"', $method, get_class($result)));

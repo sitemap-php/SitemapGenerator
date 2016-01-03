@@ -16,7 +16,7 @@ class GzFileTest extends FileTestCase
         $this->assertTrue(file_exists($this->file));
         $dumper->clearHandle(); // force the dumper to close the file
 
-        $this->assertEquals('joe-hell yeah!', file_get_contents('compress.zlib://'.$this->file));
-        $this->assertNotEquals('joe-hell yeah!', file_get_contents($this->file), 'The file\'s content is compressed');
+        $this->assertSame('joe-hell yeah!', file_get_contents('compress.zlib://' . $this->file));
+        $this->assertNotSame('joe-hell yeah!', file_get_contents($this->file), 'The file\'s content is compressed');
     }
 }
