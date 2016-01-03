@@ -7,11 +7,16 @@ php:
     - 7.0
     - hhvm
 
+matrix:
+    include:
+        - { php: 5.6, env: COMPOSER_FLAGS='--prefer-lowest' }
+    fast_finish: true
+
 before_install:
     - composer self-update
     - phpenv config-rm xdebug.ini || true
 
 before_script:
-    - composer --prefer-source install
+    - composer --prefer-source update $COMPOSER_OPTS
 
 script: ./vendor/bin/phpunit
