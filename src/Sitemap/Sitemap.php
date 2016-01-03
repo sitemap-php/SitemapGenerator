@@ -33,13 +33,9 @@ class Sitemap
     protected $originalFilename = null;
 
     /**
-     * Constructor.
-     *
-     * @param Dumper  $dumper              The dumper to use.
-     * @param Formatter\Sitemap $formatter The formatter to use.
-     * @param string  $baseHost            The base URl for all the links (well only be used for relative URLs).
-     * @param string  $baseHostSitemap     The base URl for the sitemap.
-     * @param integer $limit               The URL limit for each sitemap (only used in a sitemap index context)
+     * @param string $baseHost The base URL for all the links (well only be used for relative URLs).
+     * @param string $baseHostSitemap The base URL for the sitemap.
+     * @param integer $limit The URL limit for each sitemap (only used in a sitemap index context)
      */
     public function __construct(Dumper $dumper, Formatter\Sitemap $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {
@@ -53,13 +49,6 @@ class Sitemap
         }
     }
 
-    /**
-     * Add a provider to the sitemap.
-     *
-     * @param Provider $provider The provider.
-     *
-     * @return Sitemap The current sitemap (for fluent interface).
-     */
     public function addProvider(Provider $provider)
     {
         $this->providers[] = $provider;
@@ -67,13 +56,6 @@ class Sitemap
         return $this;
     }
 
-    /**
-     * Overrides the used dumper.
-     *
-     * @param Dumper $dumper The new dumper to use.
-     *
-     * @return Sitemap The current sitemap (for fluent interface).
-     */
     public function setDumper(Dumper $dumper)
     {
         $this->dumper = $dumper;
@@ -82,8 +64,6 @@ class Sitemap
     }
 
     /**
-     * Build the sitemap.
-     *
      * @return string|null The sitemap's content if available.
      */
     public function build()
@@ -116,11 +96,7 @@ class Sitemap
     }
 
     /**
-     * Add an entry to the sitemap.
-     *
      * @param Url $url The URL to add. If the URL is relative, the base host will be prepended.
-     *
-     * @return Sitemap The current sitemap (for fluent interface).
      */
     public function add(Url $url)
     {

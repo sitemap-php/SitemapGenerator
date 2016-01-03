@@ -8,9 +8,6 @@ namespace SitemapGenerator\Dumper;
  */
 class Memory implements Dumper
 {
-    /**
-     * @var string
-     */
     protected $buffer = '';
 
     /**

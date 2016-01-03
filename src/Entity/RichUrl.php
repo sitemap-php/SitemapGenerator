@@ -26,10 +26,7 @@ class RichUrl extends Url
      * must each include the same references to the French, English, and
      * Spanish versions.
      *
-     * @param string $locale The url's language (and optionnaly region).
-     * @param string $url    The url.
-     *
-     * @return Url For fluent interface
+     * @param string $locale The url's language (and optionnaly region. Ex: en, en-us).
      */
     public function addAlternateUrl($locale, $url)
     {

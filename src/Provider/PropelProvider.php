@@ -18,15 +18,15 @@ use SitemapGenerator\Sitemap\Sitemap;
  *  * changefreq: the changefreq to apply to all the elements (can be null)
  *
  * Exemple:
- *  array(
+ *  [
  *      'model'     => 'Acme/Model/News',
- *      'filters'   => array('filterByIsValid'),
+ *      'filters'   => ['filterByIsValid'],
  *      'lastmod'   => 'updatedAt',
  *      'priority'  => 0.6,
- *      'loc'       => array('route' => 'show_news', 'params' => array('id' => 'slug')),
- *  )
+ *      'loc'       => ['route' => 'show_news', 'params' => ['id' => 'slug']],
+ *  ]
  *
- * @note This provider uses an "on demand" hydration.
+ * NOTE This provider uses an "on demand" hydration.
  */
 class PropelProvider extends AbstractProvider
 {

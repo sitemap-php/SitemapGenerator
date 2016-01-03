@@ -5,8 +5,6 @@ namespace SitemapGenerator\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 
 /**
- * Describe a provider.
- *
  * Providers are responsible for adding Url's into the sitemap.
  */
 interface Provider

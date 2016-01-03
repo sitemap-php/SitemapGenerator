@@ -15,18 +15,12 @@ abstract class AbstractProvider implements Provider
     protected $router;
 
     protected $options = [
-        'loc'           => [],
-        'lastmod'       => null,
-        'priority'      => null,
-        'changefreq'    => null,
+        'loc' => [],
+        'lastmod' => null,
+        'priority' => null,
+        'changefreq' => null,
     ];
 
-    /**
-     * Constructor
-     *
-     * @param RouterInterface $router  The application router.
-     * @param array           $options The options (see the class comment).
-     */
     public function __construct(RouterInterface $router, array $options)
     {
         $this->router = $router;

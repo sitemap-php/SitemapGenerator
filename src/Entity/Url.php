@@ -22,7 +22,7 @@ class Url
      * Datetime format. This format allows you to omit the time portion, if
      * desired, and use YYYY-MM-DD.
      *
-     * @Note that this tag is separate from the If-Modified-Since (304) header
+     * NOTE This tag is separate from the If-Modified-Since (304) header
      * the server can return, and search engines may use the information from
      * both sources differently.
      *
@@ -48,24 +48,14 @@ class Url
      */
     protected $priority = null;
 
-    /**
-     * Videos related to this entry.
-     */
     protected $videos = [];
 
-    /**
-     * Images related to this entry.
-     */
     protected $images = [];
 
     /**
-     * Sets the object location.
-     *
      * @see http://www.sitemaps.org/protocol.html#escaping
      *
      * @param string $loc The location. Must be less than 2,048 chars.
-     *
-     * @return Url For fluent interface
      */
     public function setLoc($loc)
     {

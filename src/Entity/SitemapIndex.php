@@ -22,7 +22,7 @@ class SitemapIndex
      * Datetime format. This format allows you to omit the time portion, if
      * desired, and use YYYY-MM-DD.
      *
-     * @Note that this tag is separate from the If-Modified-Since (304) header
+     * NOTE This tag is separate from the If-Modified-Since (304) header
      * the server can return, and search engines may use the information from
      * both sources differently.
      *
@@ -32,19 +32,13 @@ class SitemapIndex
 
     /**
      * The current number of url indexed in the sitemap
-     *
-     * @var integer
      */
     protected $urlCount = 0;
 
     /**
-     * Sets the object location.
-     *
      * @see http://www.sitemaps.org/protocol.html#escaping
      *
      * @param string $loc The location. Must be less than 2,048 chars.
-     *
-     * @return Url For fluent interface
      */
     public function setLoc($loc)
     {

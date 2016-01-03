@@ -21,15 +21,15 @@ use SitemapGenerator\Sitemap\Sitemap;
  *  * changefreq: the changefreq to apply to all the elements (can be null)
  *
  * Exemple:
- *  array(
+ *  [
  *      'entity'        => 'AcmeDemoBundle:News',
  *      'query_method'  => 'findForSitemapQuery',
  *      'lastmod'       => 'updatedAt',
  *      'priority'      => 0.6,
- *      'loc'           => array('route' => 'show_news', 'params' => array('id' => 'slug')),
- *  )
+ *      'loc'           => ['route' => 'show_news', 'params' => ['id' => 'slug']],
+ *  ]
  *
- * @note This provider uses an "on demand" hydration.
+ * NOTE This provider uses an "on demand" hydration.
  */
 class DoctrineProvider extends AbstractProvider
 {
@@ -37,21 +37,14 @@ class DoctrineProvider extends AbstractProvider
     protected $em;
 
     protected $options = [
-        'entity'        => null,
-        'loc'           => [],
-        'query_method'  => null,
-        'lastmod'       => null,
-        'priority'      => null,
-        'changefreq'    => null,
+        'entity' => null,
+        'loc' => [],
+        'query_method' => null,
+        'lastmod' => null,
+        'priority' => null,
+        'changefreq' => null,
     ];
 
-    /**
-     * Constructor
-     *
-     * @param Entitymanager   $em      Doctrine entity manager.
-     * @param RouterInterface $router  The application router.
-     * @param array           $options The options (see the class comment).
-     */
     public function __construct(EntityManager $em, RouterInterface $router, array $options)
     {
         parent::__construct($router, $options);
@@ -59,11 +52,6 @@ class DoctrineProvider extends AbstractProvider
         $this->em = $em;
     }
 
-    /**
-     * Populate a sitemap using a Doctrine entity.
-     *
-     * @param Sitemap $sitemap The current sitemap.
-     */
     public function populate(Sitemap $sitemap)
     {
         $query = $this->getQuery($this->options['entity'], $this->options['query_method']);

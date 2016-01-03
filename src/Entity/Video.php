@@ -9,12 +9,12 @@ namespace SitemapGenerator\Entity;
  */
 class Video
 {
-    const RESTRICTION_DENY  = 'deny';
+    const RESTRICTION_DENY = 'deny';
     const RESTRICTION_ALLOW = 'allow';
 
-    const PLATFORM_TV       = 'tv';
-    const PLATFORM_MOBILE   = 'mobile';
-    const PLATFORM_WEB      = 'web';
+    const PLATFORM_TV = 'tv';
+    const PLATFORM_MOBILE = 'mobile';
+    const PLATFORM_WEB = 'web';
 
     /*********************
      * Required attributes
