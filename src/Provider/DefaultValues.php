@@ -13,7 +13,7 @@ class DefaultValues
 
     public static function create($priority, $changeFreq)
     {
-        $defaultValues = static::empty();
+        $defaultValues = static::none();
 
         $defaultValues->priority = $priority;
         $defaultValues->changeFreq = $changeFreq;
@@ -21,7 +21,7 @@ class DefaultValues
         return $defaultValues;
     }
 
-    public static function empty()
+    public static function none()
     {
         return new static();
     }

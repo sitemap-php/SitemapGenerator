@@ -61,7 +61,7 @@ class Sitemap
 
     public function addProvider(Provider $provider, DefaultValues $defaultValues = null)
     {
-        $this->providers->attach($provider, $defaultValues ?: DefaultValues::empty());
+        $this->providers->attach($provider, $defaultValues ?: DefaultValues::none());
 
         return $this;
     }
@@ -111,7 +111,7 @@ class Sitemap
      */
     public function add(Url $url)
     {
-        $defaultValues = $this->currentProvider ? $this->providers[$this->currentProvider] : DefaultValues::empty();
+        $defaultValues = $this->currentProvider ? $this->providers[$this->currentProvider] : DefaultValues::none();
 
         if ($this->isSitemapIndexable() && $this->getCurrentSitemapIndex()->getUrlCount() >= $this->limit) {
             $this->addSitemapIndex($this->createSitemapIndex());
