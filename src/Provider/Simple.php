@@ -28,7 +28,7 @@ class Simple extends AbstractProvider
 
             $url = new Url();
             $url->setLoc(
-                $this->router->generate(
+                $this->urlGenerator->generate(
                     $route['name'],
                     $route['params']
                 )

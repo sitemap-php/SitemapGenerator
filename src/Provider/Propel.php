@@ -2,8 +2,7 @@
 
 namespace SitemapGenerator\Provider;
 
-use Symfony\Component\Routing\RouterInterface;
-
+use SitemapGenerator\Routing\UrlGenerator;
 use SitemapGenerator\Sitemap\Sitemap;
 
 /**
@@ -30,8 +29,6 @@ use SitemapGenerator\Sitemap\Sitemap;
  */
 class Propel extends AbstractProvider
 {
-    protected $router = null;
-
     protected $options = [
         'model'         => null,
         'loc'           => [],
@@ -42,14 +39,11 @@ class Propel extends AbstractProvider
     ];
 
     /**
-     * Constructor
-     *
-     * @param RouterInterface $router  The application router.
-     * @param array           $options The options (see the class comment).
+     * @param array $options The options (see the class comment).
      */
-    public function __construct(RouterInterface $router, array $options)
+    public function __construct(UrlGenerator $urlGenerator, array $options)
     {
-        parent::__construct($router, $options);
+        parent::__construct($urlGenerator, $options);
 
         if (!class_exists($options['model'])) {
             throw new \LogicException('Can\'t find class ' . $options['model']);

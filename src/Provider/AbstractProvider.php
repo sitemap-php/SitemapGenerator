@@ -2,9 +2,8 @@
 
 namespace SitemapGenerator\Provider;
 
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Routing\RouterInterface;
+use SitemapGenerator\Routing\UrlGenerator;
 
 use SitemapGenerator\Entity\Url;
 
@@ -18,7 +17,10 @@ abstract class AbstractProvider implements Provider
      */
     protected $accessor;
 
-    protected $router;
+    /**
+     * @var UrlGenerator
+     */
+    protected $urlGenerator;
 
     protected $options = [
         'loc' => [],
@@ -27,9 +29,9 @@ abstract class AbstractProvider implements Provider
         'changefreq' => null,
     ];
 
-    public function __construct(RouterInterface $router, array $options)
+    public function __construct(UrlGenerator $urlGenerator, array $options)
     {
-        $this->router = $router;
+        $this->urlGenerator = $urlGenerator;
         $this->options = array_merge($this->options, $options);
 
         $this->accessor = PropertyAccess::createPropertyAccessor();
@@ -68,7 +70,7 @@ abstract class AbstractProvider implements Provider
             $params[$key] = $this->getColumnValue($result, $column);
         }
 
-        return $this->router->generate($route, $params);
+        return $this->urlGenerator->generate($route, $params);
     }
 
     protected function getColumnValue($result, $column)

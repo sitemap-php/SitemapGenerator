@@ -2,11 +2,11 @@
 
 namespace SitemapGenerator\Provider;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\Routing\RouterInterface;
 
+use SitemapGenerator\Routing\UrlGenerator;
 use SitemapGenerator\Sitemap\Sitemap;
 
 /**
@@ -33,7 +33,9 @@ use SitemapGenerator\Sitemap\Sitemap;
  */
 class Doctrine extends AbstractProvider
 {
-    protected $router;
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     protected $options = [
@@ -45,9 +47,9 @@ class Doctrine extends AbstractProvider
         'changefreq' => null,
     ];
 
-    public function __construct(EntityManager $em, RouterInterface $router, array $options)
+    public function __construct(EntityManager $em, UrlGenerator $urlGenerator, array $options)
     {
-        parent::__construct($router, $options);
+        parent::__construct($urlGenerator, $options);
 
         $this->em = $em;
     }

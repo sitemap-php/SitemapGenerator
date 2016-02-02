@@ -9,16 +9,13 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
 {
     protected function getRouter(array $results)
     {
-        $router = $this->getMockBuilder('\Symfony\Component\Routing\RouterInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $router = $this->getMock('\SitemapGenerator\Routing\UrlGenerator');
 
-        $valueMap = [];
-        foreach ($results as $news) {
-            $valueMap[] = ['show_news', [
-                'id' => $news->slug,
-            ], false, '/news/' . $news->slug];
-        }
+        $valueMap = array_map(function(News $news) {
+            return [
+                'show_news', ['id' => $news->slug], '/news/' . $news->slug
+            ];
+        }, $results);
 
         $router
             ->expects($this->any())
