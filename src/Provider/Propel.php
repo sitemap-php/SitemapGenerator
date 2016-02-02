@@ -28,7 +28,7 @@ use SitemapGenerator\Sitemap\Sitemap;
  *
  * NOTE This provider uses an "on demand" hydration.
  */
-class PropelProvider extends AbstractProvider
+class Propel extends AbstractProvider
 {
     protected $router = null;
 

@@ -5,7 +5,7 @@ namespace SitemapGenerator\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 use SitemapGenerator\Entity\Url;
 
-class SimpleProvider extends AbstractProvider
+class Simple extends AbstractProvider
 {
     protected $options = [
         'routes' => [],

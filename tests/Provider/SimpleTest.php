@@ -2,7 +2,7 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
-use SitemapGenerator\Provider\SimpleProvider;
+use SitemapGenerator\Provider\Simple as SimpleProvider;
 
 class SimpleProviderTest extends AbstractProviderTest
 {

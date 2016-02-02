@@ -31,7 +31,7 @@ use SitemapGenerator\Sitemap\Sitemap;
  *
  * NOTE This provider uses an "on demand" hydration.
  */
-class DoctrineProvider extends AbstractProvider
+class Doctrine extends AbstractProvider
 {
     protected $router;
     protected $em;

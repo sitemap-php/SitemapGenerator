@@ -3,9 +3,9 @@
 namespace SitemapGenerator\Tests\Provider;
 
 use Mockery;
-use SitemapGenerator\Provider\PropelProvider;
+use SitemapGenerator\Provider\Propel as PropelProvider;
 
-class PropelProviderTest extends AbstractProviderTest
+class PropelTest extends AbstractProviderTest
 {
     /**
      * @dataProvider newsDataProvider
