@@ -4,7 +4,7 @@ namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity;
 
-class Xml extends BaseFormatter implements SitemapIndex
+class Xml implements SitemapIndex
 {
     public function getSitemapStart()
     {
@@ -192,5 +192,10 @@ class Xml extends BaseFormatter implements SitemapIndex
         }
 
         return $buffer . "\t" . '</image:image>' . "\n";
+    }
+
+    protected function escape($string)
+    {
+        return htmlspecialchars($string, ENT_QUOTES);
     }
 }

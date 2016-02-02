@@ -20,10 +20,12 @@ class RichXml extends Xml
     {
         $buffer = parent::formatBody($url);
 
-        if ($url instanceof RichUrl) {
-            foreach ($url->getAlternateUrls() as $locale => $link) {
-                $buffer .= "\t" . '<xhtml:link rel="alternate" hreflang="' . $this->escape($locale) . '" href="' . $this->escape($link) . '" />' . "\n";
-            }
+        if (!$url instanceof RichUrl) {
+            return $buffer;
+        }
+
+        foreach ($url->getAlternateUrls() as $locale => $link) {
+            $buffer .= "\t" . '<xhtml:link rel="alternate" hreflang="' . $this->escape($locale) . '" href="' . $this->escape($link) . '" />' . "\n";
         }
 
         return $buffer;

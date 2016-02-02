@@ -10,7 +10,7 @@ use SitemapGenerator\Entity\Url;
  *
  * @see http://www.sitemaps.org/protocol.html#otherformats
  */
-class Text extends BaseFormatter implements Sitemap
+class Text implements Sitemap
 {
     public function getSitemapStart()
     {
@@ -24,6 +24,6 @@ class Text extends BaseFormatter implements Sitemap
 
     public function formatUrl(Url $url)
     {
-        return $this->escape($url->getLoc()) . "\n";
+        return $url->getLoc() . "\n";
     }
 }
