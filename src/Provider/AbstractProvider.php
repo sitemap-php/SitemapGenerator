@@ -3,6 +3,7 @@
 namespace SitemapGenerator\Provider;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\RouterInterface;
 
 use SitemapGenerator\Entity\Url;
@@ -12,6 +13,11 @@ use SitemapGenerator\Entity\Url;
  */
 abstract class AbstractProvider implements Provider
 {
+    /**
+     * @var PropertyAccessor
+     */
+    protected $accessor;
+
     protected $router;
 
     protected $options = [
@@ -25,6 +31,8 @@ abstract class AbstractProvider implements Provider
     {
         $this->router = $router;
         $this->options = array_merge($this->options, $options);
+
+        $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
     protected function resultToUrl($result)
@@ -65,12 +73,6 @@ abstract class AbstractProvider implements Provider
 
     protected function getColumnValue($result, $column)
     {
-        $method = 'get' . ucfirst($column);
-
-        if (!method_exists($result, $method)) {
-            throw new \RuntimeException(sprintf('"%s" method not found in "%s"', $method, get_class($result)));
-        }
-
-        return $result->$method();
+        return $this->accessor->getValue($result, $column);
     }
 }
