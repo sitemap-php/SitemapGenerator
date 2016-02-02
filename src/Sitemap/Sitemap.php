@@ -7,6 +7,7 @@ use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Formatter;
+use SitemapGenerator\Provider\DefaultValues;
 use SitemapGenerator\Provider\Provider;
 
 /**
@@ -22,9 +23,15 @@ use SitemapGenerator\Provider\Provider;
 class Sitemap
 {
     /**
-     * @var Provider[]
+     * @var SplObjectStorage
      */
-    protected $providers = [];
+    protected $providers;
+
+    /**
+     * @var Provider
+     */
+    protected $currentProvider;
+
     protected $dumper = null;
     protected $formatter = null;
     protected $baseHost = null;
@@ -44,14 +51,17 @@ class Sitemap
         $this->baseHost = $baseHost;
         $this->baseHostSitemap = $baseHostSitemap;
         $this->limit = $limit;
+
+        $this->providers = new \SplObjectStorage();
+
         if ($this->isSitemapIndexable()) {
             $this->originalFilename = $dumper->getFilename();
         }
     }
 
-    public function addProvider(Provider $provider)
+    public function addProvider(Provider $provider, DefaultValues $defaultValues = null)
     {
-        $this->providers[] = $provider;
+        $this->providers->attach($provider, $defaultValues ?: DefaultValues::empty());
 
         return $this;
     }
@@ -75,6 +85,7 @@ class Sitemap
         $this->dumper->dump($this->formatter->getSitemapStart());
 
         foreach ($this->providers as $provider) {
+            $this->currentProvider = $provider;
             $provider->populate($this);
         }
 
@@ -100,6 +111,8 @@ class Sitemap
      */
     public function add(Url $url)
     {
+        $defaultValues = $this->currentProvider ? $this->providers[$this->currentProvider] : DefaultValues::empty();
+
         if ($this->isSitemapIndexable() && $this->getCurrentSitemapIndex()->getUrlCount() >= $this->limit) {
             $this->addSitemapIndex($this->createSitemapIndex());
         }
@@ -107,6 +120,14 @@ class Sitemap
         $loc = $url->getLoc();
         if (empty($loc)) {
             throw new \InvalidArgumentException('The url MUST have a loc attribute');
+        }
+
+        if (!$url->getPriority() && $defaultValues->hasPriority()) {
+            $url->setPriority($defaultValues->hasPriority());
+        }
+
+        if (!$url->getChangefreq() && $defaultValues->hasChangeFreq()) {
+            $url->setChangefreq($defaultValues->getChangeFreq());
         }
 
         if ($this->baseHost !== null) {

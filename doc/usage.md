@@ -96,6 +96,7 @@ filesystem.
 <?php
 
 use SitemapGenerator\Dumper;
+use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\Provider;
@@ -107,7 +108,7 @@ class DummyProvider implements Provider
     {
         $url = new Url();
         $url->setLoc('http://www.google.fr');
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url->setChangefreq(ChangeFrequency::NEVER);
         $url->setLastmod('2012-12-19 02:28');
 
         $sitemap->add($url);

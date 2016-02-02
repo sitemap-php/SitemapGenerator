@@ -25,8 +25,6 @@ abstract class AbstractProvider implements Provider
     protected $options = [
         'loc' => [],
         'lastmod' => null,
-        'priority' => null,
-        'changefreq' => null,
     ];
 
     public function __construct(UrlGenerator $urlGenerator, array $options)
@@ -41,14 +39,6 @@ abstract class AbstractProvider implements Provider
     {
         $url = new Url();
         $url->setLoc($this->getResultLoc($result));
-
-        if ($this->options['priority'] !== null) {
-            $url->setPriority($this->options['priority']);
-        }
-
-        if ($this->options['changefreq'] !== null) {
-            $url->setChangefreq($this->options['changefreq']);
-        }
 
         if ($this->options['lastmod'] !== null) {
             $url->setLastmod($this->getColumnValue($result, $this->options['lastmod']));

@@ -2,9 +2,9 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
-use SitemapGenerator\Provider\Simple as SimpleProvider;
+use SitemapGenerator\Provider\Route as RouteProvider;
 
-class SimpleProviderTest extends AbstractProviderTest
+class RouteProviderTest extends AbstractProviderTest
 {
     /**
      * @dataProvider newsDataProvider
@@ -26,7 +26,7 @@ class SimpleProviderTest extends AbstractProviderTest
             ];
         }, $results);
 
-        return new SimpleProvider($this->getRouter($results), [
+        return new RouteProvider($this->getRouter($results), [
             'routes' => $routes,
         ]);
     }

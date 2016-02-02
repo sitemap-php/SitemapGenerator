@@ -5,13 +5,11 @@ namespace SitemapGenerator\Provider;
 use SitemapGenerator\Sitemap\Sitemap;
 use SitemapGenerator\Entity\Url;
 
-class Simple extends AbstractProvider
+class Route extends AbstractProvider
 {
     protected $options = [
         'routes' => [],
         'lastmod' => null,
-        'priority' => null,
-        'changefreq' => null,
     ];
 
     protected $defaultRoute = [
@@ -28,20 +26,12 @@ class Simple extends AbstractProvider
 
             $url = new Url();
             $url->setLoc(
-                $this->urlGenerator->generate(
-                    $route['name'],
-                    $route['params']
-                )
+                $this->urlGenerator->generate($route['name'], $route['params'])
             );
-            $url->setChangefreq(
-                $route['changefreq'] ?: $this->options['changefreq']
-            );
-            $url->setLastmod(
-                $route['lastmod'] ?: $this->options['lastmod']
-            );
-            $url->setPriority(
-                $route['priority'] ?: $this->options['priority']
-            );
+            $url->setChangefreq($route['changefreq']);
+            $url->setLastmod($route['lastmod']);
+            $url->setPriority($route['priority']);
+
             $sitemap->add($url);
         }
     }

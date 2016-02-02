@@ -13,15 +13,12 @@ use SitemapGenerator\Sitemap\Sitemap;
  *  * filters: array of method to apply on the query
  *  * loc: array describing how to generate an URL with the router
  *  * lastmod: name of the lastmod attribute (can be null)
- *  * priority: the priority to apply to all the elements (can be null)
- *  * changefreq: the changefreq to apply to all the elements (can be null)
  *
  * Exemple:
  *  [
  *      'model'     => 'Acme/Model/News',
  *      'filters'   => ['filterByIsValid'],
  *      'lastmod'   => 'updatedAt',
- *      'priority'  => 0.6,
  *      'loc'       => ['route' => 'show_news', 'params' => ['id' => 'slug']],
  *  ]
  *
@@ -34,8 +31,6 @@ class Propel extends AbstractProvider
         'loc'           => [],
         'filters'       => [],
         'lastmod'       => null,
-        'priority'      => null,
-        'changefreq'    => null,
     ];
 
     /**

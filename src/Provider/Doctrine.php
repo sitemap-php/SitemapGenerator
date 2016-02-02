@@ -17,15 +17,12 @@ use SitemapGenerator\Sitemap\Sitemap;
  *  * query_method: repository method to build the query (must return a doctrine Query instance)
  *  * loc: array describing how to generate an URL with the router
  *  * lastmod: name of the lastmod attribute (can be null)
- *  * priority: the priority to apply to all the elements (can be null)
- *  * changefreq: the changefreq to apply to all the elements (can be null)
  *
  * Exemple:
  *  [
  *      'entity'        => 'AcmeDemoBundle:News',
  *      'query_method'  => 'findForSitemapQuery',
  *      'lastmod'       => 'updatedAt',
- *      'priority'      => 0.6,
  *      'loc'           => ['route' => 'show_news', 'params' => ['id' => 'slug']],
  *  ]
  *
