@@ -2,7 +2,7 @@
 
 namespace SitemapGenerator\Provider;
 
-use SitemapGenerator\Routing\UrlGenerator;
+use SitemapGenerator\UrlGenerator;
 
 /**
  * Populate a sitemap using a Propel model.

@@ -1,6 +1,6 @@
 <?php
 
-namespace SitemapGenerator\Routing;
+namespace SitemapGenerator;
 
 interface UrlGenerator
 {

@@ -9,7 +9,7 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
 {
     protected function getRouter(array $results)
     {
-        $router = $this->getMock('\SitemapGenerator\Routing\UrlGenerator');
+        $router = $this->getMock('\SitemapGenerator\UrlGenerator');
 
         $valueMap = array_map(function(News $news) {
             return [

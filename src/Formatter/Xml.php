@@ -3,8 +3,9 @@
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity;
+use SitemapGenerator\SitemapIndexFormatter;
 
-class Xml implements SitemapIndex
+class Xml implements SitemapIndexFormatter
 {
     public function getSitemapStart()
     {

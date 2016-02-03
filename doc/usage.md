@@ -99,18 +99,18 @@ filesystem.
 <?php
 
 use SitemapGenerator\Dumper;
-use SitemapGenerator\Entity\ChangeFrequency;
-use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Entity;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider\Provider;
+use SitemapGenerator\Provider;
+use SitemapGenerator\Sitemap;
 
 class DummyProvider implements Provider
 {
     public function getEntries()
     {
-        $url = new Url();
+        $url = new Entity\Url();
         $url->setLoc('http://www.google.fr');
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangefreq(Entity\ChangeFrequency::NEVER);
         $url->setLastmod('2012-12-19 02:28');
 
         return [$url];
@@ -119,10 +119,9 @@ class DummyProvider implements Provider
 
 $dumper = new Dumper\Memory();
 $formatter = new Formatter\Xml();
-$provider = new DummyProvider();
 
 $sitemap = new Sitemap($dumper, $formatter);
-$sitemap->addProvider($provider);
+$sitemap->addProvider(new DummyProvider());
 
 echo $sitemap->build();
 ```

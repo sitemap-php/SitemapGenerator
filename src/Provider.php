@@ -1,8 +1,6 @@
 <?php
 
-namespace SitemapGenerator\Provider;
-
-use SitemapGenerator\Sitemap\Sitemap;
+namespace SitemapGenerator;
 
 /**
  * Providers are responsible for adding Url's into the sitemap.

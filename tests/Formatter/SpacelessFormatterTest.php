@@ -3,9 +3,10 @@
 namespace SitemapGenerator\Tests\Formatter;
 
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Formatter;
+use SitemapGenerator\Formatter\Spaceless as SpacelessFormatter;
+use SitemapGenerator\SitemapFormatter;
 
-class TestableSitemapFormatter implements Formatter\Sitemap
+class TestableSitemapFormatter implements SitemapFormatter
 {
     public function getSitemapStart()
     {
@@ -27,19 +28,19 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
 {
     public function testSitemapStart()
     {
-        $formatter = new Formatter\Spaceless(new TestableSitemapFormatter());
+        $formatter = new SpacelessFormatter(new TestableSitemapFormatter());
         $this->assertSame('joe', $formatter->getSitemapStart());
     }
 
     public function testSitemapEnd()
     {
-        $formatter = new Formatter\Spaceless(new TestableSitemapFormatter());
+        $formatter = new SpacelessFormatter(new TestableSitemapFormatter());
         $this->assertSame('foo', $formatter->getSitemapEnd());
     }
 
     public function testFormatUrl()
     {
-        $formatter = new Formatter\Spaceless(new TestableSitemapFormatter());
+        $formatter = new SpacelessFormatter(new TestableSitemapFormatter());
 
         $url = new Url();
         $url->setLoc('http://www.google.fr');

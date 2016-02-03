@@ -2,6 +2,8 @@
 
 namespace SitemapGenerator\Dumper;
 
+use SitemapGenerator\Dumper;
+
 /**
  * Dumps content into a file.
  */

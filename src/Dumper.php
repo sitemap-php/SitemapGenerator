@@ -1,6 +1,6 @@
 <?php
 
-namespace SitemapGenerator\Dumper;
+namespace SitemapGenerator;
 
 /**
  * The dumper takes care of the sitemap's persistance (file, compressed file,

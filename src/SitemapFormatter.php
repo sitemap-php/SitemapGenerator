@@ -1,10 +1,10 @@
 <?php
 
-namespace SitemapGenerator\Formatter;
+namespace SitemapGenerator;
 
 use SitemapGenerator\Entity\Url;
 
-interface Sitemap
+interface SitemapFormatter
 {
     public function getSitemapStart();
     public function getSitemapEnd();

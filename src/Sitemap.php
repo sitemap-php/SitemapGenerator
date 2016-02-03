@@ -1,14 +1,11 @@
 <?php
 
-namespace SitemapGenerator\Sitemap;
+namespace SitemapGenerator;
 
-use SitemapGenerator\Dumper\Dumper;
 use SitemapGenerator\Dumper\File;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
-use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\DefaultValues;
-use SitemapGenerator\Provider\Provider;
 
 /**
  * Sitemap generator.
@@ -44,7 +41,7 @@ class Sitemap
      * @param string $baseHostSitemap The base URL for the sitemap.
      * @param integer $limit The URL limit for each sitemap (only used in a sitemap index context)
      */
-    public function __construct(Dumper $dumper, Formatter\Sitemap $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
+    public function __construct(Dumper $dumper, SitemapFormatter $formatter, $baseHost = null, $baseHostSitemap = null, $limit = 0)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;

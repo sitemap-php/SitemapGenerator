@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
-use SitemapGenerator\Routing\UrlGenerator;
+use SitemapGenerator\UrlGenerator;
 
 /**
  * Populate a sitemap using a Doctrine entity.

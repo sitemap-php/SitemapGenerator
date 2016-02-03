@@ -7,8 +7,8 @@ use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider\Provider;
-use SitemapGenerator\Sitemap\Sitemap;
+use SitemapGenerator\Provider;
+use SitemapGenerator\Sitemap;
 
 class TestableSitemap extends Sitemap
 {

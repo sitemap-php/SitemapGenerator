@@ -3,9 +3,10 @@
 namespace SitemapGenerator\Provider;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use SitemapGenerator\Routing\UrlGenerator;
 
 use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Provider;
+use SitemapGenerator\UrlGenerator;
 
 /**
  * Abstract class containing common methods used by Propel and Doctrine providers.

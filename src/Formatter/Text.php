@@ -3,6 +3,7 @@
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\Url;
+use SitemapGenerator\SitemapFormatter;
 
 /**
  * Sitemaps formatted using this class will contain only one URL per line and
@@ -10,7 +11,7 @@ use SitemapGenerator\Entity\Url;
  *
  * @see http://www.sitemaps.org/protocol.html#otherformats
  */
-class Text implements Sitemap
+class Text implements SitemapFormatter
 {
     public function getSitemapStart()
     {
