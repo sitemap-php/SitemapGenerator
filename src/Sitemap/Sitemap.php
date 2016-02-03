@@ -66,13 +66,6 @@ class Sitemap
         return $this;
     }
 
-    public function setDumper(Dumper $dumper)
-    {
-        $this->dumper = $dumper;
-
-        return $this;
-    }
-
     /**
      * @return string|null The sitemap's content if available.
      */

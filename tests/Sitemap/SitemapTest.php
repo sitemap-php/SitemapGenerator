@@ -45,17 +45,6 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, count($sitemap->getProviders()));
     }
 
-    public function testSetDumper()
-    {
-        $dumper = new Dumper\Memory();
-        $sitemap = new TestableSitemap($dumper, new Formatter\Text());
-        $this->assertSame($dumper, $sitemap->getDumper());
-
-        $other_dumper = new Dumper\File('joe');
-        $sitemap->setDumper($other_dumper);
-        $this->assertSame($other_dumper, $sitemap->getDumper());
-    }
-
     /**
      * @expectedException \InvalidArgumentException
      */
