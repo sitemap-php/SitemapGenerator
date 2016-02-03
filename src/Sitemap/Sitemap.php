@@ -30,14 +30,14 @@ class Sitemap
     /**
      * @var Provider
      */
-    protected $currentProvider;
+    private $currentProvider;
 
     protected $dumper = null;
-    protected $formatter = null;
-    protected $baseHost = null;
-    protected $limit = 0;
-    protected $sitemapIndexes = [];
-    protected $originalFilename = null;
+    private $formatter = null;
+    private $baseHost = null;
+    private $limit = 0;
+    private $sitemapIndexes = [];
+    private $originalFilename = null;
 
     /**
      * @param string $baseHost The base URL for all the links (well only be used for relative URLs).
@@ -86,7 +86,10 @@ class Sitemap
 
         foreach ($this->providers as $provider) {
             $this->currentProvider = $provider;
-            $provider->populate($this);
+
+            foreach ($provider->getEntries() as $entry) {
+                $this->add($entry);
+            }
         }
 
         $sitemapContent = $this->dumper->dump($this->formatter->getSitemapEnd());
@@ -175,7 +178,7 @@ class Sitemap
         return $this;
     }
 
-    protected function needHost($url)
+    private function needHost($url)
     {
         if ($url === null) {
             return false;
@@ -184,12 +187,12 @@ class Sitemap
         return substr($url, 0, 4) !== 'http';
     }
 
-    protected function isSitemapIndexable()
+    private function isSitemapIndexable()
     {
         return ($this->limit > 0 && $this->dumper instanceof File && $this->formatter instanceof Formatter\SitemapIndex);
     }
 
-    protected function createSitemapIndex()
+    private function createSitemapIndex()
     {
         $sitemapIndexFilename = $this->getSitemapIndexFilename($this->originalFilename);
         $sitemapIndex = new SitemapIndex();
@@ -203,7 +206,7 @@ class Sitemap
         return $sitemapIndex;
     }
 
-    protected function addSitemapIndex(SitemapIndex $sitemapIndex)
+    private function addSitemapIndex(SitemapIndex $sitemapIndex)
     {
         $nbSitemapIndexs = count($this->sitemapIndexes);
 
@@ -223,12 +226,12 @@ class Sitemap
         }
     }
 
-    protected function getCurrentSitemapIndex()
+    private function getCurrentSitemapIndex()
     {
         return end($this->sitemapIndexes);
     }
 
-    protected function getSitemapIndexFilename($filename)
+    private function getSitemapIndexFilename($filename)
     {
         $sitemapIndexFilename = basename($filename);
         $index = count($this->sitemapIndexes) + 1;

@@ -14,10 +14,10 @@ class PropelTest extends AbstractProviderTest
     {
         $this->getPropelQuery('SitemapGenerator\Tests\Fixtures\News', $news);
 
-        $sitemap = $this->getSitemap($newsUrls);
         $provider = $this->getNewsProvider($news);
 
-        $provider->populate($sitemap);
+        $generatedEntries = iterator_to_array($provider->getEntries());
+        $this->assertEquals($newsUrls, $generatedEntries);
     }
 
     /**

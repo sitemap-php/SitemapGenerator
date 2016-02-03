@@ -3,7 +3,6 @@
 namespace SitemapGenerator\Provider;
 
 use SitemapGenerator\Routing\UrlGenerator;
-use SitemapGenerator\Sitemap\Sitemap;
 
 /**
  * Populate a sitemap using a Propel model.
@@ -45,12 +44,7 @@ class Propel extends AbstractProvider
         }
     }
 
-    /**
-     * Populate a sitemap using a Propel model.
-     *
-     * @param Sitemap $sitemap The current sitemap.
-     */
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         $query = $this->getQuery($this->options['model']);
 
@@ -61,7 +55,7 @@ class Propel extends AbstractProvider
 
         // and populate the sitemap!
         foreach ($query->find() as $result) {
-            $sitemap->add($this->resultToUrl($result));
+            yield $this->resultToUrl($result);
         }
     }
 

@@ -2,7 +2,6 @@
 
 namespace SitemapGenerator\Provider;
 
-use SitemapGenerator\Sitemap\Sitemap;
 use SitemapGenerator\Entity\Url;
 
 class Route extends AbstractProvider
@@ -19,7 +18,7 @@ class Route extends AbstractProvider
         'lastmod' => null,
     ];
 
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         foreach ($this->options['routes'] as $route) {
             $route = array_merge($this->defaultRoute, $route);
@@ -32,7 +31,7 @@ class Route extends AbstractProvider
             $url->setLastmod($route['lastmod']);
             $url->setPriority($route['priority']);
 
-            $sitemap->add($url);
+            yield $url;
         }
     }
 }

@@ -25,28 +25,6 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
         return $router;
     }
 
-    protected function getSitemap(array $urls)
-    {
-        $sitemap = $this->getMockBuilder('\SitemapGenerator\Sitemap\Sitemap')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        if (empty($urls)) {
-            $sitemap
-                ->expects($this->never())
-                ->method('add');
-        } else {
-            foreach ($urls as $at => $url) {
-                $sitemap
-                    ->expects($this->at($at))
-                    ->method('add')
-                    ->with($this->equalTo($url));
-            }
-        }
-
-        return $sitemap;
-    }
-
     public function newsDataProvider()
     {
         $first = new News();

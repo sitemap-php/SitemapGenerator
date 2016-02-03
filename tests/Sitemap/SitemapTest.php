@@ -25,11 +25,12 @@ class TestableSitemap extends Sitemap
 
 class TestableProvider implements Provider
 {
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         $url = new Url();
         $url->setLoc('/search');
-        $sitemap->add($url);
+
+        return [$url];
     }
 }
 

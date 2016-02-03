@@ -11,10 +11,10 @@ class RouteProviderTest extends AbstractProviderTest
      */
     public function testPopulateWithNoResults(array $news, array $newsUrls)
     {
-        $sitemap = $this->getSitemap($newsUrls);
         $provider = $this->getNewsProvider($news);
 
-        $provider->populate($sitemap);
+        $generatedEntries = iterator_to_array($provider->getEntries());
+        $this->assertEquals($newsUrls, $generatedEntries);
     }
 
     protected function getNewsProvider(array $results)

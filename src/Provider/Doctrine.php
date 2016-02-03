@@ -7,7 +7,6 @@ use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
 use SitemapGenerator\Routing\UrlGenerator;
-use SitemapGenerator\Sitemap\Sitemap;
 
 /**
  * Populate a sitemap using a Doctrine entity.
@@ -51,14 +50,14 @@ class Doctrine extends AbstractProvider
         $this->em = $em;
     }
 
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         $query = $this->getQuery($this->options['entity'], $this->options['query_method']);
         $results = $query->iterate();
 
         // and populate the sitemap!
         while (($result = $results->next()) !== false) {
-            $sitemap->add($this->resultToUrl($result[0]));
+            yield $this->resultToUrl($result[0]);
 
             $this->em->detach($result[0]);
         }

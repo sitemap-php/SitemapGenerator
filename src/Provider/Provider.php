@@ -10,9 +10,9 @@ use SitemapGenerator\Sitemap\Sitemap;
 interface Provider
 {
     /**
-     * Populate a sitemap.
+     * List the entries to add to the sitemap.
      *
-     * @param Sitemap $sitemap The current sitemap.
+     * @return \Traversable
      */
-    public function populate(Sitemap $sitemap);
+    public function getEntries();
 }

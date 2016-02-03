@@ -38,22 +38,25 @@ namespace SitemapGenerator\Provider;
 
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\Provider;
-use SitemapGenerator\Sitemap\Sitemap;
 
 class DummyProvider implements Provider
 {
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setChangefreq(Url::CHANGEFREQ_NEVER);
         $url->setLastmod('2012-12-19 02:28');
-        $sitemap->add($url);
+
+        return [$url];
     }
 }
 ```
 
-All the providers implement the `Provider` interface, which defines the `populate()` method.
+All the providers implement the `Provider` interface, which defines the `getEntries()` method.
+
+**Note:** If your providers returns a lot of entries, the best-practice is to
+use a generator to efficiently yield the entries.
 
 
 #### Built-in providers
@@ -100,18 +103,17 @@ use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\Provider;
-use SitemapGenerator\Sitemap\Sitemap;
 
 class DummyProvider implements Provider
 {
-    public function populate(Sitemap $sitemap)
+    public function getEntries()
     {
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setChangefreq(ChangeFrequency::NEVER);
         $url->setLastmod('2012-12-19 02:28');
 
-        $sitemap->add($url);
+        return [$url];
     }
 }
 
