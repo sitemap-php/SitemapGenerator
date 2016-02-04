@@ -243,8 +243,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
     public function testFormatSitemapIndex()
     {
-        $sitemapIndex = new SitemapIndex('http://www.example.com/sitemap-1.xml');
-        $sitemapIndex->setLastmod(new \DateTime('2013-07-26 23:42:00'));
+        $sitemapIndex = new SitemapIndex('http://www.example.com/sitemap-1.xml', new \DateTime('2013-07-26 23:42:00'));
 
         $this->assertSame("<sitemap>\n" .
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .

@@ -27,7 +27,7 @@ use SitemapGenerator\UrlGenerator;
  *
  * NOTE This provider uses an "on demand" hydration.
  */
-class Doctrine extends AbstractProvider
+class Doctrine extends AbstractProvider implements \IteratorAggregate
 {
     /**
      * @var EntityManager
@@ -50,7 +50,7 @@ class Doctrine extends AbstractProvider
         $this->em = $em;
     }
 
-    public function getEntries()
+    public function getIterator()
     {
         $query = $this->getQuery($this->options['entity'], $this->options['query_method']);
         $results = $query->iterate();

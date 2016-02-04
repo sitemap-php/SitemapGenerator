@@ -19,10 +19,6 @@ use SitemapGenerator\Provider\DefaultValues;
  */
 class Sitemap
 {
-    const STATUS_NEW = 'new';
-    const STATUS_OPENED = 'opened';
-    const STATUS_BUILT = 'build';
-
     /**
      * @var SplObjectStorage
      */
@@ -30,8 +26,6 @@ class Sitemap
 
     protected $dumper = null;
     private $formatter = null;
-
-    private $status = self::STATUS_NEW;
 
     public function __construct(Dumper $dumper, SitemapFormatter $formatter)
     {
@@ -53,10 +47,6 @@ class Sitemap
      */
     public function build()
     {
-        if ($this->status === self::STATUS_BUILT) {
-            throw new \LogicException('This sitemap has already been built.');
-        }
-
         foreach ($this->providers as $provider) {
             $defaultValues = $this->providers[$provider];
 
@@ -68,25 +58,8 @@ class Sitemap
         return $this->dumper->dump($this->formatter->getSitemapEnd());
     }
 
-    public function finish()
+    protected function add(Url $url, DefaultValues $defaultValues = null)
     {
-        $this->status = self::STATUS_BUILT;
-
-        return $this->dumper->dump($this->formatter->getSitemapEnd());
-    }
-
-    /**
-     * @param Url $url The URL to add. If the URL is relative, the base host will be prepended.
-     */
-    public function add(Url $url, DefaultValues $defaultValues = null)
-    {
-        if ($this->status === self::STATUS_NEW) {
-            $this->dumper->dump($this->formatter->getSitemapStart());
-            $this->status = self::STATUS_OPENED;
-        } else if ($this->status === self::STATUS_BUILT) {
-            throw new \LogicException('This sitemap has already been built.');
-        }
-
         $defaultValues = $defaultValues ?: DefaultValues::none();
 
         $loc = $url->getLoc();

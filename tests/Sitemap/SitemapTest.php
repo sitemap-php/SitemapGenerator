@@ -12,6 +12,11 @@ use SitemapGenerator\Sitemap;
 
 class TestableSitemap extends Sitemap
 {
+    public function testableAdd(Url $url)
+    {
+        $this->add($url);
+    }
+
     public function getProviders()
     {
         return $this->providers;
@@ -23,11 +28,11 @@ class TestableSitemap extends Sitemap
     }
 }
 
-class TestableProvider implements Provider
+class TestableProvider implements \IteratorAggregate
 {
-    public function getEntries()
+    public function getIterator()
     {
-        return [new Url('http://www.google.fr/search')];
+        yield new Url('http://www.google.fr/search');
     }
 }
 
@@ -48,7 +53,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $sitemap = new TestableSitemap($dumper, new Formatter\Text());
         $url = new Url('/search');
 
-        $sitemap->add($url);
+        $sitemap->testableAdd($url);
 
         $this->assertSame('/search', $url->getLoc());
         $this->assertSame('/search' . "\n", $dumper->getBuffer());
@@ -60,7 +65,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
         $url = new Url('http://www.joe.fr/search');
 
-        $sitemap->add($url);
+        $sitemap->testableAdd($url);
 
         $this->assertSame('http://www.joe.fr/search', $url->getLoc());
         $this->assertSame('http://www.joe.fr/search' . "\n", $dumper->getBuffer());

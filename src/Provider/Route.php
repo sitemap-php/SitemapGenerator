@@ -8,7 +8,6 @@ class Route extends AbstractProvider
 {
     protected $options = [
         'routes' => [],
-        'lastmod' => null,
     ];
 
     protected $defaultRoute = [
