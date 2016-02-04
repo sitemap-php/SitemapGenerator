@@ -20,18 +20,17 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function getFilename()
+    public function changeFile($filename)
     {
-        return $this->filename;
+        return new static($filename);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setFilename($filename)
+    public function getFilename()
     {
-        $this->clearHandle();
-        $this->filename = $filename;
+        return $this->filename;
     }
 
     /**

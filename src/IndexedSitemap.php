@@ -3,7 +3,7 @@
 namespace SitemapGenerator;
 
 use iter;
-use SitemapGenerator\Dumper\File as FileDumper;
+use SitemapGenerator\Dumper\FileDumper;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Provider\DefaultValues;
@@ -27,7 +27,6 @@ class IndexedSitemap
     protected $dumper;
     private $formatter;
     private $limit = self::MAX_ENTRIES_PER_SITEMAP;
-    private $originalFilename;
 
     /**
      * @param string $baseHostSitemap The base URL for the sitemap.
@@ -41,7 +40,6 @@ class IndexedSitemap
         $this->limit = $limit;
 
         $this->providers = [];
-        $this->originalFilename = $dumper->getFilename();
     }
 
     public function addProvider(\Traversable $provider)
@@ -56,30 +54,25 @@ class IndexedSitemap
      */
     public function build()
     {
-        $chunkedProviders = iter\chunk(iter\chain(...$this->providers), $this->limit);
-        $entries = [];
+        // dump the sitemap index start tag
+        $this->dumper->dump($this->formatter->getSitemapIndexStart());
 
+        $chunkedProviders = iter\chunk(iter\chain(...$this->providers), $this->limit);
         foreach ($chunkedProviders as $i => $provider) {
             // Modify the filename of the dumper, add the filename to the sitemap indexes
-            $entryFilename = $this->getSitemapIndexFilename($this->originalFilename, $i+1);
-            $this->dumper->setFilename($entryFilename);
+            $entryFilename = $this->getSitemapIndexFilename($this->dumper->getFilename(), $i+1);
 
-            // keep the entry for later
-            $entries[] = $this->createIndexEntry($entryFilename, $i+1);
+            // dump the entry in the sitemap index
+            $entry = $this->createIndexEntry($entryFilename, $i+1);
+            $this->dumper->dump($this->formatter->formatSitemapIndex($entry));
 
-            // dump the sitemap
-            $sitemap = new Sitemap($this->dumper, $this->formatter);
+            // dump the sitemap entry itself
+            $sitemap = new Sitemap($this->dumper->changeFile($entryFilename), $this->formatter);
             $sitemap->addProvider(new \ArrayIterator($provider));
             $sitemap->build();
         }
 
-        // dump the sitemap index
-        $this->dumper->setFilename($this->originalFilename);
-        $this->dumper->dump($this->formatter->getSitemapIndexStart());
-        foreach ($entries as $sitemapIndex) {
-            $this->dumper->dump($this->formatter->formatSitemapIndex($sitemapIndex));
-        }
-
+        // dump the sitemap index end tag
         $this->dumper->dump($this->formatter->getSitemapIndexEnd());
     }
 

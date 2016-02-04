@@ -10,13 +10,6 @@ use SitemapGenerator\Dumper;
 interface FileDumper extends Dumper
 {
     /**
-     * Set the filename.
-     *
-     * @param string $filename The filename.
-     */
-    public function setFilename($filename);
-
-    /**
      * Get the filename.
      *
      * @return string
@@ -27,4 +20,6 @@ interface FileDumper extends Dumper
      * Clear the file handle.
      */
     public function clearHandle();
+
+    public function changeFile($filename);
 }
