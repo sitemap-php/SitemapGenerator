@@ -27,7 +27,7 @@ class TestableProvider implements Provider
 {
     public function getEntries()
     {
-        return [new Url('/search')];
+        return [new Url('http://www.google.fr/search')];
     }
 }
 
@@ -42,16 +42,16 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, count($sitemap->getProviders()));
     }
 
-    public function testAddUrlNoBaseHost()
+    public function testRelativeUrlsAreKeptIntact()
     {
         $dumper = new Dumper\Memory();
-        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
+        $sitemap = new TestableSitemap($dumper, new Formatter\Text());
         $url = new Url('/search');
 
         $sitemap->add($url);
 
-        $this->assertSame('http://www.google.fr/search', $url->getLoc());
-        $this->assertSame('http://www.google.fr/search' . "\n", $dumper->getBuffer());
+        $this->assertSame('/search', $url->getLoc());
+        $this->assertSame('/search' . "\n", $dumper->getBuffer());
     }
 
     public function testAddUrlBaseHost()
@@ -64,47 +64,6 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('http://www.joe.fr/search', $url->getLoc());
         $this->assertSame('http://www.joe.fr/search' . "\n", $dumper->getBuffer());
-    }
-
-    public function testAddUrlBaseHostToImages()
-    {
-        $dumper = new Dumper\Memory();
-        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url('http://www.joe.fr/search');
-
-        $image = new Image();
-        $image->setLoc('/thumbs/123.jpg');
-        $image->setLicense('/lic/MIT.txt');
-
-        $url->addImage($image);
-
-        $sitemap->add($url);
-
-        $this->assertSame('http://www.google.fr/thumbs/123.jpg', $image->getLoc());
-        $this->assertSame('http://www.google.fr/lic/MIT.txt', $image->getLicense());
-    }
-
-    public function testAddUrlBaseHostToVideos()
-    {
-        $dumper = new Dumper\Memory();
-        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url('http://www.joe.fr/search');
-
-        $video = new Video();
-        $video->setThumbnailLoc('/thumbs/123.jpg');
-        $video->setContentLoc('/content/123.avi');
-        $video->setPlayerLoc('/player/123.swf');
-        $video->setGalleryLoc('/gallery/123');
-        $url->addVideo($video);
-
-        $sitemap->add($url);
-
-        $this->assertSame('http://www.google.fr/thumbs/123.jpg', $video->getThumbnailLoc());
-        $this->assertSame('http://www.google.fr/content/123.avi', $video->getContentLoc());
-        $player =  $video->getPlayerLoc();
-        $this->assertSame('http://www.google.fr/player/123.swf', $player['loc']);
-        $gallery =  $video->getGalleryLoc();
-        $this->assertSame('http://www.google.fr/gallery/123', $gallery['loc']);
     }
 
     public function testBuild()
