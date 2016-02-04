@@ -2,7 +2,8 @@
 
 namespace SitemapGenerator;
 
-use SitemapGenerator\Dumper\File;
+use iter;
+use SitemapGenerator\Dumper\File as FileDumper;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Provider\DefaultValues;
@@ -21,37 +22,31 @@ class IndexedSitemap
 {
     const MAX_ENTRIES_PER_SITEMAP = 50000;
 
-    /**
-     * @var SplObjectStorage
-     */
-    protected $providers;
+    protected $providers = [];
 
     protected $dumper;
     private $formatter;
     private $limit = self::MAX_ENTRIES_PER_SITEMAP;
-    private $indexEntries = [];
     private $originalFilename;
-    private $currentSitemap;
-    private $currentSitemapItemsCount = 0;
 
     /**
      * @param string $baseHostSitemap The base URL for the sitemap.
      * @param integer $limit The URL limit for each sitemap.
      */
-    public function __construct(Dumper $dumper, SitemapIndexFormatter $formatter, $baseHostSitemap, $limit = self::MAX_ENTRIES_PER_SITEMAP)
+    public function __construct(FileDumper $dumper, SitemapIndexFormatter $formatter, $baseHostSitemap, $limit = self::MAX_ENTRIES_PER_SITEMAP)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;
         $this->baseHostSitemap = $baseHostSitemap;
         $this->limit = $limit;
 
-        $this->providers = new \SplObjectStorage();
+        $this->providers = [];
         $this->originalFilename = $dumper->getFilename();
     }
 
-    public function addProvider(Provider $provider, DefaultValues $defaultValues = null)
+    public function addProvider(\Traversable $provider)
     {
-        $this->providers->attach($provider, $defaultValues ?: DefaultValues::none());
+        $this->providers[] = $provider;
 
         return $this;
     }
@@ -61,75 +56,41 @@ class IndexedSitemap
      */
     public function build()
     {
-        $this->addIndexEntry($this->createIndexEntry());
+        $chunkedProviders = iter\chunk(iter\chain(...$this->providers), $this->limit);
+        $entries = [];
 
-        $this->currentSitemap = new Sitemap($this->dumper, $this->formatter);
-        $this->currentSitemapItemsCount = 0;
+        foreach ($chunkedProviders as $i => $provider) {
+            // Modify the filename of the dumper, add the filename to the sitemap indexes
+            $entryFilename = $this->getSitemapIndexFilename($this->originalFilename, $i+1);
+            $this->dumper->setFilename($entryFilename);
 
-        foreach ($this->providers as $provider) {
-            $defaultValues = $this->providers[$provider];
+            // keep the entry for later
+            $entries[] = $this->createIndexEntry($entryFilename, $i+1);
 
-            foreach ($provider->getEntries() as $entry) {
-                $this->add($entry, $defaultValues);
-            }
+            // dump the sitemap
+            $sitemap = new Sitemap($this->dumper, $this->formatter);
+            $sitemap->addProvider(new \ArrayIterator($provider));
+            $sitemap->build();
         }
 
-        $this->dumper->dump($this->formatter->getSitemapEnd());
-
+        // dump the sitemap index
         $this->dumper->setFilename($this->originalFilename);
-
         $this->dumper->dump($this->formatter->getSitemapIndexStart());
-        foreach ($this->indexEntries as $sitemapIndex) {
+        foreach ($entries as $sitemapIndex) {
             $this->dumper->dump($this->formatter->formatSitemapIndex($sitemapIndex));
         }
 
         $this->dumper->dump($this->formatter->getSitemapIndexEnd());
     }
 
-    private function add(Url $url, DefaultValues $defaultValues)
+    private function createIndexEntry($sitemapFilename, $index)
     {
-        if ($this->currentSitemapItemsCount >= $this->limit) {
-            $this->currentSitemap = new Sitemap($this->dumper, $this->formatter);
-            $this->currentSitemapItemsCount = 0;
-
-            $this->addIndexEntry($this->createIndexEntry());
-        }
-
-        $this->currentSitemap->add($url, $defaultValues);
-
-        $this->currentSitemapItemsCount += 1;
+        return new SitemapIndex($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
     }
 
-    private function createIndexEntry()
-    {
-        $sitemapIndexFilename = $this->getSitemapIndexFilename($this->originalFilename);
-
-        $sitemapIndex = new SitemapIndex($this->baseHostSitemap .'/'.basename($sitemapIndexFilename));
-        $sitemapIndex->setLastmod(new \DateTime());
-
-        return $sitemapIndex;
-    }
-
-    private function addIndexEntry(SitemapIndex $sitemapIndex)
-    {
-        $nbSitemapIndexs = count($this->indexEntries);
-
-        if ($nbSitemapIndexs > 0) {
-            // Close tag of the previous sitemapIndex
-            $this->dumper->dump($this->formatter->getSitemapEnd());
-        }
-
-        // Modify the filename of the dumper, add the filename to the sitemap indexes
-        $sitemapIndexFilename = $this->getSitemapIndexFilename($this->originalFilename);
-        $this->dumper->setFilename($sitemapIndexFilename);
-
-        $this->indexEntries[] = $sitemapIndex;
-    }
-
-    private function getSitemapIndexFilename($filename)
+    private function getSitemapIndexFilename($filename, $index)
     {
         $sitemapIndexFilename = basename($filename);
-        $index = count($this->indexEntries) + 1;
         $extPosition = strrpos($sitemapIndexFilename, '.');
         if ($extPosition !== false) {
             $sitemapIndexFilename = substr($sitemapIndexFilename, 0, $extPosition) . '-' . $index . substr($sitemapIndexFilename, $extPosition);

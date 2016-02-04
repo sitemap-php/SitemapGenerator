@@ -41,7 +41,7 @@ class Sitemap
         $this->providers = new \SplObjectStorage();
     }
 
-    public function addProvider(Provider $provider, DefaultValues $defaultValues = null)
+    public function addProvider(\Traversable $provider, DefaultValues $defaultValues = null)
     {
         $this->providers->attach($provider, $defaultValues ?: DefaultValues::none());
 
@@ -60,7 +60,7 @@ class Sitemap
         foreach ($this->providers as $provider) {
             $defaultValues = $this->providers[$provider];
 
-            foreach ($provider->getEntries() as $entry) {
+            foreach ($provider as $entry) {
                 $this->add($entry, $defaultValues);
             }
         }

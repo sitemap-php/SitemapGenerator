@@ -35,29 +35,19 @@ class SitemapIndex
      *
      * @param string $loc The location. Must be less than 2,048 chars.
      */
-    public function __construct($loc)
+    public function __construct($loc, \DateTimeInterface $lastmod = null)
     {
         if (strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
         }
 
         $this->loc = $loc;
+        $this->lastmod = $lastmod;
     }
 
     public function getLoc()
     {
         return $this->loc;
-    }
-
-    public function setLastmod($lastmod)
-    {
-        if ($lastmod !== null && !$lastmod instanceof \DateTime) {
-            $lastmod = new \DateTime($lastmod);
-        }
-
-        $this->lastmod = $lastmod;
-
-        return $this;
     }
 
     public function getLastmod()
