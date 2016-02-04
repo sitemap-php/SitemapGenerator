@@ -57,15 +57,13 @@ class Url
      *
      * @param string $loc The location. Must be less than 2,048 chars.
      */
-    public function setLoc($loc)
+    public function __construct($loc)
     {
         if (strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
         }
 
         $this->loc = $loc;
-
-        return $this;
     }
 
     public function getLoc()

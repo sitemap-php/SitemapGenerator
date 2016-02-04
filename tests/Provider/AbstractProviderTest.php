@@ -33,11 +33,8 @@ abstract class AbstractProviderTest extends \PHPUnit_Framework_TestCase
         $second = new News();
         $second->slug = 'second';
 
-        $urlFirst = new Url();
-        $urlFirst->setLoc('/news/first');
-
-        $urlSecond = new Url();
-        $urlSecond->setLoc('/news/second');
+        $urlFirst = new Url('/news/first');
+        $urlSecond = new Url('/news/second');
 
         return [
             [[], []],

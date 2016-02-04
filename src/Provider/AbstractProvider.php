@@ -38,8 +38,7 @@ abstract class AbstractProvider implements Provider
 
     protected function resultToUrl($result)
     {
-        $url = new Url();
-        $url->setLoc($this->getResultLoc($result));
+        $url = new Url($this->getResultLoc($result));
 
         if ($this->options['lastmod'] !== null) {
             $url->setLastmod($this->getColumnValue($result, $this->options['lastmod']));

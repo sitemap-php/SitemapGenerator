@@ -27,10 +27,7 @@ class TestableProvider implements Provider
 {
     public function getEntries()
     {
-        $url = new Url();
-        $url->setLoc('/search');
-
-        return [$url];
+        return [new Url('/search')];
     }
 }
 
@@ -45,22 +42,11 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, count($sitemap->getProviders()));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testAddUrlNoLoc()
-    {
-        $sitemap = new TestableSitemap(new Dumper\Memory(), new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url();
-        $sitemap->add($url);
-    }
-
     public function testAddUrlNoBaseHost()
     {
         $dumper = new Dumper\Memory();
         $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url();
-        $url->setLoc('/search');
+        $url = new Url('/search');
 
         $sitemap->add($url);
 
@@ -72,8 +58,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
     {
         $dumper = new Dumper\Memory();
         $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url();
-        $url->setLoc('http://www.joe.fr/search');
+        $url = new Url('http://www.joe.fr/search');
 
         $sitemap->add($url);
 
@@ -85,8 +70,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
     {
         $dumper = new Dumper\Memory();
         $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url();
-        $url->setLoc('http://www.joe.fr/search');
+        $url = new Url('http://www.joe.fr/search');
 
         $image = new Image();
         $image->setLoc('/thumbs/123.jpg');
@@ -104,8 +88,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
     {
         $dumper = new Dumper\Memory();
         $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url();
-        $url->setLoc('http://www.joe.fr/search');
+        $url = new Url('http://www.joe.fr/search');
 
         $video = new Video();
         $video->setThumbnailLoc('/thumbs/123.jpg');

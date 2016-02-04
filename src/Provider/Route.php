@@ -23,8 +23,7 @@ class Route extends AbstractProvider
         foreach ($this->options['routes'] as $route) {
             $route = array_merge($this->defaultRoute, $route);
 
-            $url = new Url();
-            $url->setLoc(
+            $url = new Url(
                 $this->urlGenerator->generate($route['name'], $route['params'])
             );
             $url->setChangefreq($route['changefreq']);

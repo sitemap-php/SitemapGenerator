@@ -21,8 +21,7 @@ class RichXmlFormatterTest extends XmlFormatterTest
 
     public function testFormatRichUrl()
     {
-        $url = new RichUrl();
-        $url->setLoc('http://www.google.fr');
+        $url = new RichUrl('http://www.google.fr');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
         $url->addAlternateUrl('en', 'http://www.google.com');

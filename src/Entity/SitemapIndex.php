@@ -31,24 +31,17 @@ class SitemapIndex
     protected $lastmod = null;
 
     /**
-     * The current number of url indexed in the sitemap
-     */
-    protected $urlCount = 0;
-
-    /**
      * @see http://www.sitemaps.org/protocol.html#escaping
      *
      * @param string $loc The location. Must be less than 2,048 chars.
      */
-    public function setLoc($loc)
+    public function __construct($loc)
     {
         if (strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
         }
 
         $this->loc = $loc;
-
-        return $this;
     }
 
     public function getLoc()
@@ -74,15 +67,5 @@ class SitemapIndex
         }
 
         return $this->lastmod->format(\DateTime::W3C);
-    }
-
-    public function incrementUrl()
-    {
-        $this->urlCount++;
-    }
-
-    public function getUrlCount()
-    {
-        return $this->urlCount;
     }
 }

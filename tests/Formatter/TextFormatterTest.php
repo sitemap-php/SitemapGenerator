@@ -23,8 +23,7 @@ class TextFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $formatter = new Formatter\Text();
 
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
 
         $this->assertSame('http://www.google.fr' . "\n", $formatter->formatUrl($url));
     }
