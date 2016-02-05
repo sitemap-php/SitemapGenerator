@@ -20,7 +20,7 @@ use SitemapGenerator\Provider\DefaultValues;
 class Sitemap
 {
     /**
-     * @var SplObjectStorage
+     * @var \SplObjectStorage
      */
     protected $providers;
 
@@ -71,8 +71,6 @@ class Sitemap
 
     protected function add(Url $url, DefaultValues $defaultValues)
     {
-        $loc = $url->getLoc();
-
         if (!$url->getPriority() && $defaultValues->hasPriority()) {
             $url->setPriority($defaultValues->getPriority());
         }

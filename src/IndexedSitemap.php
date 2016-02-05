@@ -24,6 +24,7 @@ class IndexedSitemap
 
     protected $providers = [];
 
+    protected $baseHostSitemap;
     protected $dumper;
     private $formatter;
     private $limit = self::MAX_ENTRIES_PER_SITEMAP;
@@ -61,7 +62,7 @@ class IndexedSitemap
             $entryFilename = $this->getSitemapIndexFilename($this->dumper->getFilename(), $i+1);
 
             // dump the entry in the sitemap index
-            $entry = $this->createIndexEntry($entryFilename, $i+1);
+            $entry = $this->createIndexEntry($entryFilename);
             $this->dumper->dump($this->formatter->formatSitemapIndex($entry));
 
             // dump the sitemap entry itself
@@ -74,7 +75,7 @@ class IndexedSitemap
         $this->dumper->dump($this->formatter->getSitemapIndexEnd());
     }
 
-    private function createIndexEntry($sitemapFilename, $index)
+    private function createIndexEntry($sitemapFilename)
     {
         return new SitemapIndex($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
     }

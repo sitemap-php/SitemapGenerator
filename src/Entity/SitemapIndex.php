@@ -26,7 +26,7 @@ class SitemapIndex
      * the server can return, and search engines may use the information from
      * both sources differently.
      *
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     protected $lastmod = null;
 

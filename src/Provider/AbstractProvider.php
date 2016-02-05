@@ -13,7 +13,7 @@ use SitemapGenerator\UrlGenerator;
 abstract class AbstractProvider
 {
     /**
-     * @var PropertyAccessor
+     * @var \Symfony\Component\PropertyAccess\PropertyAccessor
      */
     protected $accessor;
 
