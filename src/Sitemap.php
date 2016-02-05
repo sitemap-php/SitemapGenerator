@@ -47,6 +47,8 @@ class Sitemap
      */
     public function build()
     {
+        $this->dumper->dump($this->formatter->getSitemapStart());
+
         foreach ($this->providers as $provider) {
             $defaultValues = $this->providers[$provider];
 
@@ -58,10 +60,8 @@ class Sitemap
         return $this->dumper->dump($this->formatter->getSitemapEnd());
     }
 
-    protected function add(Url $url, DefaultValues $defaultValues = null)
+    protected function add(Url $url, DefaultValues $defaultValues)
     {
-        $defaultValues = $defaultValues ?: DefaultValues::none();
-
         $loc = $url->getLoc();
 
         if (!$url->getPriority() && $defaultValues->hasPriority()) {

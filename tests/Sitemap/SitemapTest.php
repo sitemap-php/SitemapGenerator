@@ -8,13 +8,14 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider;
+use SitemapGenerator\Provider\DefaultValues;
 use SitemapGenerator\Sitemap;
 
 class TestableSitemap extends Sitemap
 {
     public function testableAdd(Url $url)
     {
-        $this->add($url);
+        $this->add($url, DefaultValues::none());
     }
 
     public function getProviders()

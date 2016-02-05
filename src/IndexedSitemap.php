@@ -57,7 +57,7 @@ class IndexedSitemap
         // dump the sitemap index start tag
         $this->dumper->dump($this->formatter->getSitemapIndexStart());
 
-        $chunkedProviders = iter\chunk(iter\chain(...$this->providers), $this->limit);
+        $chunkedProviders = $this->chunk(iter\chain(...$this->providers), $this->limit);
         foreach ($chunkedProviders as $i => $provider) {
             // Modify the filename of the dumper, add the filename to the sitemap indexes
             $entryFilename = $this->getSitemapIndexFilename($this->dumper->getFilename(), $i+1);
@@ -68,7 +68,7 @@ class IndexedSitemap
 
             // dump the sitemap entry itself
             $sitemap = new Sitemap($this->dumper->changeFile($entryFilename), $this->formatter);
-            $sitemap->addProvider(new \ArrayIterator($provider));
+            $sitemap->addProvider($provider);
             $sitemap->build();
         }
 
@@ -94,5 +94,23 @@ class IndexedSitemap
         $sitemapIndexFilename = dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
 
         return $sitemapIndexFilename;
+    }
+
+    private function chunk(\Iterator $iterable, $size) {
+        var_dump('chunk enter');
+        while ($iterable->valid()) {
+            var_dump('make chunk');
+            $closure = function() use ($iterable, $size) {
+                $count = $size;
+
+                while ($count-- && $iterable->valid()) {
+                    yield $iterable->current();
+
+                    $iterable->next();
+                }
+            };
+
+            yield $closure();
+        }
     }
 }
