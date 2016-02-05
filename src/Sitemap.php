@@ -24,8 +24,15 @@ class Sitemap
      */
     protected $providers;
 
-    protected $dumper = null;
-    private $formatter = null;
+    /**
+     * @var Dumper
+     */
+    protected $dumper;
+
+    /**
+     * @var SitemapFormatter
+     */
+    private $formatter;
 
     public function __construct(Dumper $dumper, SitemapFormatter $formatter)
     {
@@ -35,11 +42,13 @@ class Sitemap
         $this->providers = new \SplObjectStorage();
     }
 
+    /**
+     * @param \Traversable $provider A set of iterable Url objects.
+     * @param DefaultValues $defaultValues Default values that will be used for Url entries.
+     */
     public function addProvider(\Traversable $provider, DefaultValues $defaultValues = null)
     {
         $this->providers->attach($provider, $defaultValues ?: DefaultValues::none());
-
-        return $this;
     }
 
     /**

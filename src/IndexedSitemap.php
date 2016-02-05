@@ -9,7 +9,7 @@ use SitemapGenerator\Entity\SitemapIndex;
 use SitemapGenerator\Provider\DefaultValues;
 
 /**
- * Sitemap generator.
+ * Sitemap index generator.
  *
  * It will use a set of providers to build the sitemap.
  * The dumper takes care of the sitemap's persistance (file, compressed file,
@@ -42,16 +42,14 @@ class IndexedSitemap
         $this->providers = [];
     }
 
+    /**
+     * @param \Traversable $provider A set of iterable Url objects.
+     */
     public function addProvider(\Traversable $provider)
     {
         $this->providers[] = $provider;
-
-        return $this;
     }
 
-    /**
-     * @return string|null The sitemap's content if available.
-     */
     public function build()
     {
         // dump the sitemap index start tag
@@ -97,9 +95,7 @@ class IndexedSitemap
     }
 
     private function chunk(\Iterator $iterable, $size) {
-        var_dump('chunk enter');
         while ($iterable->valid()) {
-            var_dump('make chunk');
             $closure = function() use ($iterable, $size) {
                 $count = $size;
 
