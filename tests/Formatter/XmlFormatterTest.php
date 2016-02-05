@@ -51,8 +51,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrlOnlyLoc()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
 
         $this->assertSame("<url>\n" .
 "\t<loc>http://www.google.fr</loc>\n" .
@@ -61,8 +60,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrl()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
@@ -75,8 +73,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrlWithVideo()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
@@ -107,8 +104,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrlWithImage()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
@@ -131,8 +127,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrlWithVideos()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
@@ -219,8 +214,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
     public function testFormatUrlWithFullImage()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr/?s=joe"');
+        $url = new Url('http://www.google.fr/?s=joe"');
         $url->setPriority(0.2);
         $url->setChangefreq(ChangeFrequency::NEVER);
 
@@ -249,9 +243,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
     public function testFormatSitemapIndex()
     {
-        $sitemapIndex = new SitemapIndex();
-        $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
-        $sitemapIndex->setLastmod(new \DateTime('2013-07-26 23:42:00'));
+        $sitemapIndex = new SitemapIndex('http://www.example.com/sitemap-1.xml', new \DateTime('2013-07-26 23:42:00'));
 
         $this->assertSame("<sitemap>\n" .
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .
@@ -261,8 +253,7 @@ sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')
 
     public function testFormatSitemapIndexNoLastMod()
     {
-        $sitemapIndex = new SitemapIndex();
-        $sitemapIndex->setLoc('http://www.example.com/sitemap-1.xml');
+        $sitemapIndex = new SitemapIndex('http://www.example.com/sitemap-1.xml');
 
         $this->assertSame("<sitemap>\n" .
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .

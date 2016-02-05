@@ -16,7 +16,7 @@ class PropelTest extends AbstractProviderTest
 
         $provider = $this->getNewsProvider($news);
 
-        $generatedEntries = iterator_to_array($provider->getEntries());
+        $generatedEntries = iterator_to_array($provider);
         $this->assertEquals($newsUrls, $generatedEntries);
     }
 

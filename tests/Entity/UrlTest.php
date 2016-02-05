@@ -12,8 +12,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testLocMaxLength()
     {
-        $url = new Url();
-        $url->setLoc('http://google.fr/?q=' . str_repeat('o', 2048));
+        new Url('http://google.fr/?q=' . str_repeat('o', 2048));
     }
 
     /**
@@ -22,7 +21,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidPriority($priority)
     {
-        $url = new Url();
+        $url = new Url('http://www.google.fr/');
         $url->setPriority($priority);
     }
 
@@ -31,7 +30,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidChangefreq()
     {
-        $url = new Url();
+        $url = new Url('http://www.google.fr/');
         $url->setChangefreq('foo');
     }
 
@@ -40,7 +39,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testChangefreq($changefreq)
     {
-        $url = new Url();
+        $url = new Url('http://www.google.fr/');
         $url->setChangefreq($changefreq);
 
         $this->assertSame($changefreq, $url->getChangefreq());
@@ -51,7 +50,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
      */
     public function testLastmodFormatting($lastmod, $changefreq, $expected_lastmod)
     {
-        $url = new Url();
+        $url = new Url('http://www.google.fr/');
         $url->setLastmod($lastmod);
         $url->setChangefreq($changefreq);
 

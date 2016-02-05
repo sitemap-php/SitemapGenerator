@@ -23,7 +23,7 @@ use SitemapGenerator\UrlGenerator;
  *
  * NOTE This provider uses an "on demand" hydration.
  */
-class Propel extends AbstractProvider
+class Propel extends AbstractProvider implements \IteratorAggregate
 {
     protected $options = [
         'model'         => null,
@@ -44,7 +44,7 @@ class Propel extends AbstractProvider
         }
     }
 
-    public function getEntries()
+    public function getIterator()
     {
         $query = $this->getQuery($this->options['model']);
 

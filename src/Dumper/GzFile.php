@@ -13,4 +13,12 @@ class GzFile extends File
     {
         parent::__construct('compress.zlib://' . $filename);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function changeFile($filename)
+    {
+        return new static(str_replace('compress.zlib://', '', $filename));
+    }
 }
