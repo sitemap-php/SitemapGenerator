@@ -340,12 +340,6 @@ class Video
 
     public function setTags(array $tags)
     {
-        if ($tags === null) {
-            $this->tags = null;
-
-            return $this;
-        }
-
         if (count($tags) > 32) {
             throw new \DomainException('A maximum of 32 tags is allowed.');
         }
