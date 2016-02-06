@@ -4,19 +4,17 @@ namespace SitemapGenerator;
 
 use iter;
 use SitemapGenerator\Dumper\FileDumper;
-use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndex;
-use SitemapGenerator\Provider\DefaultValues;
 
 /**
  * Sitemap index generator.
  *
  * It will use a set of providers to build the sitemap.
- * The dumper takes care of the sitemap's persistance (file, compressed file,
+ * The dumper takes care of the sitemap's persistence (file, compressed file,
  * memory) and the formatter formats it.
  *
  * The whole process tries to be as memory-efficient as possible, that's why URLs
- * are not stored but dumped immediatly.
+ * are not stored but dumped immediately.
  */
 class IndexedSitemap
 {

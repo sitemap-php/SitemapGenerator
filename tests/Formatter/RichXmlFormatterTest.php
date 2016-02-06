@@ -4,7 +4,6 @@ namespace SitemapGenerator\Tests\Formatter;
 
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\RichUrl;
-use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 
 class RichXmlFormatterTest extends XmlFormatterTest

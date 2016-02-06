@@ -34,6 +34,7 @@ class SitemapIndex
      * @see http://www.sitemaps.org/protocol.html#escaping
      *
      * @param string $loc The location. Must be less than 2,048 chars.
+     * @param \DateTimeInterface The last modification date.
      */
     public function __construct($loc, \DateTimeInterface $lastmod = null)
     {

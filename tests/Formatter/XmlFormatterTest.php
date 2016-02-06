@@ -20,7 +20,7 @@ class TestableXml extends Formatter\Xml
 class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Formatter\SitemapIndex
+     * @var \SitemapGenerator\SitemapIndexFormatter
      */
     protected $formatter;
 

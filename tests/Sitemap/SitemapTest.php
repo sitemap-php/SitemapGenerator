@@ -3,9 +3,7 @@
 namespace SitemapGenerator\Tests\Sitemap;
 
 use SitemapGenerator\Dumper;
-use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Entity\Video;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider;
 use SitemapGenerator\Provider\DefaultValues;

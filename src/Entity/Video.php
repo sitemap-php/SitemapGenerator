@@ -37,8 +37,8 @@ class Video
      */
     protected $description;
 
-    /**********************
-     * Optionnal attributes
+    /*********************
+     * Optional attributes
      *********************/
 
     /**

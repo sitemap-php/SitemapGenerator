@@ -7,7 +7,7 @@ use SitemapGenerator\Entity\Video;
 class VideoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testTitleMaxLength()
     {
@@ -19,7 +19,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testDescriptionMaxLength()
     {
@@ -32,7 +32,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidDurationProvider
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidDuration($duration)
     {
@@ -62,7 +62,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidRatingProvider
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidRating($rating)
     {
@@ -71,7 +71,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidViewCount()
     {
@@ -80,7 +80,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidTagsCount()
     {
@@ -89,7 +89,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testCategoryMaxLength()
     {
@@ -101,7 +101,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidRestriction()
     {
@@ -110,7 +110,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidPlatform()
     {
@@ -119,7 +119,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidPlatformRelationship()
     {

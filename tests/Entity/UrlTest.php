@@ -8,7 +8,7 @@ use SitemapGenerator\Entity\Url;
 class UrlTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testLocMaxLength()
     {
@@ -17,7 +17,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidPriorityProvider
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidPriority($priority)
     {
@@ -26,7 +26,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException DomainException
+     * @expectedException \DomainException
      */
     public function testInvalidChangefreq()
     {
