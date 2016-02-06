@@ -10,8 +10,8 @@ interface UrlGenerator
      * Parameters that reference placeholders in the route pattern will substitute them in the
      * path or host. Extra params are added as query string to the URL.
      *
-     * @param string      $name          The name of the route
-     * @param mixed       $parameters    An array of parameters
+     * @param string $name The name of the route
+     * @param mixed $parameters A list of parameters
      *
      * @return string The generated URL
      */

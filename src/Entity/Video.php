@@ -25,17 +25,17 @@ class Video
      * least 160x90 pixels and at most 1920x1080 pixels. We recommend images
      * in .jpg, .png, or. gif formats.
      */
-    protected $thumbnailLoc = null;
+    protected $thumbnailLoc;
 
     /**
      * The title of the video. Maximum 100 characters.
      */
-    protected $title = null;
+    protected $title;
 
     /**
      * The description of the video. Maximum 2048 characters.
      */
-    protected $description = null;
+    protected $description;
 
     /**********************
      * Optionnal attributes
@@ -48,7 +48,7 @@ class Video
      * .mpg, .mpeg, .mp4, .m4v, .mov, .wmv, .asf, .avi, .ra, .ram, .rm, .flv,
      * or other video file format.
      */
-    protected $contentLoc = null;
+    protected $contentLoc;
 
     /**
      * You must specify at least one of playerLoc or contentLoc.
@@ -67,13 +67,13 @@ class Video
      *
      * Example player URL for Dailymotion: http://www.dailymotion.com/swf/x1o2g
      */
-    protected $playerLoc = null;
+    protected $playerLoc;
 
     /**
      * The duration of the video in seconds. Value must be between 0 and
      * 28800 (8 hours).
      */
-    protected $duration = null;
+    protected $duration;
 
     /**
      * The date after which the video will no longer be available. Don't
@@ -81,30 +81,30 @@ class Video
      *
      * @var \DateTime
      */
-    protected $expirationDate = null;
+    protected $expirationDate;
 
     /**
      * The rating of the video. Allowed values are float numbers in the range
      * 0.0 to 5.0.
      */
-    protected $rating = null;
+    protected $rating;
 
     /**
      * The number of times the video has been viewed.
      */
-    protected $viewCount = null;
+    protected $viewCount;
 
     /**
      * The date the video was first published
      *
      * @var \DateTime
      */
-    protected $publicationDate = null;
+    protected $publicationDate;
 
     /**
      * No if the video should be available only to users with SafeSearch turned off.
      */
-    protected $familyFriendly = null;
+    protected $familyFriendly;
 
     /**
      * Tags associated with the video.
@@ -115,7 +115,7 @@ class Video
      * The video's category. For example, cooking. The value should be a
      * string no longer than 256 characters.
      */
-    protected $category = null;
+    protected $category;
 
     /**
      * A space-delimited list of countries where the video may or may not be
@@ -123,22 +123,22 @@ class Video
      *
      * @see https://developers.google.com/webmasters/videosearch/countryrestrictions
      */
-    protected $restrictions = null;
+    protected $restrictions;
 
     /**
      * A link to the gallery (collection of videos) in which this video appears.
      */
-    protected $galleryLoc = null;
+    protected $galleryLoc;
 
     /**
      * Indicates whether a subscription (either paid or free) is required to view the video.
      */
-    protected $requiresSubscription = null;
+    protected $requiresSubscription;
 
     /**
      * The video uploader's name.
      */
-    protected $uploader = null;
+    protected $uploader;
 
     /**
      * A list of space-delimited platforms where the video may or may not be
@@ -146,12 +146,12 @@ class Video
      *
      * @see https://developers.google.com/webmasters/videosearch/platformrestrictions
      */
-    protected $platforms = null;
+    protected $platforms;
 
     /**
      * Indicates whether the video is a live stream.
      */
-    protected $live = null;
+    protected $live;
 
 
     public function setTitle($title)

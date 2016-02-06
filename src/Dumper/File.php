@@ -9,8 +9,8 @@ namespace SitemapGenerator\Dumper;
  */
 class File implements FileDumper
 {
-    protected $filename = null;
-    protected $handle = null;
+    protected $filename;
+    protected $handle;
 
     public function __construct($filename)
     {

@@ -13,27 +13,27 @@ class Image
      * The URL of the image.
      * This attribute is required.
      */
-    protected $loc = null;
+    protected $loc;
 
     /**
      * The caption of the image.
      */
-    protected $caption = null;
+    protected $caption;
 
     /**
      * The geographic location of the image.
      */
-    protected $geoLocation = null;
+    protected $geoLocation;
 
     /**
      * The title of the image.
      */
-    protected $title = null;
+    protected $title;
 
     /**
      * A URL to the license of the image.
      */
-    protected $license = null;
+    protected $license;
 
     public function setLoc($loc)
     {

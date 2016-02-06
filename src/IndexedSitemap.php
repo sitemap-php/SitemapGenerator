@@ -39,8 +39,6 @@ class IndexedSitemap
         $this->formatter = $formatter;
         $this->baseHostSitemap = $baseHostSitemap;
         $this->limit = $limit;
-
-        $this->providers = [];
     }
 
     /**

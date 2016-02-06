@@ -15,7 +15,7 @@ class SitemapIndex
      * end with a trailing slash, if your web server requires it. This value
      * must be less than 2,048 characters.
      */
-    protected $loc = null;
+    protected $loc;
 
     /**
      * The date of last modification of the file. This date should be in W3C
@@ -28,7 +28,7 @@ class SitemapIndex
      *
      * @var \DateTimeInterface
      */
-    protected $lastmod = null;
+    protected $lastmod;
 
     /**
      * @see http://www.sitemaps.org/protocol.html#escaping
