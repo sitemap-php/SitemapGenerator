@@ -78,7 +78,5 @@ class Sitemap
         }
 
         $this->dumper->dump($this->formatter->formatUrl($url));
-
-        return $this;
     }
 }

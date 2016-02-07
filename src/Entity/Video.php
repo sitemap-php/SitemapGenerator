@@ -161,8 +161,6 @@ class Video
         }
 
         $this->title = $title;
-
-        return $this;
     }
 
     public function getTitle()
@@ -173,8 +171,6 @@ class Video
     public function setThumbnailLoc($loc)
     {
         $this->thumbnailLoc = $loc;
-
-        return $this;
     }
 
     public function getThumbnailLoc()
@@ -189,8 +185,6 @@ class Video
         }
 
         $this->description = $description;
-
-        return $this;
     }
 
     public function getDescription()
@@ -201,8 +195,6 @@ class Video
     public function setContentLoc($loc)
     {
         $this->contentLoc = $loc;
-
-        return $this;
     }
 
     public function getContentLoc()
@@ -214,8 +206,7 @@ class Video
     {
         if ($loc === null) {
             $this->playerLoc = null;
-
-            return $this;
+            return;
         }
 
         $this->playerLoc = [
@@ -223,8 +214,6 @@ class Video
             'allow_embed'   => $allowEmbed,
             'autoplay'      => $autoplay !== null ? $autoplay : null,
         ];
-
-        return $this;
     }
 
     public function getPlayerLoc()
@@ -241,8 +230,6 @@ class Video
         }
 
         $this->duration = $duration;
-
-        return $this;
     }
 
     public function getDuration()
@@ -257,8 +244,6 @@ class Video
         }
 
         $this->expirationDate = $date;
-
-        return $this;
     }
 
     public function getExpirationDate()
@@ -279,8 +264,6 @@ class Video
         }
 
         $this->rating = $rating;
-
-        return $this;
     }
 
     public function getRating()
@@ -297,8 +280,6 @@ class Video
         }
 
         $this->viewCount = $count;
-
-        return $this;
     }
 
     public function getViewCount()
@@ -313,8 +294,6 @@ class Video
         }
 
         $this->publicationDate = $date;
-
-        return $this;
     }
 
     public function getPublicationDate()
@@ -329,8 +308,6 @@ class Video
     public function setFamilyFriendly($friendly)
     {
         $this->familyFriendly = (bool) $friendly;
-
-        return $this;
     }
 
     public function getFamilyFriendly()
@@ -345,8 +322,6 @@ class Video
         }
 
         $this->tags = $tags;
-
-        return $this;
     }
 
     public function getTags()
@@ -361,8 +336,6 @@ class Video
         }
 
         $this->category = $category;
-
-        return $this;
     }
 
     public function getCategory()
@@ -374,8 +347,7 @@ class Video
     {
         if ($restrictions === null) {
             $this->restrictions = null;
-
-            return $this;
+            return;
         }
 
         if ($relationship !== self::RESTRICTION_ALLOW && $relationship !== self::RESTRICTION_DENY) {
@@ -386,8 +358,6 @@ class Video
             'countries'     => $restrictions,
             'relationship'  => $relationship,
         ];
-
-        return $this;
     }
 
     public function getRestrictions()
@@ -399,16 +369,13 @@ class Video
     {
         if ($loc === null) {
             $this->galleryLoc = null;
-
-            return $this;
+            return;
         }
 
         $this->galleryLoc = [
             'loc'   => $loc,
             'title' => $title,
         ];
-
-        return $this;
     }
 
     public function getGalleryLoc()
@@ -419,8 +386,6 @@ class Video
     public function setRequiresSubscription($requiresSubscription)
     {
         $this->requiresSubscription = (bool) $requiresSubscription;
-
-        return $this;
     }
 
     public function getRequiresSubscription()
@@ -432,16 +397,13 @@ class Video
     {
         if ($uploader === null) {
             $this->uploader = null;
-
-            return $this;
+            return;
         }
 
         $this->uploader = [
             'name' => $uploader,
             'info' => $info,
         ];
-
-        return $this;
     }
 
     public function getUploader()
@@ -453,8 +415,7 @@ class Video
     {
         if ($platforms === null) {
             $this->platforms = null;
-
-            return $this;
+            return;
         }
 
         $valid_platforms = [self::PLATFORM_TV, self::PLATFORM_WEB, self::PLATFORM_MOBILE];
@@ -469,8 +430,6 @@ class Video
         }
 
         $this->platforms = $platforms;
-
-        return $this;
     }
 
     public function getPlatforms()
@@ -481,8 +440,6 @@ class Video
     public function setLive($live)
     {
         $this->live = (bool) $live;
-
-        return $this;
     }
 
     public function getLive()

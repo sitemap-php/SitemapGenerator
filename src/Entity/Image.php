@@ -38,8 +38,6 @@ class Image
     public function setLoc($loc)
     {
         $this->loc = $loc;
-
-        return $this;
     }
 
     public function getLoc()
@@ -50,8 +48,6 @@ class Image
     public function setCaption($caption)
     {
         $this->caption = $caption;
-
-        return $this;
     }
 
     public function getCaption()
@@ -62,8 +58,6 @@ class Image
     public function setGeoLocation($geoLocation)
     {
         $this->geoLocation = $geoLocation;
-
-        return $this;
     }
 
     public function getGeoLocation()
@@ -74,8 +68,6 @@ class Image
     public function setTitle($title)
     {
         $this->title = $title;
-
-        return $this;
     }
 
     public function getTitle()
@@ -86,8 +78,6 @@ class Image
     public function setLicense($license)
     {
         $this->license = $license;
-
-        return $this;
     }
 
     public function getLicense()

@@ -31,8 +31,6 @@ class RichUrl extends Url
     public function addAlternateUrl($locale, $url)
     {
         $this->alternateUrl[$locale] = $url;
-
-        return $this;
     }
 
     public function getAlternateUrls()

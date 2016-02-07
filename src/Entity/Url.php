@@ -11,22 +11,20 @@ class Url
 {
     /**
      * URL of the page.
-     * Should NOT begin with the protocol (as it will be added later) but MUST
+     * MUST begin with the protocol (as it will be added later) AND MUST
      * end with a trailing slash, if your web server requires it. This value
      * must be less than 2,048 characters.
      */
     protected $loc;
 
     /**
-     * The date of last modification of the file. This date should be in W3C
-     * Datetime format. This format allows you to omit the time portion, if
-     * desired, and use YYYY-MM-DD.
+     * The date of last modification of the file.
      *
      * NOTE This tag is separate from the If-Modified-Since (304) header
      * the server can return, and search engines may use the information from
      * both sources differently.
      *
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     protected $lastmod;
 
@@ -34,7 +32,8 @@ class Url
      * How frequently the page is likely to change. This value provides general
      * information to search engines and may not correlate exactly to how often
      * they crawl the page.
-     * Valid values are represented as class constants.
+     *
+     * @see ChangeFrequency class
      */
     protected $changefreq;
 
@@ -52,11 +51,6 @@ class Url
 
     protected $images = [];
 
-    /**
-     * @see http://www.sitemaps.org/protocol.html#escaping
-     *
-     * @param string $loc The location. Must be less than 2,048 chars.
-     */
     public function __construct($loc)
     {
         if (strlen($loc) > 2048) {
@@ -71,15 +65,9 @@ class Url
         return $this->loc;
     }
 
-    public function setLastmod($lastmod)
+    public function setLastmod(\DateTimeInterface $lastmod = null)
     {
-        if ($lastmod !== null && !$lastmod instanceof \DateTime) {
-            $lastmod = new \DateTime($lastmod);
-        }
-
         $this->lastmod = $lastmod;
-
-        return $this;
     }
 
     public function getLastmod()
@@ -97,19 +85,11 @@ class Url
 
     public function setChangefreq($changefreq)
     {
-        $validFreqs = [
-            ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY, ChangeFrequency::DAILY,
-            ChangeFrequency::WEEKLY, ChangeFrequency::MONTHLY, ChangeFrequency::YEARLY,
-            ChangeFrequency::NEVER,
-        ];
-
-        if ($changefreq !== null && !in_array($changefreq, $validFreqs, true)) {
-            throw new \DomainException(sprintf('Invalid changefreq given. Valid values are: %s', implode(', ', $validFreqs)));
+        if ($changefreq !== null && !ChangeFrequency::isValid($changefreq)) {
+            throw new \DomainException(sprintf('Invalid changefreq given ("%s"). Valid values are: %s', $changefreq, implode(', ', ChangeFrequency::KNOWN_FREQUENCIES)));
         }
 
         $this->changefreq = $changefreq;
-
-        return $this;
     }
 
     public function getChangefreq()
@@ -126,8 +106,6 @@ class Url
         }
 
         $this->priority = $priority;
-
-        return $this;
     }
 
     public function getPriority()
@@ -138,15 +116,11 @@ class Url
     public function addVideo(Video $video)
     {
         $this->videos[] = $video;
-
-        return $this;
     }
 
     public function setVideos(array $videos)
     {
         $this->videos = $videos;
-
-        return $this;
     }
 
     /**
@@ -160,15 +134,11 @@ class Url
     public function addImage(Image $image)
     {
         $this->images[] = $image;
-
-        return $this;
     }
 
     public function setImages(array $images)
     {
         $this->images = $images;
-
-        return $this;
     }
 
     /**

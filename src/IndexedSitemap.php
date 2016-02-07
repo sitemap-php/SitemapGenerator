@@ -3,13 +3,13 @@
 namespace SitemapGenerator;
 
 use iter;
-use SitemapGenerator\Dumper\FileDumper;
+use SitemapGenerator\FileDumper;
 use SitemapGenerator\Entity\SitemapIndex;
 
 /**
  * Sitemap index generator.
  *
- * It will use a set of providers to build the sitemap.
+ * It will use a set of providers to build the sitemaps and the index.
  * The dumper takes care of the sitemap's persistence (file, compressed file,
  * memory) and the formatter formats it.
  *
@@ -29,7 +29,7 @@ class IndexedSitemap
 
     /**
      * @param string $baseHostSitemap The base URL for the sitemap.
-     * @param integer $limit The URL limit for each sitemap.
+     * @param integer $limit The maximum number of URL for each sitemap.
      */
     public function __construct(FileDumper $dumper, SitemapIndexFormatter $formatter, $baseHostSitemap, $limit = self::MAX_ENTRIES_PER_SITEMAP)
     {
@@ -86,9 +86,7 @@ class IndexedSitemap
             $sitemapIndexFilename .= '-' . $index;
         }
 
-        $sitemapIndexFilename = dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
-
-        return $sitemapIndexFilename;
+        return dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
     }
 
     private function chunk(\Iterator $iterable, $size) {

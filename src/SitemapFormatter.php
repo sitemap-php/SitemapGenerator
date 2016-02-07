@@ -2,11 +2,11 @@
 
 namespace SitemapGenerator;
 
-use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Entity;
 
 interface SitemapFormatter
 {
     public function getSitemapStart();
     public function getSitemapEnd();
-    public function formatUrl(Url $url);
+    public function formatUrl(Entity\Url $url);
 }

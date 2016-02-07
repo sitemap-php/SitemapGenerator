@@ -62,10 +62,10 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         return [
             [null, null, null],
             [null, ChangeFrequency::YEARLY, null],
-            ['2012-12-20 18:44', null, $this->dateFormatW3C('2012-12-20 18:44')],
-            ['2012-12-20 18:44', ChangeFrequency::HOURLY, $this->dateFormatW3C('2012-12-20 18:44')],
-            ['2012-12-20 18:44', ChangeFrequency::ALWAYS, $this->dateFormatW3C('2012-12-20 18:44')],
-            ['2012-12-20 18:44', ChangeFrequency::DAILY, '2012-12-20'],
+            [new \DateTime('2012-12-20 18:44'), null, $this->dateFormatW3C('2012-12-20 18:44')],
+            [new \DateTime('2012-12-20 18:44'), ChangeFrequency::HOURLY, $this->dateFormatW3C('2012-12-20 18:44')],
+            [new \DateTime('2012-12-20 18:44'), ChangeFrequency::ALWAYS, $this->dateFormatW3C('2012-12-20 18:44')],
+            [new \DateTime('2012-12-20 18:44'), ChangeFrequency::DAILY, '2012-12-20'],
         ];
     }
 

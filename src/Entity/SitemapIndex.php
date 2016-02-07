@@ -18,9 +18,7 @@ class SitemapIndex
     protected $loc;
 
     /**
-     * The date of last modification of the file. This date should be in W3C
-     * Datetime format. This format allows you to omit the time portion, if
-     * desired, and use YYYY-MM-DD.
+     * The date of last modification of the file.
      *
      * NOTE This tag is separate from the If-Modified-Since (304) header
      * the server can return, and search engines may use the information from
@@ -30,12 +28,6 @@ class SitemapIndex
      */
     protected $lastmod;
 
-    /**
-     * @see http://www.sitemaps.org/protocol.html#escaping
-     *
-     * @param string $loc The location. Must be less than 2,048 chars.
-     * @param \DateTimeInterface The last modification date.
-     */
     public function __construct($loc, \DateTimeInterface $lastmod = null)
     {
         if (strlen($loc) > 2048) {
