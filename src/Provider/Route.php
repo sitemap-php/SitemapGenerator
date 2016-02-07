@@ -2,32 +2,51 @@
 
 namespace SitemapGenerator\Provider;
 
-use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Entity;
+use SitemapGenerator\UrlGenerator;
 
-class Route extends AbstractProvider
+class Route implements \IteratorAggregate
 {
-    protected $options = [
-        'routes' => [],
-    ];
+    /**
+     * @var UrlGenerator
+     */
+    protected $urlGenerator;
 
-    protected $defaultRoute = [
-        'params' => [],
-        'priority' => null,
-        'changefreq' => null,
-        'lastmod' => null,
-    ];
+    /**
+     * @var array
+     */
+    protected $routes;
 
-    public function getEntries()
+    /**
+     * @var DefaultValues
+     */
+    protected $defaultValues;
+
+    public function __construct(UrlGenerator $urlGenerator, array $routes, DefaultValues $defaultValues = null)
     {
-        foreach ($this->options['routes'] as $route) {
-            $route = array_merge($this->defaultRoute, $route);
+        $this->urlGenerator = $urlGenerator;
+        $this->routes = $routes;
+        $this->defaultValues = $defaultValues ?: DefaultValues::none();
+    }
 
-            $url = new Url(
+    public function getIterator()
+    {
+        $defaultRouteData = [
+            'changefreq' => null,
+            'lastmod' => null,
+            'priority' => null,
+        ];
+
+        foreach ($this->routes as $route) {
+            $route = array_merge($defaultRouteData, $route);
+
+            $url = new Entity\Url(
                 $this->urlGenerator->generate($route['name'], $route['params'])
             );
-            $url->setChangefreq($route['changefreq']);
-            $url->setLastmod($route['lastmod']);
-            $url->setPriority($route['priority']);
+
+            $url->setChangefreq($route['changefreq'] ?: $this->defaultValues->getChangefreq());
+            $url->setLastmod($route['lastmod'] ?: $this->defaultValues->getLastmod());
+            $url->setPriority($route['priority'] ?: $this->defaultValues->getPriority());
 
             yield $url;
         }

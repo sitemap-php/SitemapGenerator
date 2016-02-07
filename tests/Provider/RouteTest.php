@@ -15,11 +15,11 @@ class RouteProviderTest extends \PHPUnit_Framework_TestCase
     {
         $provider = $this->getNewsProvider($news);
 
-        $generatedEntries = iterator_to_array($provider->getEntries());
+        $generatedEntries = iterator_to_array($provider);
         $this->assertEquals($newsUrls, $generatedEntries);
     }
 
-    protected function getNewsProvider(array $results)
+    private function getNewsProvider(array $results)
     {
         $routes = array_map(function($result) {
             return [
@@ -28,12 +28,10 @@ class RouteProviderTest extends \PHPUnit_Framework_TestCase
             ];
         }, $results);
 
-        return new RouteProvider($this->getRouter($results), [
-            'routes' => $routes,
-        ]);
+        return new RouteProvider($this->getRouter($results), $routes);
     }
 
-    protected function getRouter(array $results)
+    private function getRouter(array $results)
     {
         $router = $this->getMock('\SitemapGenerator\UrlGenerator');
 
