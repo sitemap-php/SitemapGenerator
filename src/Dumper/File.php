@@ -2,6 +2,8 @@
 
 namespace SitemapGenerator\Dumper;
 
+use SitemapGenerator\FileDumper;
+
 /**
  * Dump the sitemap into a file.
  *
@@ -36,17 +38,6 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function clearHandle()
-    {
-        if ($this->handle !== null) {
-            fclose($this->handle);
-            $this->handle = null;
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function dump($string)
     {
         if ($this->handle === null) {
@@ -62,6 +53,17 @@ class File implements FileDumper
 
         if ($this->handle === false) {
             throw new \RuntimeException(sprintf('Impossible to open the file %s in write mode', $this->filename));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function clearHandle()
+    {
+        if ($this->handle !== null) {
+            fclose($this->handle);
+            $this->handle = null;
         }
     }
 

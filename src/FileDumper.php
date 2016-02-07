@@ -1,8 +1,6 @@
 <?php
 
-namespace SitemapGenerator\Dumper;
-
-use SitemapGenerator\Dumper;
+namespace SitemapGenerator;
 
 /**
  * Dumps content into a file.
@@ -17,9 +15,10 @@ interface FileDumper extends Dumper
     public function getFilename();
 
     /**
-     * Clear the file handle.
+     * Returns a new dumper, exactly like the current but which dumps content
+     * in the given file.
+     *
+     * @param string $filename The new file to dump content to.
      */
-    public function clearHandle();
-
     public function changeFile($filename);
 }
