@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Routing;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface as SymfonyUrlGeneratorInterface;
@@ -14,7 +16,7 @@ class SymfonyUrlGenerator implements UrlGenerator
         $this->originalGenerator = $generator;
     }
 
-    public function generate($name, $parameters = [])
+    public function generate(string $name, $parameters = []): string
     {
         return $this->originalGenerator->generate($name, $parameters);
     }

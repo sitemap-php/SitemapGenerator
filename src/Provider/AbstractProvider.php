@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Provider;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -35,7 +37,7 @@ abstract class AbstractProvider
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
-    protected function resultToUrl($result)
+    protected function resultToUrl($result): Url
     {
         $url = new Url($this->getResultLoc($result));
 
@@ -46,7 +48,7 @@ abstract class AbstractProvider
         return $url;
     }
 
-    protected function getResultLoc($result)
+    protected function getResultLoc($result): string
     {
         $route = $this->options['loc']['route'];
         $params = [];
@@ -62,7 +64,7 @@ abstract class AbstractProvider
         return $this->urlGenerator->generate($route, $params);
     }
 
-    protected function getColumnValue($result, $column)
+    protected function getColumnValue($result, string $column)
     {
         return $this->accessor->getValue($result, $column);
     }

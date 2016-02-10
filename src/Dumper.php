@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator;
 
 /**
@@ -15,5 +17,5 @@ interface Dumper
      *
      * @return void|string The dumped content (if available/relevant) or nothing.
      */
-    public function dump($string);
+    public function dump(string $string);
 }

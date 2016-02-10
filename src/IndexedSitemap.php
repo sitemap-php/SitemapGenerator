@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator;
 
 use iter;
@@ -29,9 +31,9 @@ class IndexedSitemap
 
     /**
      * @param string $baseHostSitemap The base URL for the sitemap.
-     * @param integer $limit The maximum number of URL for each sitemap.
+     * @param int $limit The maximum number of URL for each sitemap.
      */
-    public function __construct(FileDumper $dumper, SitemapIndexFormatter $formatter, $baseHostSitemap, $limit = self::MAX_ENTRIES_PER_SITEMAP)
+    public function __construct(FileDumper $dumper, SitemapIndexFormatter $formatter, string $baseHostSitemap, int $limit = self::MAX_ENTRIES_PER_SITEMAP)
     {
         $this->dumper = $dumper;
         $this->formatter = $formatter;
@@ -71,12 +73,12 @@ class IndexedSitemap
         $this->dumper->dump($this->formatter->getSitemapIndexEnd());
     }
 
-    private function createIndexEntry($sitemapFilename)
+    private function createIndexEntry(string $sitemapFilename): SitemapIndex
     {
         return new SitemapIndex($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
     }
 
-    private function getSitemapIndexFilename($filename, $index)
+    private function getSitemapIndexFilename(string $filename, int $index): string
     {
         $sitemapIndexFilename = basename($filename);
         $extPosition = strrpos($sitemapIndexFilename, '.');
@@ -89,7 +91,7 @@ class IndexedSitemap
         return dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
     }
 
-    private function chunk(\Iterator $iterable, $size) {
+    private function chunk(\Iterator $iterable, $size): \Iterator {
         while ($iterable->valid()) {
             $closure = function() use ($iterable, $size) {
                 $count = $size;

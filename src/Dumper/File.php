@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Dumper;
 
 use SitemapGenerator\FileDumper;
@@ -14,7 +16,7 @@ class File implements FileDumper
     protected $filename;
     protected $handle;
 
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         $this->filename = $filename;
     }
@@ -22,7 +24,7 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function changeFile($filename)
+    public function changeFile(string $filename): FileDumper
     {
         return new static($filename);
     }
@@ -30,7 +32,7 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->filename;
     }
@@ -38,7 +40,7 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function dump($string)
+    public function dump(string $string)
     {
         if ($this->handle === null) {
             $this->openFile();

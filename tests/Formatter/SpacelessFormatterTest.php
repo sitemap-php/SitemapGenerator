@@ -8,17 +8,17 @@ use SitemapGenerator\SitemapFormatter;
 
 class TestableSitemapFormatter implements SitemapFormatter
 {
-    public function getSitemapStart()
+    public function getSitemapStart(): string
     {
         return "\tjoe\n";
     }
 
-    public function getSitemapEnd()
+    public function getSitemapEnd(): string
     {
         return "\tfoo\n";
     }
 
-    public function formatUrl(Url $url)
+    public function formatUrl(Url $url): string
     {
         return sprintf("\t%s\n", $url->getLoc());
     }

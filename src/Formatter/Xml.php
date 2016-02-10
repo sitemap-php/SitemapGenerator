@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity;
@@ -7,7 +9,7 @@ use SitemapGenerator\SitemapIndexFormatter;
 
 class Xml implements SitemapIndexFormatter
 {
-    public function getSitemapStart()
+    public function getSitemapStart(): string
     {
         return '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset ' .
                'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' .
@@ -15,27 +17,27 @@ class Xml implements SitemapIndexFormatter
                'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n";
     }
 
-    public function getSitemapEnd()
+    public function getSitemapEnd(): string
     {
         return '</urlset>';
     }
 
-    public function getSitemapIndexStart()
+    public function getSitemapIndexStart(): string
     {
         return '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
     }
 
-    public function getSitemapIndexEnd()
+    public function getSitemapIndexEnd(): string
     {
         return '</sitemapindex>';
     }
 
-    public function formatUrl(Entity\Url $url)
+    public function formatUrl(Entity\Url $url): string
     {
         return '<url>' . "\n" . $this->formatBody($url) . '</url>' . "\n";
     }
 
-    protected function formatBody(Entity\Url $url)
+    protected function formatBody(Entity\Url $url): string
     {
         $buffer = "\t" . '<loc>' . $this->escape($url->getLoc()) . '</loc>' . "\n";
 
@@ -48,7 +50,7 @@ class Xml implements SitemapIndexFormatter
         }
 
         if ($url->getPriority() !== null) {
-            $buffer .= "\t" . '<priority>' . $this->escape($url->getPriority()) . '</priority>' . "\n";
+            $buffer .= "\t" . '<priority>' . $url->getPriority() . '</priority>' . "\n";
         }
 
         foreach ($url->getVideos() as $video) {
@@ -62,12 +64,12 @@ class Xml implements SitemapIndexFormatter
         return $buffer;
     }
 
-    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex)
+    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex): string
     {
         return '<sitemap>' . "\n" . $this->formatSitemapIndexBody($sitemapIndex) . '</sitemap>' . "\n";
     }
 
-    protected function formatSitemapIndexBody(Entity\SitemapIndex $sitemapIndex)
+    protected function formatSitemapIndexBody(Entity\SitemapIndex $sitemapIndex): string
     {
         $buffer = "\t" . '<loc>' . $this->escape($sitemapIndex->getLoc()) . '</loc>' . "\n";
 
@@ -78,7 +80,7 @@ class Xml implements SitemapIndexFormatter
         return $buffer;
     }
 
-    protected function formatVideo(Entity\Video $video)
+    protected function formatVideo(Entity\Video $video): string
     {
         $buffer = "\t" . '<video:video>' . "\n";
 
@@ -99,7 +101,7 @@ class Xml implements SitemapIndexFormatter
         }
 
         if ($video->getDuration() !== null) {
-            $buffer .= "\t\t" . '<video:duration>' . $this->escape($video->getDuration()) . '</video:duration>' . "\n";
+            $buffer .= "\t\t" . '<video:duration>' . $video->getDuration() . '</video:duration>' . "\n";
         }
 
         if ($video->getExpirationDate() !== null) {
@@ -107,11 +109,11 @@ class Xml implements SitemapIndexFormatter
         }
 
         if ($video->getRating() !== null) {
-            $buffer .= "\t\t" . '<video:rating>' . $this->escape($video->getRating()) . '</video:rating>' . "\n";
+            $buffer .= "\t\t" . '<video:rating>' . $video->getRating() . '</video:rating>' . "\n";
         }
 
         if ($video->getViewCount() !== null) {
-            $buffer .= "\t\t" . '<video:view_count>' . $this->escape($video->getViewCount()) . '</video:view_count>' . "\n";
+            $buffer .= "\t\t" . '<video:view_count>' . $video->getViewCount() . '</video:view_count>' . "\n";
         }
 
         if ($video->getPublicationDate() !== null) {
@@ -170,7 +172,7 @@ class Xml implements SitemapIndexFormatter
         return $buffer . "\t" . '</video:video>' . "\n";
     }
 
-    protected function formatImage(Entity\Image $image)
+    protected function formatImage(Entity\Image $image): string
     {
         $buffer = "\t" . '<image:image>' . "\n";
 
@@ -195,7 +197,7 @@ class Xml implements SitemapIndexFormatter
         return $buffer . "\t" . '</image:image>' . "\n";
     }
 
-    protected function escape($string)
+    protected function escape($string): string
     {
         return htmlspecialchars($string, ENT_QUOTES);
     }

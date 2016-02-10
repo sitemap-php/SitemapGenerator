@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity;
@@ -15,22 +17,22 @@ class Spaceless implements SitemapIndexFormatter
         $this->formatter = $formatter;
     }
 
-    public function getSitemapStart()
+    public function getSitemapStart(): string
     {
         return $this->stripSpaces($this->formatter->getSitemapStart());
     }
 
-    public function getSitemapEnd()
+    public function getSitemapEnd(): string
     {
         return $this->stripSpaces($this->formatter->getSitemapEnd());
     }
 
-    public function formatUrl(Entity\Url $url)
+    public function formatUrl(Entity\Url $url): string
     {
         return $this->stripSpaces($this->formatter->formatUrl($url));
     }
 
-    public function getSitemapIndexStart()
+    public function getSitemapIndexStart(): string
     {
         if (!$this->formatter instanceof Entity\SitemapIndex) {
             return '';
@@ -39,7 +41,7 @@ class Spaceless implements SitemapIndexFormatter
         return $this->stripSpaces($this->formatter->getSitemapIndexStart());
     }
 
-    public function getSitemapIndexEnd()
+    public function getSitemapIndexEnd(): string
     {
         if (!$this->formatter instanceof SitemapIndexFormatter) {
             return '';
@@ -48,7 +50,7 @@ class Spaceless implements SitemapIndexFormatter
         return $this->stripSpaces($this->formatter->getSitemapIndexEnd());
     }
 
-    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex)
+    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex): string
     {
         if (!$this->formatter instanceof SitemapIndexFormatter) {
             return '';
@@ -57,7 +59,7 @@ class Spaceless implements SitemapIndexFormatter
         return $this->stripSpaces($this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
-    protected function stripSpaces($string)
+    protected function stripSpaces($string): string
     {
         return str_replace(["\t", "\r", "\n"], '', $string);
     }

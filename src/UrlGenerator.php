@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator;
 
 interface UrlGenerator
@@ -15,5 +17,5 @@ interface UrlGenerator
      *
      * @return string The generated URL
      */
-    public function generate($name, $parameters = []);
+    public function generate(string $name, $parameters = []): string;
 }

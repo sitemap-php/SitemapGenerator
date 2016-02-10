@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Entity;
 
 /**
@@ -51,7 +53,7 @@ class Url
 
     protected $images = [];
 
-    public function __construct($loc)
+    public function __construct(string $loc)
     {
         if (strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
@@ -60,7 +62,7 @@ class Url
         $this->loc = $loc;
     }
 
-    public function getLoc()
+    public function getLoc(): string
     {
         return $this->loc;
     }
@@ -126,7 +128,7 @@ class Url
     /**
      * @return Video[]
      */
-    public function getVideos()
+    public function getVideos(): array
     {
         return $this->videos;
     }
@@ -144,7 +146,7 @@ class Url
     /**
      * @return Image[]
      */
-    public function getImages()
+    public function getImages(): array
     {
         return $this->images;
     }

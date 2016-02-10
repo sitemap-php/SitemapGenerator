@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Entity;
 
 class ChangeFrequency
@@ -18,7 +20,7 @@ class ChangeFrequency
         self::NEVER,
     ];
 
-    public static function isValid($changeFrequency)
+    public static function isValid(string $changeFrequency): bool
     {
         return in_array($changeFrequency, self::KNOWN_FREQUENCIES, true);
     }

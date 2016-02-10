@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator;
 
 /**
@@ -7,12 +9,7 @@ namespace SitemapGenerator;
  */
 interface FileDumper extends Dumper
 {
-    /**
-     * Get the filename.
-     *
-     * @return string
-     */
-    public function getFilename();
+    public function getFilename(): string;
 
     /**
      * Returns a new dumper, exactly like the current but which dumps content
@@ -20,5 +17,5 @@ interface FileDumper extends Dumper
      *
      * @param string $filename The new file to dump content to.
      */
-    public function changeFile($filename);
+    public function changeFile(string $filename): FileDumper;
 }

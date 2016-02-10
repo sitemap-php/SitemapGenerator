@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Entity;
 
 /**
@@ -28,7 +30,7 @@ class SitemapIndex
      */
     protected $lastmod;
 
-    public function __construct($loc, \DateTimeInterface $lastmod = null)
+    public function __construct(string $loc, \DateTimeInterface $lastmod = null)
     {
         if (strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
@@ -38,7 +40,7 @@ class SitemapIndex
         $this->lastmod = $lastmod;
     }
 
-    public function getLoc()
+    public function getLoc(): string
     {
         return $this->loc;
     }

@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Dumper;
+
+use SitemapGenerator\FileDumper;
 
 /**
  * Dump the sitemap into a compressed file.
@@ -9,7 +13,7 @@ namespace SitemapGenerator\Dumper;
  */
 class GzFile extends File
 {
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         parent::__construct('compress.zlib://' . $filename);
     }
@@ -17,7 +21,7 @@ class GzFile extends File
     /**
      * {@inheritdoc}
      */
-    public function changeFile($filename)
+    public function changeFile(string $filename): FileDumper
     {
         return new static(str_replace('compress.zlib://', '', $filename));
     }

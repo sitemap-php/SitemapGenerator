@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Formatter;
 
 use SitemapGenerator\Entity\Url;
@@ -13,17 +15,17 @@ use SitemapGenerator\SitemapFormatter;
  */
 class Text implements SitemapFormatter
 {
-    public function getSitemapStart()
+    public function getSitemapStart(): string
     {
         return '';
     }
 
-    public function getSitemapEnd()
+    public function getSitemapEnd(): string
     {
         return '';
     }
 
-    public function formatUrl(Url $url)
+    public function formatUrl(Url $url): string
     {
         return $url->getLoc() . "\n";
     }

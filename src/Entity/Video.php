@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Entity;
 
 /**
@@ -324,7 +326,7 @@ class Video
         $this->tags = $tags;
     }
 
-    public function getTags()
+    public function getTags(): array
     {
         return $this->tags;
     }

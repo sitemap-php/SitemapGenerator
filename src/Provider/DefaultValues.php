@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Provider;
 
 class DefaultValues
@@ -12,7 +14,7 @@ class DefaultValues
     {
     }
 
-    public static function create($priority, $changeFreq, \DateTimeInterface $lastmod = null)
+    public static function create(float $priority, string $changeFreq, \DateTimeInterface $lastmod = null): DefaultValues
     {
         $defaultValues = static::none();
 
@@ -23,12 +25,12 @@ class DefaultValues
         return $defaultValues;
     }
 
-    public static function none()
+    public static function none(): DefaultValues
     {
         return new static();
     }
 
-    public function hasLastmod()
+    public function hasLastmod(): bool
     {
         return $this->lastmod !== null;
     }
@@ -38,7 +40,7 @@ class DefaultValues
         return $this->lastmod;
     }
 
-    public function hasPriority()
+    public function hasPriority(): bool
     {
         return $this->priority !== null;
     }
@@ -48,7 +50,7 @@ class DefaultValues
         return $this->priority;
     }
 
-    public function hasChangeFreq()
+    public function hasChangeFreq(): bool
     {
         return $this->changeFreq !== null;
     }

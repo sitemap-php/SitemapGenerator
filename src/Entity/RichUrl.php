@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Entity;
 
 /**
@@ -28,12 +30,12 @@ class RichUrl extends Url
      *
      * @param string $locale The url's language (and optionnaly region. Ex: en, en-us).
      */
-    public function addAlternateUrl($locale, $url)
+    public function addAlternateUrl(string $locale, string $url)
     {
         $this->alternateUrl[$locale] = $url;
     }
 
-    public function getAlternateUrls()
+    public function getAlternateUrls(): array
     {
         return $this->alternateUrl;
     }

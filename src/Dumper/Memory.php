@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SitemapGenerator\Dumper;
 
 use SitemapGenerator\Dumper;
@@ -15,14 +17,14 @@ class Memory implements Dumper
     /**
      * {@inheritdoc}
      */
-    public function dump($string)
+    public function dump(string $string)
     {
         $this->buffer .= $string;
 
         return $this->buffer;
     }
 
-    public function getBuffer()
+    public function getBuffer(): string
     {
         return $this->buffer;
     }
