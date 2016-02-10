@@ -30,7 +30,7 @@ Installation
 
 All the installation instructions are in the [documentation](https://github.com/K-Phoen/SitemapGenerator/blob/master/doc/installation.md).
 
-Licence
+License
 -------
 
-This library is under the [MIT](https://github.com/K-Phoen/SitemapGenerator/blob/master/LICENCE) licence.
+This library is under the [MIT](https://github.com/K-Phoen/SitemapGenerator/blob/master/LICENSE) license.
