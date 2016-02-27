@@ -51,9 +51,10 @@ class File implements FileDumper
 
     protected function openFile()
     {
-        $this->handle = fopen($this->filename, 'w');
+        $this->handle = @fopen($this->filename, 'w');
 
         if ($this->handle === false) {
+            $this->handle = null;
             throw new \RuntimeException(sprintf('Impossible to open the file %s in write mode', $this->filename));
         }
     }

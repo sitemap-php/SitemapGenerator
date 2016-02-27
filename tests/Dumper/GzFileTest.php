@@ -8,15 +8,15 @@ class GzFileTest extends FileTestCase
 {
     public function testDumper()
     {
-        $dumper = new GzFile($this->file);
+        $dumper = new GzFile($this->dummyFile());
 
         $dumper->dump('joe');
         $dumper->dump('-hell yeah!');
 
-        $this->assertTrue(file_exists($this->file));
+        $this->assertTrue(file_exists($this->dummyFile()));
         unset($dumper); // force the dumper to close the file
 
-        $this->assertSame('joe-hell yeah!', file_get_contents('compress.zlib://' . $this->file));
-        $this->assertNotSame('joe-hell yeah!', file_get_contents($this->file), 'The file\'s content is compressed');
+        $this->assertSame('joe-hell yeah!', file_get_contents('compress.zlib://' . $this->dummyFile()));
+        $this->assertNotSame('joe-hell yeah!', file_get_contents($this->dummyFile()), 'The file\'s content is compressed');
     }
 }
