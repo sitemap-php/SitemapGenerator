@@ -1,8 +1,9 @@
 <?php
 
-namespace SitemapGenerator\Tests\Sitemap;
+namespace SitemapGenerator\Tests;
 
 use SitemapGenerator\Dumper;
+use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider;
@@ -58,16 +59,21 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('/search' . "\n", $dumper->getBuffer());
     }
 
-    public function testAddUrlBaseHost()
+    public function testAddWithDefaultValues()
     {
-        $dumper = new Dumper\Memory();
-        $sitemap = new TestableSitemap($dumper, new Formatter\Text(), 'http://www.google.fr');
-        $url = new Url('http://www.joe.fr/search');
+        $formatter = $this->getMock('SitemapGenerator\SitemapFormatter');
+        $sitemap = new TestableSitemap($this->getMock('SitemapGenerator\Dumper'), $formatter);
+        $defaultValues = DefaultValues::create(0.7, ChangeFrequency::ALWAYS);
 
-        $sitemap->testableAdd($url);
+        $formatter
+            ->expects($this->once())
+            ->method('formatUrl')
+            ->with($this->callback(function(Url $url) {
+                return $url->getPriority() === 0.7 && $url->getChangefreq() === ChangeFrequency::ALWAYS;
+            }));
 
-        $this->assertSame('http://www.joe.fr/search', $url->getLoc());
-        $this->assertSame('http://www.joe.fr/search' . "\n", $dumper->getBuffer());
+        $sitemap->addProvider(new TestableProvider(), $defaultValues);
+        $sitemap->build();
     }
 
     public function testBuild()
