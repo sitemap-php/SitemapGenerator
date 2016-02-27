@@ -6,7 +6,7 @@ namespace SitemapGenerator;
 
 use iter;
 use SitemapGenerator\FileDumper;
-use SitemapGenerator\Entity\SitemapIndex;
+use SitemapGenerator\Entity\SitemapIndexEntry;
 
 /**
  * Sitemap index generator.
@@ -73,9 +73,9 @@ class IndexedSitemap
         $this->dumper->dump($this->formatter->getSitemapIndexEnd());
     }
 
-    private function createIndexEntry(string $sitemapFilename): SitemapIndex
+    private function createIndexEntry(string $sitemapFilename): SitemapIndexEntry
     {
-        return new SitemapIndex($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
+        return new SitemapIndexEntry($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
     }
 
     private function getSitemapIndexFilename(string $filename, int $index): string

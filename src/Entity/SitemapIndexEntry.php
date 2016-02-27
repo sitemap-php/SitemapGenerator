@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SitemapGenerator\Entity;
 
 /**
- * Represents a sitemap index.
+ * Represents a sitemap index entry.
  *
  * @see http://www.sitemaps.org/protocol.html
  */
-class SitemapIndex
+class SitemapIndexEntry
 {
     /**
      * URL of the sitemap index.

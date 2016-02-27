@@ -64,17 +64,17 @@ class Xml implements SitemapIndexFormatter
         return $buffer;
     }
 
-    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex): string
+    public function formatSitemapIndex(Entity\SitemapIndexEntry $entry): string
     {
-        return '<sitemap>' . "\n" . $this->formatSitemapIndexBody($sitemapIndex) . '</sitemap>' . "\n";
+        return '<sitemap>' . "\n" . $this->formatSitemapIndexBody($entry) . '</sitemap>' . "\n";
     }
 
-    protected function formatSitemapIndexBody(Entity\SitemapIndex $sitemapIndex): string
+    protected function formatSitemapIndexBody(Entity\SitemapIndexEntry $entry): string
     {
-        $buffer = "\t" . '<loc>' . $this->escape($sitemapIndex->getLoc()) . '</loc>' . "\n";
+        $buffer = "\t" . '<loc>' . $this->escape($entry->getLoc()) . '</loc>' . "\n";
 
-        if ($sitemapIndex->getLastmod() !== null) {
-            $buffer .= "\t" . '<lastmod>' . $this->escape($sitemapIndex->getLastmod()) . '</lastmod>' . "\n";
+        if ($entry->getLastmod() !== null) {
+            $buffer .= "\t" . '<lastmod>' . $this->escape($entry->getLastmod()) . '</lastmod>' . "\n";
         }
 
         return $buffer;

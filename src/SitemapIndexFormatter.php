@@ -10,5 +10,5 @@ interface SitemapIndexFormatter extends SitemapFormatter
 {
     public function getSitemapIndexStart(): string;
     public function getSitemapIndexEnd(): string;
-    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex): string;
+    public function formatSitemapIndex(Entity\SitemapIndexEntry $entry): string;
 }

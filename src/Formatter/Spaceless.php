@@ -34,7 +34,7 @@ class Spaceless implements SitemapIndexFormatter
 
     public function getSitemapIndexStart(): string
     {
-        if (!$this->formatter instanceof Entity\SitemapIndex) {
+        if (!$this->formatter instanceof SitemapIndexFormatter) {
             return '';
         }
 
@@ -50,13 +50,13 @@ class Spaceless implements SitemapIndexFormatter
         return $this->stripSpaces($this->formatter->getSitemapIndexEnd());
     }
 
-    public function formatSitemapIndex(Entity\SitemapIndex $sitemapIndex): string
+    public function formatSitemapIndex(Entity\SitemapIndexEntry $entry): string
     {
         if (!$this->formatter instanceof SitemapIndexFormatter) {
             return '';
         }
 
-        return $this->stripSpaces($this->formatter->formatSitemapIndex($sitemapIndex));
+        return $this->stripSpaces($this->formatter->formatSitemapIndex($entry));
     }
 
     protected function stripSpaces($string): string
