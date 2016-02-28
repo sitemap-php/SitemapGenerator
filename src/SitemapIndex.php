@@ -18,7 +18,7 @@ use SitemapGenerator\Entity\SitemapIndexEntry;
  * The whole process tries to be as memory-efficient as possible, that's why URLs
  * are not stored but dumped immediately.
  */
-class IndexedSitemap
+class SitemapIndex
 {
     const MAX_ENTRIES_PER_SITEMAP = 50000;
 
