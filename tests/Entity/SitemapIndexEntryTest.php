@@ -24,7 +24,7 @@ class SitemapIndexEntryTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructionWithAllTheArguments()
     {
-        $entry = new SitemapIndexEntry('http://google.fr/', \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2016-02-28 14:34:25'));
+        $entry = new SitemapIndexEntry('http://google.fr/', \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2016-02-28 14:34:25', new \DateTimeZone('Europe/Paris')));
 
         $this->assertSame('http://google.fr/', $entry->getLoc());
         $this->assertSame('2016-02-28T14:34:25+01:00', $entry->getLastmod());

@@ -73,7 +73,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testFormatUrlWithLastMod()
     {
-        $lastmod = new \DateTimeImmutable('2016-02-28 14:51:22');
+        $lastmod = new \DateTimeImmutable('2016-02-28 14:51:22', new \DateTimeZone('Europe/Paris'));
         $url = new Url('http://www.google.fr');
         $url->setLastmod($lastmod);
 
@@ -96,7 +96,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
-        $video->setPublicationDate(new \DateTimeImmutable('2016-02-28 14:51:22'));
+        $video->setPublicationDate(new \DateTimeImmutable('2016-02-28 14:51:22', new \DateTimeZone('Europe/Paris')));
 
         $url->addVideo($video);
 
@@ -185,7 +185,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
-        $video->setExpirationDate(new \DateTimeImmutable('2012-12-23'));
+        $video->setExpirationDate(new \DateTimeImmutable('2016-02-28', new \DateTimeZone('Europe/Paris')));
         $video->setRating(2.2);
         $video->setViewCount(42);
         $video->setFamilyFriendly(false);
@@ -209,7 +209,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 "\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n" .
 "\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n" .
 "\t\t<video:duration>600</video:duration>\n" .
-sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFormatW3C('2012-12-23')) .
+sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", '2016-02-28T00:00:00+01:00') .
 "\t\t<video:rating>2.2</video:rating>\n" .
 "\t\t<video:view_count>42</video:view_count>\n" .
 "\t\t<video:family_friendly>no</video:family_friendly>\n" .
@@ -257,11 +257,11 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
 
     public function testFormatSitemapIndexEntry()
     {
-        $sitemapIndex = new SitemapIndexEntry('http://www.example.com/sitemap-1.xml', new \DateTime('2013-07-26 23:42:00'));
+        $sitemapIndex = new SitemapIndexEntry('http://www.example.com/sitemap-1.xml', new \DateTime('2016-02-28 23:42:00', new \DateTimeZone('Europe/Paris')));
 
         $this->assertSame("<sitemap>\n" .
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .
-sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')) .
+sprintf("\t<lastmod>%s</lastmod>\n", '2016-02-28T23:42:00+01:00') .
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
@@ -272,10 +272,5 @@ sprintf("\t<lastmod>%s</lastmod>\n", $this->dateFormatW3C('2013-07-26 23:42:00')
         $this->assertSame("<sitemap>\n" .
 "\t<loc>http://www.example.com/sitemap-1.xml</loc>\n" .
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
-    }
-
-    protected function dateFormatW3C($date)
-    {
-        return (new \DateTime($date))->format(\DateTime::W3C);
     }
 }
