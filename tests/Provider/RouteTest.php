@@ -6,7 +6,7 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\Route as RouteProvider;
 use SitemapGenerator\Tests\Fixtures\News;
 
-class RouteProviderTest extends \PHPUnit_Framework_TestCase
+class RouteTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider newsDataProvider

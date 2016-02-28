@@ -75,8 +75,8 @@ class Sitemap
             $url->setPriority($defaultValues->getPriority());
         }
 
-        if (!$url->getChangefreq() && $defaultValues->hasChangeFreq()) {
-            $url->setChangefreq($defaultValues->getChangeFreq());
+        if (!$url->getChangeFreq() && $defaultValues->hasChangeFreq()) {
+            $url->setChangeFreq($defaultValues->getChangeFreq());
         }
 
         $this->dumper->dump($this->formatter->formatUrl($url));

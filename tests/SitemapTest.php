@@ -19,10 +19,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
                 return $this->providers;
             }
         };
-        $this->assertSame(0, count($sitemap->getProviders()));
+        $this->assertCount(0, $sitemap->getProviders());
 
         $sitemap->addProvider(new \ArrayIterator([]));
-        $this->assertSame(1, count($sitemap->getProviders()));
+        $this->assertCount(1, $sitemap->getProviders());
     }
 
     public function testRelativeUrlsAreKeptIntact()
@@ -52,7 +52,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('formatUrl')
             ->with($this->callback(function(Url $url) {
-                return $url->getPriority() === 0.7 && $url->getChangefreq() === ChangeFrequency::ALWAYS;
+                return $url->getPriority() === 0.7 && $url->getChangeFreq() === ChangeFrequency::ALWAYS;
             }));
 
         $sitemap->addProvider(new \ArrayIterator([new Url('http://www.google.fr/search')]), $defaultValues);

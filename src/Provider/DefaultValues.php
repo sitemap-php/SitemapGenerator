@@ -55,7 +55,7 @@ class DefaultValues
         return $this->changeFreq !== null;
     }
 
-    public function getChangefreq()
+    public function getChangeFreq()
     {
         return $this->changeFreq;
     }

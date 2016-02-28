@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SitemapGenerator;
 
 use iter;
-use SitemapGenerator\FileDumper;
 use SitemapGenerator\Entity\SitemapIndexEntry;
 
 /**
@@ -22,10 +21,10 @@ class SitemapIndex
 {
     const MAX_ENTRIES_PER_SITEMAP = 50000;
 
-    protected $providers = [];
+    private $providers = [];
 
-    protected $baseHostSitemap;
-    protected $dumper;
+    private $baseHostSitemap;
+    private $dumper;
     private $formatter;
     private $limit = self::MAX_ENTRIES_PER_SITEMAP;
 

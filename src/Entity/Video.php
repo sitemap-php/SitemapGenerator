@@ -214,7 +214,7 @@ class Video
         $this->playerLoc = [
             'loc'           => $loc,
             'allow_embed'   => $allowEmbed,
-            'autoplay'      => $autoplay !== null ? $autoplay : null,
+            'autoplay'      => $autoplay,
         ];
     }
 

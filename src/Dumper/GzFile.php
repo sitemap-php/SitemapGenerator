@@ -23,6 +23,6 @@ class GzFile extends File
      */
     public function changeFile(string $filename): FileDumper
     {
-        return new static(str_replace('compress.zlib://', '', $filename));
+        return parent::changeFile(str_replace('compress.zlib://', '', $filename));
     }
 }

@@ -25,17 +25,17 @@ abstract class FileTestCase extends \PHPUnit_Framework_TestCase
         file_exists($this->nonWriteableFile) && unlink($this->nonWriteableFile);
     }
 
-    protected function nonWriteableFile()
+    protected function nonWriteableFile(): string
     {
         return $this->nonWriteableFile;
     }
 
-    protected function dummyFile()
+    protected function dummyFile(): string
     {
         return $this->file;
     }
 
-    protected function otherDummyFile()
+    protected function otherDummyFile(): string
     {
         return $this->otherFile;
     }

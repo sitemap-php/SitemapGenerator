@@ -33,7 +33,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     public function testInvalidChangefreq()
     {
         $url = new Url('http://www.google.fr/');
-        $url->setChangefreq('foo');
+        $url->setChangeFreq('foo');
     }
 
     /**
@@ -42,9 +42,9 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     public function testChangefreq($changefreq)
     {
         $url = new Url('http://www.google.fr/');
-        $url->setChangefreq($changefreq);
+        $url->setChangeFreq($changefreq);
 
-        $this->assertSame($changefreq, $url->getChangefreq());
+        $this->assertSame($changefreq, $url->getChangeFreq());
     }
 
     /**
@@ -54,7 +54,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url('http://www.google.fr/');
         $url->setLastmod($lastmod);
-        $url->setChangefreq($changefreq);
+        $url->setChangeFreq($changefreq);
 
         $this->assertSame($expected_lastmod, $url->getLastmod());
     }

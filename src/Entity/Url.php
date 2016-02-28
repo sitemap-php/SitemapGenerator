@@ -37,7 +37,7 @@ class Url
      *
      * @see ChangeFrequency class
      */
-    protected $changefreq;
+    protected $changeFreq;
 
     /**
      * The priority of this URL relative to other URLs on your site. Valid
@@ -78,25 +78,25 @@ class Url
             return null;
         }
 
-        if ($this->getChangefreq() === null || in_array($this->getChangefreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
+        if ($this->getChangeFreq() === null || in_array($this->getChangeFreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 
         return $this->lastmod->format('Y-m-d');
     }
 
-    public function setChangefreq($changefreq)
+    public function setChangeFreq($changeFreq)
     {
-        if ($changefreq !== null && !ChangeFrequency::isValid($changefreq)) {
-            throw new \DomainException(sprintf('Invalid changefreq given ("%s"). Valid values are: %s', $changefreq, implode(', ', ChangeFrequency::KNOWN_FREQUENCIES)));
+        if ($changeFreq !== null && !ChangeFrequency::isValid($changeFreq)) {
+            throw new \DomainException(sprintf('Invalid changefreq given ("%s"). Valid values are: %s', $changeFreq, implode(', ', ChangeFrequency::KNOWN_FREQUENCIES)));
         }
 
-        $this->changefreq = $changefreq;
+        $this->changeFreq = $changeFreq;
     }
 
-    public function getChangefreq()
+    public function getChangeFreq()
     {
-        return $this->changefreq;
+        return $this->changeFreq;
     }
 
     public function setPriority($priority)

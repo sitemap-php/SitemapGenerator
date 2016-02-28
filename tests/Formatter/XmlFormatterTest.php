@@ -62,7 +62,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangeFreq(ChangeFrequency::NEVER);
 
         $this->assertSame("<url>\n" .
 "\t<loc>http://www.google.fr</loc>\n" .
@@ -87,7 +87,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangeFreq(ChangeFrequency::NEVER);
 
         $video = new Video();
         $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
@@ -120,7 +120,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangeFreq(ChangeFrequency::NEVER);
 
         $image = new Image();
         $image->setLoc('http://www.example.com/thumbs/123.jpg');
@@ -143,7 +143,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangeFreq(ChangeFrequency::NEVER);
 
         $video = new Video();
         $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
@@ -230,7 +230,7 @@ sprintf("\t\t<video:expiration_date>%s</video:expiration_date>\n", $this->dateFo
     {
         $url = new Url('http://www.google.fr/?s=joe"');
         $url->setPriority(0.2);
-        $url->setChangefreq(ChangeFrequency::NEVER);
+        $url->setChangeFreq(ChangeFrequency::NEVER);
 
         $image = new Image();
         $image->setLoc('http://www.example.com/thumbs/123.jpg');

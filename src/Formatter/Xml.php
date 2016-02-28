@@ -45,8 +45,8 @@ class Xml implements SitemapIndexFormatter
             $buffer .= "\t" . '<lastmod>' . $this->escape($url->getLastmod()) . '</lastmod>' . "\n";
         }
 
-        if ($url->getChangefreq() !== null) {
-            $buffer .= "\t" . '<changefreq>' . $this->escape($url->getChangefreq()) . '</changefreq>' . "\n";
+        if ($url->getChangeFreq() !== null) {
+            $buffer .= "\t" . '<changefreq>' . $this->escape($url->getChangeFreq()) . '</changefreq>' . "\n";
         }
 
         if ($url->getPriority() !== null) {

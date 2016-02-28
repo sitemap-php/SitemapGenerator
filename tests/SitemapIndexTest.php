@@ -2,9 +2,7 @@
 
 namespace SitemapGenerator\Tests;
 
-use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\Url;
-use SitemapGenerator\Formatter;
 use SitemapGenerator\SitemapIndex;
 
 class SitemapIndexTest extends \PHPUnit_Framework_TestCase

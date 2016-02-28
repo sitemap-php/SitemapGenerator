@@ -20,7 +20,7 @@ class FileTest extends FileTestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testAnExceptionIsThrownForNonWriteableFiles()
     {

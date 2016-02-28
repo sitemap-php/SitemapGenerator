@@ -1,9 +1,8 @@
 <?php
 
-namespace SitemapGenerator\Tests\Entity;
+namespace SitemapGenerator\Tests\Routing;
 
 use SitemapGenerator\Routing\SymfonyUrlGenerator;
-use SitemapGenerator\UrlGenerator;
 
 class SymfonyUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 {

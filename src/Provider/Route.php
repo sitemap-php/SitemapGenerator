@@ -46,7 +46,7 @@ class Route implements \IteratorAggregate
                 $this->urlGenerator->generate($route['name'], $route['params'])
             );
 
-            $url->setChangefreq($route['changefreq'] ?: $this->defaultValues->getChangefreq());
+            $url->setChangeFreq($route['changefreq'] ?: $this->defaultValues->getChangeFreq());
             $url->setLastmod($route['lastmod'] ?: $this->defaultValues->getLastmod());
             $url->setPriority($route['priority'] ?: $this->defaultValues->getPriority());
 
