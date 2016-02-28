@@ -31,15 +31,6 @@ fortunately, this bundle supports both of them.
 
 Just look the [Image](https://github.com/K-Phoen/SitemapGenerator/blob/master/Entity/Image.php) and [Video](https://github.com/K-Phoen/SitemapGenerator/blob/master/Entity/Video.php) class to know how to use them.
 
-### Base host issues
-
-To ensure that all the URLs added in the sitemap are absolute, the generator
-accepts a `base_host` parameter, which will be prepended to URLs when needed:
-
-```php
-$sitemap = new Sitemap($dumper, $formatter, $base_host = 'http://www.website.com');
-```
-
 ### Sitemap index
 
 In order to be able to generate a sitemap index, the sitemap generator

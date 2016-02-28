@@ -9,7 +9,7 @@ Here is the minimal code required to get a working sitemap generator:
 
 use SitemapGenerator\Dumper;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Sitemap\Sitemap;
+use SitemapGenerator\Sitemap;
 
 $dumper = new Dumper\Memory();
 $formatter = new Formatter\Xml();
@@ -39,21 +39,21 @@ namespace SitemapGenerator\Provider;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\Provider;
 
-class DummyProvider implements Provider
+class DummyProvider implements \IteratorAggregate
 {
-    public function getEntries()
+    public function getIterator()
     {
         $url = new Url();
         $url->setLoc('http://www.google.fr');
         $url->setChangefreq(Url::CHANGEFREQ_NEVER);
-        $url->setLastmod('2012-12-19 02:28');
+        $url->setLastmod(new \DateTime('2012-12-19 02:28'));
 
-        return [$url];
+        yield $url;
     }
 }
 ```
 
-All the providers implement the `Provider` interface, which defines the `getEntries()` method.
+All the providers must be instance of \Traversable`.
 
 **Note:** If your providers returns a lot of entries, the best-practice is to
 use a generator to efficiently yield the entries.
@@ -73,6 +73,8 @@ them:
 ```php
 <?php
 
+// …
+
 $sitemap->addProvider(new DummyProvider());
 ```
 
@@ -84,6 +86,8 @@ you can build the sitemap:
 
 ```php
 <?php
+
+// …
 
 echo $sitemap->build();
 ```
@@ -101,26 +105,21 @@ filesystem.
 use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider;
 use SitemapGenerator\Sitemap;
 
-class DummyProvider implements Provider
+class DummyProvider implements \IteratorAggregate
 {
-    public function getEntries()
+    public function getIterator()
     {
-        $url = new Entity\Url();
-        $url->setLoc('http://www.google.fr');
+        $url = new Entity\Url('http://www.google.fr');
         $url->setChangefreq(Entity\ChangeFrequency::NEVER);
-        $url->setLastmod('2012-12-19 02:28');
+        $url->setLastmod(new \DateTime('2012-12-19 02:28'));
 
-        return [$url];
+        yield $url;
     }
 }
 
-$dumper = new Dumper\Memory();
-$formatter = new Formatter\Xml();
-
-$sitemap = new Sitemap($dumper, $formatter);
+$sitemap = new Sitemap(new Dumper\Memory(), new Formatter\Xml());
 $sitemap->addProvider(new DummyProvider());
 
 echo $sitemap->build();
