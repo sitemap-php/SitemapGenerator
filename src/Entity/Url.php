@@ -120,6 +120,9 @@ class Url
         $this->videos[] = $video;
     }
 
+    /**
+     * @param Video[] $videos
+     */
     public function setVideos(array $videos)
     {
         $this->videos = $videos;

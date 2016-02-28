@@ -3,7 +3,9 @@
 namespace SitemapGenerator\Tests\Entity;
 
 use SitemapGenerator\Entity\ChangeFrequency;
+use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Entity\Video;
 
 class UrlTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,6 +59,26 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected_lastmod, $url->getLastmod());
     }
 
+    public function testImages()
+    {
+        $url = new Url('http://www.google.fr/');
+        $image = new Image();
+
+        $url->setImages([$image]);
+
+        $this->assertSame([$image], $url->getImages());
+    }
+
+    public function testVideos()
+    {
+        $url = new Url('http://www.google.fr/');
+        $video = new Video();
+
+        $url->setVideos([$video]);
+
+        $this->assertSame([$video], $url->getVideos());
+    }
+
     public function lastmodProvider()
     {
         return [
@@ -93,8 +115,6 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 
     protected function dateFormatW3C($date)
     {
-        $date = new \DateTime($date);
-
-        return $date->format(\DateTime::W3C);
+        return (new \DateTime($date))->format(\DateTime::W3C);
     }
 }
