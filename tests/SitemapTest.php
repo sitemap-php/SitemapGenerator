@@ -6,7 +6,6 @@ use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
-use SitemapGenerator\Provider;
 use SitemapGenerator\Provider\DefaultValues;
 use SitemapGenerator\Sitemap;
 
