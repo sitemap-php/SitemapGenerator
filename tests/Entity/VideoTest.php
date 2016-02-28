@@ -147,8 +147,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [null, null],
-            ['2012-12-20 18:44', $this->dateFormatW3C('2012-12-20 18:44')],
-            ['2012-12-20', $this->dateFormatW3C('2012-12-20')],
+            [new \DateTime('2012-12-20'), $this->dateFormatW3C('2012-12-20')],
         ];
     }
 

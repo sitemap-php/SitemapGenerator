@@ -71,6 +71,18 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
+    public function testFormatUrlWithLastMod()
+    {
+        $lastmod = new \DateTimeImmutable('2016-02-28 14:51:22');
+        $url = new Url('http://www.google.fr');
+        $url->setLastmod($lastmod);
+
+        $this->assertSame("<url>\n" .
+"\t<loc>http://www.google.fr</loc>\n" .
+"\t<lastmod>2016-02-28T14:51:22+01:00</lastmod>\n" .
+"</url>\n", $this->formatter->formatUrl($url));
+    }
+
     public function testFormatUrlWithVideo()
     {
         $url = new Url('http://www.google.fr');
@@ -84,6 +96,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
+        $video->setPublicationDate(new \DateTimeImmutable('2016-02-28 14:51:22'));
 
         $url->addVideo($video);
 
@@ -98,6 +111,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
 "\t\t<video:content_loc>http://www.example.com/video123.flv</video:content_loc>\n" .
 "\t\t<video:player_loc allow_embed=\"yes\" autoplay=\"ap=1\">http://www.example.com/videoplayer.swf?video=123</video:player_loc>\n" .
 "\t\t<video:duration>600</video:duration>\n" .
+"\t\t<video:publication_date>2016-02-28T14:51:22+01:00</video:publication_date>\n".
 "\t</video:video>\n" .
 "</url>\n", $this->formatter->formatUrl($url));
     }
@@ -171,7 +185,7 @@ class XmlFormatterTest extends \PHPUnit_Framework_TestCase
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
-        $video->setExpirationDate('2012-12-23');
+        $video->setExpirationDate(new \DateTimeImmutable('2012-12-23'));
         $video->setRating(2.2);
         $video->setViewCount(42);
         $video->setFamilyFriendly(false);

@@ -81,7 +81,7 @@ class Video
      * The date after which the video will no longer be available. Don't
      * supply this information if your video does not expire.
      *
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     protected $expirationDate;
 
@@ -99,7 +99,7 @@ class Video
     /**
      * The date the video was first published
      *
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     protected $publicationDate;
 
@@ -239,12 +239,8 @@ class Video
         return $this->duration;
     }
 
-    public function setExpirationDate($date)
+    public function setExpirationDate(\DateTimeInterface $date = null)
     {
-        if ($date !== null && !$date instanceof \DateTime) {
-            $date = new \DateTime($date);
-        }
-
         $this->expirationDate = $date;
     }
 
@@ -289,12 +285,8 @@ class Video
         return $this->viewCount;
     }
 
-    public function setPublicationDate($date)
+    public function setPublicationDate(\DateTimeInterface $date = null)
     {
-        if ($date !== null && !$date instanceof \DateTime) {
-            $date = new \DateTime($date);
-        }
-
         $this->publicationDate = $date;
     }
 
