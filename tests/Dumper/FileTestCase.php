@@ -8,6 +8,9 @@ abstract class FileTestCase extends \PHPUnit_Framework_TestCase
     private $otherFile;
     private $nonWriteableFile;
 
+    protected $dumper;
+    protected abstract function createDumper();
+
     public function setUp()
     {
         $this->file = sys_get_temp_dir() . '/dummy_file';
@@ -16,6 +19,8 @@ abstract class FileTestCase extends \PHPUnit_Framework_TestCase
 
         touch($this->nonWriteableFile);
         chmod($this->nonWriteableFile, 0400);
+
+        $this->dumper = $this->createDumper();
     }
 
     public function tearDown()
