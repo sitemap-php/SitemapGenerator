@@ -5,6 +5,7 @@ namespace SitemapGenerator\Tests\Provider;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\Route as RouteProvider;
 use SitemapGenerator\Tests\Fixtures\News;
+use SitemapGenerator\UrlGenerator;
 
 class RouteTest extends \PHPUnit_Framework_TestCase
 {
@@ -33,7 +34,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
 
     private function getRouter(array $results)
     {
-        $router = $this->getMock('\SitemapGenerator\UrlGenerator');
+        $router = $this->createMock(UrlGenerator::class);
 
         $valueMap = array_map(function(News $news) {
             return [

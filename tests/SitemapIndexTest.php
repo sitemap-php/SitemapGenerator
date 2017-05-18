@@ -3,7 +3,9 @@
 namespace SitemapGenerator\Tests;
 
 use SitemapGenerator\Entity\Url;
+use SitemapGenerator\FileDumper;
 use SitemapGenerator\SitemapIndex;
+use SitemapGenerator\SitemapIndexFormatter;
 
 class SitemapIndexTest extends \PHPUnit_Framework_TestCase
 {
@@ -39,11 +41,11 @@ class SitemapIndexTest extends \PHPUnit_Framework_TestCase
 
     protected function getFileDumper()
     {
-        return $this->getMock('SitemapGenerator\FileDumper');
+        return $this->createMock(FileDumper::class);
     }
 
     protected function getFormatter()
     {
-        return $this->getMock('SitemapGenerator\SitemapIndexFormatter');
+        return $this->createMock(SitemapIndexFormatter::class);
     }
 }

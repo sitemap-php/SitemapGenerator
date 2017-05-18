@@ -6,6 +6,7 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndexEntry;
 use SitemapGenerator\Formatter\Spaceless as SpacelessFormatter;
 use SitemapGenerator\SitemapFormatter;
+use SitemapGenerator\SitemapIndexFormatter;
 
 class TestableSitemapFormatter implements SitemapFormatter
 {
@@ -47,7 +48,7 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSitemapIndexStartWithSitemapIndexFormatter()
     {
-        $sitemapIndexFormatter = $this->getMock('SitemapGenerator\SitemapIndexFormatter');
+        $sitemapIndexFormatter = $this->createMock(SitemapIndexFormatter::class);
         $sitemapIndexFormatter
             ->expects($this->once())
             ->method('getSitemapIndexStart')
@@ -66,7 +67,7 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSitemapIndexEndWithSitemapIndexFormatter()
     {
-        $sitemapIndexFormatter = $this->getMock('SitemapGenerator\SitemapIndexFormatter');
+        $sitemapIndexFormatter = $this->createMock(SitemapIndexFormatter::class);
         $sitemapIndexFormatter
             ->expects($this->once())
             ->method('getSitemapIndexEnd')
@@ -89,7 +90,7 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $entry = new SitemapIndexEntry('not relevant');
 
-        $sitemapIndexFormatter = $this->getMock('SitemapGenerator\SitemapIndexFormatter');
+        $sitemapIndexFormatter = $this->createMock(SitemapIndexFormatter::class);
         $sitemapIndexFormatter
             ->expects($this->once())
             ->method('formatSitemapIndex')

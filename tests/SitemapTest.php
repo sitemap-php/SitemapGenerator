@@ -8,6 +8,7 @@ use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 use SitemapGenerator\Provider\DefaultValues;
 use SitemapGenerator\Sitemap;
+use SitemapGenerator\SitemapFormatter;
 
 class SitemapTest extends \PHPUnit_Framework_TestCase
 {
@@ -69,11 +70,11 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
     protected function getDumper()
     {
-        return $this->getMock('SitemapGenerator\Dumper');
+        return $this->createMock(Dumper::class);
     }
 
     protected function getFormatter()
     {
-        return $this->getMock('SitemapGenerator\SitemapFormatter');
+        return $this->createMock(SitemapFormatter::class);
     }
 }
