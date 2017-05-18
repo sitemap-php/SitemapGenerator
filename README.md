@@ -1,4 +1,4 @@
-SitemapGenerator [![Build Status](https://travis-ci.org/K-Phoen/SitemapGenerator.png?branch=master)](https://travis-ci.org/K-Phoen/SitemapGenerator)
+SitemapGenerator [![Build Status](https://travis-ci.org/sitemap-php/SitemapGenerator.png?branch=master)](https://travis-ci.org/sitemap-php/SitemapGenerator)
 ================
 
 The SitemapGenerator provides a way to create xml sitemaps using any source
