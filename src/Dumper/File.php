@@ -9,7 +9,7 @@ use SitemapGenerator\FileDumper;
 /**
  * Dump the sitemap into a file.
  *
- * @see SitemapGenerator\Dumper\GzFile
+ * @see \SitemapGenerator\Dumper\GzFile
  */
 class File implements FileDumper
 {

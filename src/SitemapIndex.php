@@ -26,7 +26,7 @@ class SitemapIndex
     private $baseHostSitemap;
     private $dumper;
     private $formatter;
-    private $limit = self::MAX_ENTRIES_PER_SITEMAP;
+    private $limit;
 
     /**
      * @param string $baseHostSitemap The base URL for the sitemap.
