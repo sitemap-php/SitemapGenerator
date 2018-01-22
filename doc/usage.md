@@ -36,16 +36,15 @@ Exemple provider:
 
 namespace SitemapGenerator\Provider;
 
-use SitemapGenerator\Entity\Url;
+use SitemapGenerator\Entity;
 use SitemapGenerator\Provider\Provider;
 
 class DummyProvider implements \IteratorAggregate
 {
     public function getIterator()
     {
-        $url = new Url();
-        $url->setLoc('http://www.google.fr');
-        $url->setChangefreq(Url::CHANGEFREQ_NEVER);
+        $url = new Entity\Url('http://www.google.fr');
+        $url->setChangefreq(Entity\ChangeFrequency::NEVER);
         $url->setLastmod(new \DateTime('2012-12-19 02:28'));
 
         yield $url;
