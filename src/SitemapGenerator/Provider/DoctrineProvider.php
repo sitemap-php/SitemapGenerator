@@ -2,7 +2,7 @@
 
 namespace SitemapGenerator\Provider;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
@@ -48,11 +48,11 @@ class DoctrineProvider extends AbstractProvider
     /**
      * Constructor
      *
-     * @param Entitymanager   $em      Doctrine entity manager.
-     * @param RouterInterface $router  The application router.
-     * @param array           $options The options (see the class comment).
+     * @param EntitymanagerInterface $em      Doctrine entity manager.
+     * @param RouterInterface        $router  The application router.
+     * @param array                  $options The options (see the class comment).
      */
-    public function __construct(EntityManager $em, RouterInterface $router, array $options)
+    public function __construct(EntityManagerInterface $em, RouterInterface $router, array $options)
     {
         parent::__construct($router, $options);
 
