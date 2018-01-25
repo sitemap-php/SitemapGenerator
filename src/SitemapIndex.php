@@ -87,7 +87,7 @@ class SitemapIndex
             $sitemapIndexFilename .= '-' . $index;
         }
 
-        return dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
+        return \dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
     }
 
     private function chunk(\Iterator $iterable, $size): \Iterator {

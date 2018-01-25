@@ -55,7 +55,7 @@ class Url
 
     public function __construct(string $loc)
     {
-        if (strlen($loc) > 2048) {
+        if (\strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
         }
 
@@ -78,7 +78,7 @@ class Url
             return null;
         }
 
-        if ($this->getChangeFreq() === null || in_array($this->getChangeFreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
+        if ($this->getChangeFreq() === null || \in_array($this->getChangeFreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 

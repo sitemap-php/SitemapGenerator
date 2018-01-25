@@ -22,6 +22,6 @@ class ChangeFrequency
 
     public static function isValid(string $changeFrequency): bool
     {
-        return in_array($changeFrequency, self::KNOWN_FREQUENCIES, true);
+        return \in_array($changeFrequency, self::KNOWN_FREQUENCIES, true);
     }
 }

@@ -32,7 +32,7 @@ class SitemapIndexEntry
 
     public function __construct(string $loc, \DateTimeInterface $lastmod = null)
     {
-        if (strlen($loc) > 2048) {
+        if (\strlen($loc) > 2048) {
             throw new \DomainException('The loc value must be less than 2,048 characters');
         }
 
