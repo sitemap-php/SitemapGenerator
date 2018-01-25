@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\SitemapIndexEntry;
 use SitemapGenerator\Formatter\Spaceless as SpacelessFormatter;
@@ -26,7 +27,7 @@ class TestableSitemapFormatter implements SitemapFormatter
     }
 }
 
-class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
+class SpacelessFormatterTest extends TestCase
 {
     public function testSitemapStart()
     {
@@ -71,7 +72,7 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
         $sitemapIndexFormatter
             ->expects($this->once())
             ->method('getSitemapIndexEnd')
-            ->will($this->returnValue("\tsome value with spaces\n"));
+            ->willReturn("\tsome value with spaces\n");
 
         $formatter = new SpacelessFormatter($sitemapIndexFormatter);
 
@@ -95,7 +96,7 @@ class SpacelessFormatterTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('formatSitemapIndex')
             ->with($entry)
-            ->will($this->returnValue("\tsome url\n"));
+            ->willReturn("\tsome url\n");
 
         $formatter = new SpacelessFormatter($sitemapIndexFormatter);
 

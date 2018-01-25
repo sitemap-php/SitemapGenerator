@@ -2,10 +2,11 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Provider\DefaultValues;
 
-class DefaultValuesTest extends \PHPUnit_Framework_TestCase
+class DefaultValuesTest extends TestCase
 {
     public function testEmptyDefaultValuesCanBeCreated()
     {

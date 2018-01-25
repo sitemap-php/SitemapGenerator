@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
@@ -17,7 +18,7 @@ class TestableXml extends Formatter\Xml
     }
 }
 
-class XmlFormatterTest extends \PHPUnit_Framework_TestCase
+class XmlFormatterTest extends TestCase
 {
     /**
      * @var \SitemapGenerator\SitemapIndexFormatter

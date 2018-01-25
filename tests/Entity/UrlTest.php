@@ -2,12 +2,13 @@
 
 namespace SitemapGenerator\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Image;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Entity\Video;
 
-class UrlTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends TestCase
 {
     /**
      * @expectedException \DomainException
@@ -50,13 +51,13 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider lastmodProvider
      */
-    public function testLastmodFormatting($lastmod, $changefreq, $expected_lastmod)
+    public function testLastmodFormatting($lastmod, $changefreq, $expectedLastmod)
     {
         $url = new Url('http://www.google.fr/');
         $url->setLastmod($lastmod);
         $url->setChangeFreq($changefreq);
 
-        $this->assertSame($expected_lastmod, $url->getLastmod());
+        $this->assertSame($expectedLastmod, $url->getLastmod());
     }
 
     public function testImages()
@@ -113,7 +114,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    protected function dateFormatW3C($date)
+    private function dateFormatW3C($date)
     {
         return (new \DateTime($date))->format(\DateTime::W3C);
     }

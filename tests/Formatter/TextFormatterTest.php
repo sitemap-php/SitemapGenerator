@@ -2,10 +2,11 @@
 
 namespace SitemapGenerator\Tests\Formatter;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Formatter;
 
-class TextFormatterTest extends \PHPUnit_Framework_TestCase
+class TextFormatterTest extends TestCase
 {
     public function testSitemapStart()
     {

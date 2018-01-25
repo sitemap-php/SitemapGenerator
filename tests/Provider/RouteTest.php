@@ -2,12 +2,13 @@
 
 namespace SitemapGenerator\Tests\Provider;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\Provider\Route as RouteProvider;
 use SitemapGenerator\Tests\Fixtures\News;
 use SitemapGenerator\UrlGenerator;
 
-class RouteTest extends \PHPUnit_Framework_TestCase
+class RouteTest extends TestCase
 {
     /**
      * @dataProvider newsDataProvider
@@ -42,10 +43,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
             ];
         }, $results);
 
-        $router
-            ->expects($this->any())
-            ->method('generate')
-            ->will($this->returnValueMap($valueMap));
+        $router->method('generate')->willReturnMap($valueMap);
 
         return $router;
     }

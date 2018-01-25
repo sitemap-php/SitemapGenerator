@@ -2,6 +2,7 @@
 
 namespace SitemapGenerator\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Dumper;
 use SitemapGenerator\Entity\ChangeFrequency;
 use SitemapGenerator\Entity\Url;
@@ -10,7 +11,7 @@ use SitemapGenerator\Provider\DefaultValues;
 use SitemapGenerator\Sitemap;
 use SitemapGenerator\SitemapFormatter;
 
-class SitemapTest extends \PHPUnit_Framework_TestCase
+class SitemapTest extends TestCase
 {
     public function testAddProvider()
     {
@@ -62,18 +63,18 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
 
     public function testBuild()
     {
-        $sitemap = new Sitemap(new Dumper\Memory(), new Formatter\Text(), 'http://www.google.fr');
+        $sitemap = new Sitemap(new Dumper\Memory(), new Formatter\Text());
         $sitemap->addProvider(new \ArrayIterator([new Url('http://www.google.fr/search')]));
 
         $this->assertSame('http://www.google.fr/search' . "\n", $sitemap->build());
     }
 
-    protected function getDumper()
+    private function getDumper()
     {
         return $this->createMock(Dumper::class);
     }
 
-    protected function getFormatter()
+    private function getFormatter()
     {
         return $this->createMock(SitemapFormatter::class);
     }

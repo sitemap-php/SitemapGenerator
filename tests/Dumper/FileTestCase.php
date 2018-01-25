@@ -2,14 +2,17 @@
 
 namespace SitemapGenerator\Tests\Dumper;
 
-abstract class FileTestCase extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class FileTestCase extends TestCase
 {
     private $file;
     private $otherFile;
     private $nonWriteableFile;
 
     protected $dumper;
-    protected abstract function createDumper();
+
+    abstract protected function createDumper();
 
     public function setUp()
     {

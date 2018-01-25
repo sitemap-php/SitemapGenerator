@@ -2,9 +2,10 @@
 
 namespace SitemapGenerator\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\SitemapIndexEntry;
 
-class SitemapIndexEntryTest extends \PHPUnit_Framework_TestCase
+class SitemapIndexEntryTest extends TestCase
 {
     /**
      * @expectedException \DomainException

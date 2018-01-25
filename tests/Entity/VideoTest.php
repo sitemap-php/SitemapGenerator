@@ -2,9 +2,10 @@
 
 namespace SitemapGenerator\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\Video;
 
-class VideoTest extends \PHPUnit_Framework_TestCase
+class VideoTest extends TestCase
 {
     /**
      * @expectedException \DomainException
@@ -43,21 +44,21 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider dateProvider
      */
-    public function testExpirationDate($date, $expected_date)
+    public function testExpirationDate($date, $expectedDate)
     {
         $video = new Video();
         $video->setExpirationDate($date);
-        $this->assertSame($video->getExpirationDate(), $expected_date);
+        $this->assertSame($video->getExpirationDate(), $expectedDate);
     }
 
     /**
      * @dataProvider dateProvider
      */
-    public function testPublicationDate($date, $expected_date)
+    public function testPublicationDate($date, $expectedDate)
     {
         $video = new Video();
         $video->setPublicationDate($date);
-        $this->assertSame($video->getPublicationDate(), $expected_date);
+        $this->assertSame($video->getPublicationDate(), $expectedDate);
     }
 
     /**

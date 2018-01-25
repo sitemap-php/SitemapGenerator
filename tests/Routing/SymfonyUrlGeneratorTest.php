@@ -2,10 +2,11 @@
 
 namespace SitemapGenerator\Tests\Routing;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Routing\SymfonyUrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class SymfonyUrlGeneratorTest extends \PHPUnit_Framework_TestCase
+class SymfonyUrlGeneratorTest extends TestCase
 {
     public function testGenerateDelegatesToTheUrlGenerator()
     {
@@ -14,10 +15,9 @@ class SymfonyUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $generatorMock = $this->createMock(UrlGeneratorInterface::class);
         $generatorMock
-            ->expects($this->once())
             ->method('generate')
             ->with($route, $routeParameters)
-            ->will($this->returnValue('/some/url'));
+            ->willReturn('/some/url');
 
         $urlGenerator = new SymfonyUrlGenerator($generatorMock);
 

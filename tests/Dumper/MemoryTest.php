@@ -2,9 +2,10 @@
 
 namespace SitemapGenerator\Tests\Dumper;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Dumper\Memory;
 
-class MemoryTest extends \PHPUnit_Framework_TestCase
+class MemoryTest extends TestCase
 {
     public function testDumper()
     {

@@ -2,12 +2,13 @@
 
 namespace SitemapGenerator\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\FileDumper;
 use SitemapGenerator\SitemapIndex;
 use SitemapGenerator\SitemapIndexFormatter;
 
-class SitemapIndexTest extends \PHPUnit_Framework_TestCase
+class SitemapIndexTest extends TestCase
 {
     const BASE_HOST = 'http://www.some-host.com/';
 
@@ -15,6 +16,8 @@ class SitemapIndexTest extends \PHPUnit_Framework_TestCase
     {
         $sitemap = new SitemapIndex($this->getFileDumper(), $this->getFormatter(), self::BASE_HOST);
         $sitemap->addProvider(new \ArrayIterator([]));
+
+        $this->assertTrue(true, 'It did NOT fail \o/');
     }
 
     public function testBuild()
@@ -33,18 +36,18 @@ class SitemapIndexTest extends \PHPUnit_Framework_TestCase
         $formatter->expects($this->once())->method('getSitemapIndexEnd');
         $formatter->expects($this->exactly(3))->method('formatSitemapIndex');
 
-        $dumper->expects($this->any())->method('getFilename')->will($this->returnValue('some-file-name'));
+        $dumper->method('getFilename')->willReturn('some-file-name');
         $dumper->expects($this->exactly(3))->method('changeFile');
 
         $sitemap->build();
     }
 
-    protected function getFileDumper()
+    private function getFileDumper()
     {
         return $this->createMock(FileDumper::class);
     }
 
-    protected function getFormatter()
+    private function getFormatter()
     {
         return $this->createMock(SitemapIndexFormatter::class);
     }
