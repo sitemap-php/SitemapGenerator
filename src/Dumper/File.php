@@ -13,8 +13,8 @@ use SitemapGenerator\FileDumper;
  */
 class File implements FileDumper
 {
-    protected $filename;
-    protected $handle;
+    private $filename;
+    private $handle;
 
     public function __construct(string $filename)
     {
@@ -49,7 +49,7 @@ class File implements FileDumper
         fwrite($this->handle, $string);
     }
 
-    protected function openFile()
+    private function openFile()
     {
         $this->handle = @fopen($this->filename, 'w');
 

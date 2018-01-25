@@ -14,7 +14,7 @@ class RichUrl extends Url
     /**
      * Alternate urls list, locale indexed.
      */
-    protected $alternateUrl = [];
+    private $alternateUrl = [];
 
     /**
      * Add an alternate url to the current one.

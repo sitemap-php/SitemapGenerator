@@ -12,17 +12,17 @@ class Route implements \IteratorAggregate
     /**
      * @var UrlGenerator
      */
-    protected $urlGenerator;
+    private $urlGenerator;
 
     /**
      * @var array
      */
-    protected $routes;
+    private $routes;
 
     /**
      * @var DefaultValues
      */
-    protected $defaultValues;
+    private $defaultValues;
 
     public function __construct(UrlGenerator $urlGenerator, array $routes, DefaultValues $defaultValues = null)
     {

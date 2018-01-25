@@ -10,7 +10,7 @@ class DefaultValues
     private $changeFreq;
     private $lastmod;
 
-    private function __construct()
+    final private function __construct()
     {
     }
 

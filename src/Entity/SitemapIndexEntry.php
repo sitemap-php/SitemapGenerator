@@ -17,7 +17,7 @@ class SitemapIndexEntry
      * end with a trailing slash, if your web server requires it. This value
      * must be less than 2,048 characters.
      */
-    protected $loc;
+    private $loc;
 
     /**
      * The date of last modification of the file.
@@ -28,7 +28,7 @@ class SitemapIndexEntry
      *
      * @var \DateTimeInterface
      */
-    protected $lastmod;
+    private $lastmod;
 
     public function __construct(string $loc, \DateTimeInterface $lastmod = null)
     {

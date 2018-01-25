@@ -17,12 +17,12 @@ abstract class AbstractProvider
     /**
      * @var \Symfony\Component\PropertyAccess\PropertyAccessor
      */
-    protected $accessor;
+    private $accessor;
 
     /**
      * @var UrlGenerator
      */
-    protected $urlGenerator;
+    private $urlGenerator;
 
     protected $options = [
         'loc' => [],

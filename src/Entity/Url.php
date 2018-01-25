@@ -17,7 +17,7 @@ class Url
      * end with a trailing slash, if your web server requires it. This value
      * must be less than 2,048 characters.
      */
-    protected $loc;
+    private $loc;
 
     /**
      * The date of last modification of the file.
@@ -28,7 +28,7 @@ class Url
      *
      * @var \DateTimeInterface
      */
-    protected $lastmod;
+    private $lastmod;
 
     /**
      * How frequently the page is likely to change. This value provides general
@@ -37,7 +37,7 @@ class Url
      *
      * @see ChangeFrequency class
      */
-    protected $changeFreq;
+    private $changeFreq;
 
     /**
      * The priority of this URL relative to other URLs on your site. Valid
@@ -47,11 +47,11 @@ class Url
      *
      * The default priority of a page is 0.5 (if not set in the sitemap).
      */
-    protected $priority;
+    private $priority;
 
-    protected $videos = [];
+    private $videos = [];
 
-    protected $images = [];
+    private $images = [];
 
     public function __construct(string $loc)
     {

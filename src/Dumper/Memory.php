@@ -12,7 +12,7 @@ use SitemapGenerator\Dumper;
  */
 class Memory implements Dumper
 {
-    protected $buffer = '';
+    private $buffer = '';
 
     /**
      * {@inheritdoc}

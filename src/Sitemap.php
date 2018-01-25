@@ -27,7 +27,7 @@ class Sitemap
     /**
      * @var Dumper
      */
-    protected $dumper;
+    private $dumper;
 
     /**
      * @var SitemapFormatter
