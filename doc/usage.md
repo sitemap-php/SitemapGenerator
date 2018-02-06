@@ -34,10 +34,7 @@ Exemple provider:
 ```php
 <?php
 
-namespace SitemapGenerator\Provider;
-
 use SitemapGenerator\Entity;
-use SitemapGenerator\Provider\Provider;
 
 class DummyProvider implements \IteratorAggregate
 {
@@ -45,7 +42,7 @@ class DummyProvider implements \IteratorAggregate
     {
         $url = new Entity\Url('http://www.google.fr');
         $url->setChangefreq(Entity\ChangeFrequency::NEVER);
-        $url->setLastmod(new \DateTime('2012-12-19 02:28'));
+        $url->setLastmod(new \DateTimeImmutable('2012-12-19 02:28'));
 
         yield $url;
     }
@@ -70,7 +67,7 @@ In order to make the providers usable by the generator, you have to register
 them:
 
 ```php
-<?php
+#no_run
 
 // …
 
@@ -84,9 +81,9 @@ Once the sitemap is properly configured and all the providers are registered,
 you can build the sitemap:
 
 ```php
-<?php
+#no_run
 
-// …
+// ...
 
 echo $sitemap->build();
 ```

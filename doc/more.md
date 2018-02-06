@@ -21,8 +21,6 @@ And the following formatters are implemented:
 The dumpers must implement the `Dumper` interface and the formatters the
 `Formatter` interface.
 
-The default sitemap service uses a `GzFile` dumper and a `Xml` formatter. You can
-change this by overriding the sitemap service definition:
 
 ### Images and videos
 
@@ -47,5 +45,13 @@ If all these rules are respected, the generator will build a sitemap index.
 Here is how you prepare the generator for a sitemap index:
 
 ```php
-$sitemap = new Sitemap($dumper, $formatter, $base_host = 'http://www.website.com', $sitemapIndexBaseHost = 'http://www.website.com/sitemap', $limit = 50000);
+<?php
+
+use SitemapGenerator\Dumper;
+use SitemapGenerator\Formatter;
+use SitemapGenerator\SitemapIndex;
+
+$dumper = new Dumper\File('sitemap-index.xml');
+$formatter = new Formatter\RichXml();
+$sitemap = new SitemapIndex($dumper, $formatter, $base_host = 'http://www.website.com');
 ```
