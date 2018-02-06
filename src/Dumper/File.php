@@ -9,7 +9,7 @@ use SitemapGenerator\FileDumper;
 /**
  * Dump the sitemap into a file.
  *
- * @see \SitemapGenerator\Dumper\GzFile
+ * @see GzFile
  */
 class File implements FileDumper
 {
@@ -49,7 +49,7 @@ class File implements FileDumper
         fwrite($this->handle, $string);
     }
 
-    private function openFile()
+    private function openFile(): void
     {
         $this->handle = @fopen($this->filename, 'w');
 
@@ -62,7 +62,7 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    private function clearHandle()
+    private function clearHandle(): void
     {
         if ($this->handle !== null) {
             fclose($this->handle);

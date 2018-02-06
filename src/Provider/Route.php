@@ -7,21 +7,15 @@ namespace SitemapGenerator\Provider;
 use SitemapGenerator\Entity;
 use SitemapGenerator\UrlGenerator;
 
-class Route implements \IteratorAggregate
+final class Route implements \IteratorAggregate
 {
-    /**
-     * @var UrlGenerator
-     */
+    /** @var UrlGenerator */
     private $urlGenerator;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $routes;
 
-    /**
-     * @var DefaultValues
-     */
+    /** @var DefaultValues */
     private $defaultValues;
 
     public function __construct(UrlGenerator $urlGenerator, array $routes, DefaultValues $defaultValues = null)
@@ -31,7 +25,7 @@ class Route implements \IteratorAggregate
         $this->defaultValues = $defaultValues ?: DefaultValues::none();
     }
 
-    public function getIterator()
+    public function getIterator(): iterable
     {
         $defaultRouteData = [
             'changefreq' => null,
@@ -42,13 +36,19 @@ class Route implements \IteratorAggregate
         foreach ($this->routes as $route) {
             $route = array_merge($defaultRouteData, $route);
 
-            $url = new Entity\Url(
-                $this->urlGenerator->generate($route['name'], $route['params'])
-            );
+            $url = new Entity\Url($this->urlGenerator->generate($route['name'], $route['params']));
 
-            $url->setChangeFreq($route['changefreq'] ?: $this->defaultValues->getChangeFreq());
-            $url->setLastmod($route['lastmod'] ?: $this->defaultValues->getLastmod());
-            $url->setPriority($route['priority'] ?: $this->defaultValues->getPriority());
+            if (($changeFreq = $route['changefreq'] ?: $this->defaultValues->getChangeFreq())) {
+                $url->setChangeFreq($changeFreq);
+            }
+
+            if (($lastMod = $route['lastmod'] ?: $this->defaultValues->getLastmod())) {
+                $url->setLastmod($lastMod);
+            }
+
+            if (($priority = $route['priority'] ?: $this->defaultValues->getPriority())) {
+                $url->setPriority($priority);
+            }
 
             yield $url;
         }

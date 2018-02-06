@@ -25,7 +25,7 @@ class RouteTest extends TestCase
     {
         $routes = array_map(function($result) {
             return [
-                'name'   => 'show_news',
+                'name' => 'show_news',
                 'params' => ['id' => $result->slug]
             ];
         }, $results);
@@ -39,7 +39,7 @@ class RouteTest extends TestCase
 
         $valueMap = array_map(function(News $news) {
             return [
-                'show_news', ['id' => $news->slug], '/news/' . $news->slug
+                'show_news', ['id' => $news->slug], '/news/' . $news->slug,
             ];
         }, $results);
 

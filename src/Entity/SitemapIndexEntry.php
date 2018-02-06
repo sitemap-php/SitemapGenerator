@@ -9,7 +9,7 @@ namespace SitemapGenerator\Entity;
  *
  * @see http://www.sitemaps.org/protocol.html
  */
-class SitemapIndexEntry
+final class SitemapIndexEntry
 {
     /**
      * URL of the sitemap index.
@@ -45,7 +45,7 @@ class SitemapIndexEntry
         return $this->loc;
     }
 
-    public function getLastmod()
+    public function getLastmod(): ?string
     {
         if ($this->lastmod === null) {
             return null;

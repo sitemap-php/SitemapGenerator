@@ -46,7 +46,7 @@ class Sitemap
      * @param \Traversable $provider A set of iterable Url objects.
      * @param DefaultValues $defaultValues Default values that will be used for Url entries.
      */
-    public function addProvider(\Traversable $provider, DefaultValues $defaultValues = null)
+    public function addProvider(\Traversable $provider, DefaultValues $defaultValues = null): void
     {
         $this->providers->attach($provider, $defaultValues ?: DefaultValues::none());
     }
@@ -54,11 +54,12 @@ class Sitemap
     /**
      * @return string|null The sitemap's content if available.
      */
-    public function build()
+    public function build(): ?string
     {
         $this->dumper->dump($this->formatter->getSitemapStart());
 
         foreach ($this->providers as $provider) {
+            /** @var DefaultValues $defaultValues */
             $defaultValues = $this->providers[$provider];
 
             foreach ($provider as $entry) {
@@ -69,7 +70,7 @@ class Sitemap
         return $this->dumper->dump($this->formatter->getSitemapEnd());
     }
 
-    protected function add(Url $url, DefaultValues $defaultValues)
+    protected function add(Url $url, DefaultValues $defaultValues): void
     {
         if (!$url->getPriority() && $defaultValues->hasPriority()) {
             $url->setPriority($defaultValues->getPriority());

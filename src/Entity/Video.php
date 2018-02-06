@@ -9,14 +9,14 @@ namespace SitemapGenerator\Entity;
  *
  * @see https://developers.google.com/webmasters/videosearch/sitemaps
  */
-class Video
+final class Video
 {
-    const RESTRICTION_DENY = 'deny';
-    const RESTRICTION_ALLOW = 'allow';
+    public const RESTRICTION_DENY = 'deny';
+    public const RESTRICTION_ALLOW = 'allow';
 
-    const PLATFORM_TV = 'tv';
-    const PLATFORM_MOBILE = 'mobile';
-    const PLATFORM_WEB = 'web';
+    public const PLATFORM_TV = 'tv';
+    public const PLATFORM_MOBILE = 'mobile';
+    public const PLATFORM_WEB = 'web';
 
     /*********************
      * Required attributes
@@ -155,78 +155,62 @@ class Video
      */
     private $live;
 
-
-    public function setTitle($title)
+    public function __construct(string $title, string $description, string $thumbnailLoc)
     {
         if (\strlen($title) > 100) {
             throw new \DomainException('The title value must be less than 100 characters');
         }
 
-        $this->title = $title;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setThumbnailLoc($loc)
-    {
-        $this->thumbnailLoc = $loc;
-    }
-
-    public function getThumbnailLoc()
-    {
-        return $this->thumbnailLoc;
-    }
-
-    public function setDescription($description)
-    {
         if (\strlen($description) > 2048) {
             throw new \DomainException('The description value must be less than 2,048 characters');
         }
 
+        $this->title = $title;
         $this->description = $description;
+        $this->thumbnailLoc = $thumbnailLoc;
     }
 
-    public function getDescription()
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getThumbnailLoc(): string
+    {
+        return $this->thumbnailLoc;
+    }
+
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function setContentLoc($loc)
+    public function setContentLoc(string $loc)
     {
         $this->contentLoc = $loc;
     }
 
-    public function getContentLoc()
+    public function getContentLoc(): ?string
     {
         return $this->contentLoc;
     }
 
-    public function setPlayerLoc($loc, $allowEmbed = true, $autoplay = null)
+    public function setPlayerLoc(string $loc, bool $allowEmbed = true, ?string $autoplay = null): void
     {
-        if ($loc === null) {
-            $this->playerLoc = null;
-            return;
-        }
-
         $this->playerLoc = [
-            'loc'           => $loc,
-            'allow_embed'   => $allowEmbed,
-            'autoplay'      => $autoplay,
+            'loc' => $loc,
+            'allow_embed' => $allowEmbed,
+            'autoplay' => $autoplay,
         ];
     }
 
-    public function getPlayerLoc()
+    public function getPlayerLoc(): ?array
     {
         return $this->playerLoc;
     }
 
-    public function setDuration($duration)
+    public function setDuration(int $duration): void
     {
-        $duration = (int) $duration;
-
         if ($duration < 0 || $duration > 28800) {
             throw new \DomainException('The duration must be between 0 and 28800 seconds');
         }
@@ -234,17 +218,17 @@ class Video
         $this->duration = $duration;
     }
 
-    public function getDuration()
+    public function getDuration(): ?int
     {
         return $this->duration;
     }
 
-    public function setExpirationDate(\DateTimeInterface $date = null)
+    public function setExpirationDate(\DateTimeInterface $date): void
     {
         $this->expirationDate = $date;
     }
 
-    public function getExpirationDate()
+    public function getExpirationDate(): ?string
     {
         if ($this->expirationDate === null) {
             return null;
@@ -253,10 +237,8 @@ class Video
         return $this->expirationDate->format(\DateTime::W3C);
     }
 
-    public function setRating($rating)
+    public function setRating(float $rating): void
     {
-        $rating = (float) $rating;
-
         if ($rating < 0 || $rating > 5) {
             throw new \DomainException('The rating must be between 0 and 5');
         }
@@ -264,15 +246,13 @@ class Video
         $this->rating = $rating;
     }
 
-    public function getRating()
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setViewCount($count)
+    public function setViewCount(int $count): void
     {
-        $count = (int) $count;
-
         if ($count < 0) {
             throw new \DomainException('The view count must be positive');
         }
@@ -280,17 +260,17 @@ class Video
         $this->viewCount = $count;
     }
 
-    public function getViewCount()
+    public function getViewCount(): ?int
     {
         return $this->viewCount;
     }
 
-    public function setPublicationDate(\DateTimeInterface $date = null)
+    public function setPublicationDate(\DateTimeInterface $date): void
     {
         $this->publicationDate = $date;
     }
 
-    public function getPublicationDate()
+    public function getPublicationDate(): ?string
     {
         if ($this->publicationDate === null) {
             return null;
@@ -299,17 +279,17 @@ class Video
         return $this->publicationDate->format(\DateTime::W3C);
     }
 
-    public function setFamilyFriendly($friendly)
+    public function setFamilyFriendly(bool $friendly): void
     {
-        $this->familyFriendly = (bool) $friendly;
+        $this->familyFriendly = $friendly;
     }
 
-    public function getFamilyFriendly()
+    public function getFamilyFriendly(): ?bool
     {
         return $this->familyFriendly;
     }
 
-    public function setTags(array $tags)
+    public function setTags(array $tags): void
     {
         if (\count($tags) > 32) {
             throw new \DomainException('A maximum of 32 tags is allowed.');
@@ -323,7 +303,7 @@ class Video
         return $this->tags;
     }
 
-    public function setCategory($category)
+    public function setCategory(string $category): void
     {
         if (\strlen($category) > 256) {
             throw new \DomainException('The category value must be less than 256 characters');
@@ -332,86 +312,66 @@ class Video
         $this->category = $category;
     }
 
-    public function getCategory()
+    public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    public function setRestrictions($restrictions, $relationship = self::RESTRICTION_DENY)
+    public function setRestrictions(array $restrictions, string $relationship = self::RESTRICTION_DENY): void
     {
-        if ($restrictions === null) {
-            $this->restrictions = null;
-            return;
-        }
-
         if ($relationship !== self::RESTRICTION_ALLOW && $relationship !== self::RESTRICTION_DENY) {
             throw new \InvalidArgumentException('The relationship must be deny or allow');
         }
 
         $this->restrictions = [
-            'countries'     => $restrictions,
-            'relationship'  => $relationship,
+            'countries' => $restrictions,
+            'relationship' => $relationship,
         ];
     }
 
-    public function getRestrictions()
+    public function getRestrictions(): ?array
     {
         return $this->restrictions;
     }
 
-    public function setGalleryLoc($loc, $title = null)
+    public function setGalleryLoc(string $loc, ?string $title = null): void
     {
-        if ($loc === null) {
-            $this->galleryLoc = null;
-            return;
-        }
-
         $this->galleryLoc = [
-            'loc'   => $loc,
+            'loc' => $loc,
             'title' => $title,
         ];
     }
 
-    public function getGalleryLoc()
+    public function getGalleryLoc(): ?array
     {
         return $this->galleryLoc;
     }
 
-    public function setRequiresSubscription($requiresSubscription)
+    public function setRequiresSubscription(bool $requiresSubscription): void
     {
-        $this->requiresSubscription = (bool) $requiresSubscription;
+        $this->requiresSubscription = $requiresSubscription;
     }
 
-    public function getRequiresSubscription()
+    public function getRequiresSubscription(): ?bool
     {
         return $this->requiresSubscription;
     }
 
-    public function setUploader($uploader, $info = null)
+    public function setUploader(string $uploader, ?string $info = null): void
     {
-        if ($uploader === null) {
-            $this->uploader = null;
-            return;
-        }
-
         $this->uploader = [
             'name' => $uploader,
             'info' => $info,
         ];
     }
 
-    public function getUploader()
+    public function getUploader(): ?array
     {
         return $this->uploader;
     }
 
-    public function setPlatforms(array $platforms)
+    public function setPlatforms(array $platforms): void
     {
-        if ($platforms === null) {
-            $this->platforms = null;
-            return;
-        }
-
         $valid_platforms = [self::PLATFORM_TV, self::PLATFORM_WEB, self::PLATFORM_MOBILE];
         foreach ($platforms as $platform => $relationship) {
             if (!\in_array($platform, $valid_platforms, true)) {
@@ -426,17 +386,17 @@ class Video
         $this->platforms = $platforms;
     }
 
-    public function getPlatforms()
+    public function getPlatforms(): ?array
     {
         return $this->platforms;
     }
 
-    public function setLive($live)
+    public function setLive(bool $live): void
     {
-        $this->live = (bool) $live;
+        $this->live = $live;
     }
 
-    public function getLive()
+    public function getLive(): ?bool
     {
         return $this->live;
     }

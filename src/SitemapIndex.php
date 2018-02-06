@@ -17,9 +17,9 @@ use SitemapGenerator\Entity\SitemapIndexEntry;
  * The whole process tries to be as memory-efficient as possible, that's why URLs
  * are not stored but dumped immediately.
  */
-class SitemapIndex
+final class SitemapIndex
 {
-    const MAX_ENTRIES_PER_SITEMAP = 50000;
+    public const MAX_ENTRIES_PER_SITEMAP = 50000;
 
     private $providers = [];
 
@@ -43,12 +43,12 @@ class SitemapIndex
     /**
      * @param \Traversable $provider A set of iterable Url objects.
      */
-    public function addProvider(\Traversable $provider)
+    public function addProvider(\Traversable $provider): void
     {
         $this->providers[] = $provider;
     }
 
-    public function build()
+    public function build(): void
     {
         // dump the sitemap index start tag
         $this->dumper->dump($this->formatter->getSitemapIndexStart());
@@ -74,7 +74,7 @@ class SitemapIndex
 
     private function createIndexEntry(string $sitemapFilename): SitemapIndexEntry
     {
-        return new SitemapIndexEntry($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTime());
+        return new SitemapIndexEntry($this->baseHostSitemap .'/'.basename($sitemapFilename), new \DateTimeImmutable());
     }
 
     private function getSitemapIndexFilename(string $filename, int $index): string
@@ -90,7 +90,8 @@ class SitemapIndex
         return \dirname($filename) . DIRECTORY_SEPARATOR . $sitemapIndexFilename;
     }
 
-    private function chunk(\Iterator $iterable, $size): \Iterator {
+    private function chunk(\Iterator $iterable, $size): \Iterator
+    {
         while ($iterable->valid()) {
             $closure = function() use ($iterable, $size) {
                 $count = $size;

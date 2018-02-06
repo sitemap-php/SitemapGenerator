@@ -12,11 +12,10 @@ class VideoTest extends TestCase
      */
     public function testTitleMaxLength()
     {
-        $video = new Video();
-        $video->setTitle(str_repeat('o', 100));
+        new Video(str_repeat('o', 100), 'Description.', 'https://thumbnail.loc/img.jpg');
         $this->assertTrue(true);
 
-        $video->setTitle(str_repeat('o', 101));
+        new Video(str_repeat('o', 101), 'Description.', 'https://thumbnail.loc/img.jpg');
     }
 
     /**
@@ -24,11 +23,10 @@ class VideoTest extends TestCase
      */
     public function testDescriptionMaxLength()
     {
-        $video = new Video();
-        $video->setDescription(str_repeat('o', 2048));
+        new Video('title', str_repeat('o', 2048), 'https://thumbnail.loc/img.jpg');
         $this->assertTrue(true);
 
-        $video->setDescription(str_repeat('o', 2049));
+        new Video('title', str_repeat('o', 2049), 'https://thumbnail.loc/img.jpg');
     }
 
     /**
@@ -37,7 +35,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidDuration($duration)
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setDuration($duration);
     }
 
@@ -46,7 +44,7 @@ class VideoTest extends TestCase
      */
     public function testExpirationDate($date, $expectedDate)
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setExpirationDate($date);
         $this->assertSame($video->getExpirationDate(), $expectedDate);
     }
@@ -56,7 +54,7 @@ class VideoTest extends TestCase
      */
     public function testPublicationDate($date, $expectedDate)
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPublicationDate($date);
         $this->assertSame($video->getPublicationDate(), $expectedDate);
     }
@@ -67,7 +65,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidRating($rating)
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setRating($rating);
     }
 
@@ -76,7 +74,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidViewCount()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setViewCount(-1);
     }
 
@@ -85,7 +83,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidTagsCount()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setTags(array_pad([], 33, 'tag'));
     }
 
@@ -94,7 +92,7 @@ class VideoTest extends TestCase
      */
     public function testCategoryMaxLength()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setCategory(str_repeat('o', 256));
         $this->assertTrue(true);
 
@@ -106,7 +104,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidRestriction()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setRestrictions(['fr', 'en'], 'foo');
     }
 
@@ -115,7 +113,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidPlatform()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, 'foo' => Video::RESTRICTION_DENY]);
     }
 
@@ -124,7 +122,7 @@ class VideoTest extends TestCase
      */
     public function testInvalidPlatformRelationship()
     {
-        $video = new Video();
+        $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, Video::PLATFORM_MOBILE => 'foo']);
     }
 
@@ -147,7 +145,6 @@ class VideoTest extends TestCase
     public function dateProvider()
     {
         return [
-            [null, null],
             [new \DateTime('2012-12-20'), $this->dateFormatW3C('2012-12-20')],
         ];
     }

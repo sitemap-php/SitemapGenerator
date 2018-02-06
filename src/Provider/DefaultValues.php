@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace SitemapGenerator\Provider;
 
-class DefaultValues
+final class DefaultValues
 {
+    /** @var float|null */
     private $priority;
+
+    /** @var string|null */
     private $changeFreq;
+
+    /** @var \DateTimeInterface|null */
     private $lastmod;
 
     final private function __construct()
@@ -35,7 +40,7 @@ class DefaultValues
         return $this->lastmod !== null;
     }
 
-    public function getLastmod()
+    public function getLastmod(): ?\DateTimeInterface
     {
         return $this->lastmod;
     }
@@ -45,7 +50,7 @@ class DefaultValues
         return $this->priority !== null;
     }
 
-    public function getPriority()
+    public function getPriority(): ?float
     {
         return $this->priority;
     }
@@ -55,7 +60,7 @@ class DefaultValues
         return $this->changeFreq !== null;
     }
 
-    public function getChangeFreq()
+    public function getChangeFreq(): ?string
     {
         return $this->changeFreq;
     }

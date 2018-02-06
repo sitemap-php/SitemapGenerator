@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace SitemapGenerator\Entity;
 
-class ChangeFrequency
+final class ChangeFrequency
 {
-    const ALWAYS = 'always';
-    const HOURLY = 'hourly';
-    const DAILY  = 'daily';
-    const WEEKLY = 'weekly';
-    const MONTHLY = 'monthly';
-    const YEARLY = 'yearly';
-    const NEVER  = 'never';
+    public const ALWAYS = 'always';
+    public const HOURLY = 'hourly';
+    public const DAILY  = 'daily';
+    public const WEEKLY = 'weekly';
+    public const MONTHLY = 'monthly';
+    public const YEARLY = 'yearly';
+    public const NEVER  = 'never';
 
-    const KNOWN_FREQUENCIES = [
+    public const KNOWN_FREQUENCIES = [
         self::ALWAYS, self::HOURLY, self::DAILY,
         self::WEEKLY, self::MONTHLY, self::YEARLY,
         self::NEVER,

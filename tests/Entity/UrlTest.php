@@ -63,7 +63,7 @@ class UrlTest extends TestCase
     public function testImages()
     {
         $url = new Url('http://www.google.fr/');
-        $image = new Image();
+        $image = new Image('https://www.google.fr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
 
         $url->setImages([$image]);
 
@@ -73,7 +73,7 @@ class UrlTest extends TestCase
     public function testVideos()
     {
         $url = new Url('http://www.google.fr/');
-        $video = new Video();
+        $video = new Video('Title', 'Description.', 'https://thumbnail.loc/img.jpg');
 
         $url->setVideos([$video]);
 
@@ -83,9 +83,6 @@ class UrlTest extends TestCase
     public function lastmodProvider()
     {
         return [
-            [null, null, null],
-            [null, ChangeFrequency::YEARLY, null],
-            [new \DateTime('2012-12-20 18:44'), null, $this->dateFormatW3C('2012-12-20 18:44')],
             [new \DateTime('2012-12-20 18:44'), ChangeFrequency::HOURLY, $this->dateFormatW3C('2012-12-20 18:44')],
             [new \DateTime('2012-12-20 18:44'), ChangeFrequency::ALWAYS, $this->dateFormatW3C('2012-12-20 18:44')],
             [new \DateTime('2012-12-20 18:44'), ChangeFrequency::DAILY, '2012-12-20'],
@@ -95,7 +92,6 @@ class UrlTest extends TestCase
     public function changefreqProvider()
     {
         return [
-            [null],
             [ChangeFrequency::ALWAYS],
             [ChangeFrequency::HOURLY],
             [ChangeFrequency::DAILY],

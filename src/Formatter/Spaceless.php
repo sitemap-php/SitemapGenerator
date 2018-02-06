@@ -8,7 +8,7 @@ use SitemapGenerator\Entity;
 use SitemapGenerator\SitemapFormatter;
 use SitemapGenerator\SitemapIndexFormatter;
 
-class Spaceless implements SitemapIndexFormatter
+final class Spaceless implements SitemapIndexFormatter
 {
     protected $formatter;
 

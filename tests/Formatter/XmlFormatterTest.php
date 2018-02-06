@@ -90,10 +90,7 @@ class XmlFormatterTest extends TestCase
         $url->setPriority(0.2);
         $url->setChangeFreq(ChangeFrequency::NEVER);
 
-        $video = new Video();
-        $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
-        $video->setTitle('Grilling steaks for summer');
-        $video->setDescription('Alkis shows you how to get perfectly done steaks every time');
+        $video = new Video('Grilling steaks for summer', 'Alkis shows you how to get perfectly done steaks every time', 'http://www.example.com/thumbs/123.jpg');
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
@@ -123,8 +120,7 @@ class XmlFormatterTest extends TestCase
         $url->setPriority(0.2);
         $url->setChangeFreq(ChangeFrequency::NEVER);
 
-        $image = new Image();
-        $image->setLoc('http://www.example.com/thumbs/123.jpg');
+        $image = new Image('http://www.example.com/thumbs/123.jpg');
         $image->setTitle('Grilling steaks for summer');
 
         $url->addImage($image);
@@ -146,16 +142,10 @@ class XmlFormatterTest extends TestCase
         $url->setPriority(0.2);
         $url->setChangeFreq(ChangeFrequency::NEVER);
 
-        $video = new Video();
-        $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
-        $video->setTitle('Grilling steaks for summer');
-        $video->setDescription('Alkis shows you how to get perfectly done steaks every time');
+        $video = new Video('Grilling steaks for summer', 'Alkis shows you how to get perfectly done steaks every time', 'http://www.example.com/thumbs/123.jpg');
         $url->addVideo($video);
 
-        $video = new Video();
-        $video->setThumbnailLoc('http://www.example.com/thumbs/456.jpg');
-        $video->setTitle('Grilling steaks for summer - 2');
-        $video->setDescription('Alkis shows you how to get perfectly done steaks every time - 2');
+        $video = new Video('Grilling steaks for summer - 2', 'Alkis shows you how to get perfectly done steaks every time - 2', 'http://www.example.com/thumbs/456.jpg');
         $url->addVideo($video);
 
         $this->assertSame("<url>\n" .
@@ -179,10 +169,7 @@ class XmlFormatterTest extends TestCase
     {
         $formatter = new TestableXml();
 
-        $video = new Video();
-        $video->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
-        $video->setTitle('Grilling steaks for summer');
-        $video->setDescription('Alkis shows you how to get perfectly done steaks every time');
+        $video = new Video('Grilling steaks for summer', 'Alkis shows you how to get perfectly done steaks every time', 'http://www.example.com/thumbs/123.jpg');
         $video->setContentLoc('http://www.example.com/video123.flv');
         $video->setPlayerLoc('http://www.example.com/videoplayer.swf?video=123', true, 'ap=1');
         $video->setDuration(600);
@@ -233,8 +220,7 @@ class XmlFormatterTest extends TestCase
         $url->setPriority(0.2);
         $url->setChangeFreq(ChangeFrequency::NEVER);
 
-        $image = new Image();
-        $image->setLoc('http://www.example.com/thumbs/123.jpg');
+        $image = new Image('http://www.example.com/thumbs/123.jpg');
         $image->setTitle('Grilling steaks for "summer"');
         $image->setCaption('Some caption');
         $image->setLicense('http://opensource.org/licenses/mit-license.php');

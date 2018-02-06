@@ -13,7 +13,7 @@ use SitemapGenerator\SitemapFormatter;
  *
  * @see http://www.sitemaps.org/protocol.html#otherformats
  */
-class Text implements SitemapFormatter
+final class Text implements SitemapFormatter
 {
     public function getSitemapStart(): string
     {

@@ -67,25 +67,25 @@ class Url
         return $this->loc;
     }
 
-    public function setLastmod(\DateTimeInterface $lastmod = null)
+    public function setLastmod(\DateTimeInterface $lastmod)
     {
         $this->lastmod = $lastmod;
     }
 
-    public function getLastmod()
+    public function getLastmod(): ?string
     {
         if ($this->lastmod === null) {
             return null;
         }
 
-        if ($this->getChangeFreq() === null || \in_array($this->getChangeFreq(), [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
+        if ($this->changeFreq === null || \in_array($this->changeFreq, [ChangeFrequency::ALWAYS, ChangeFrequency::HOURLY], true)) {
             return $this->lastmod->format(\DateTime::W3C);
         }
 
         return $this->lastmod->format('Y-m-d');
     }
 
-    public function setChangeFreq($changeFreq)
+    public function setChangeFreq(string $changeFreq)
     {
         if ($changeFreq !== null && !ChangeFrequency::isValid($changeFreq)) {
             throw new \DomainException(sprintf('Invalid changefreq given ("%s"). Valid values are: %s', $changeFreq, implode(', ', ChangeFrequency::KNOWN_FREQUENCIES)));
@@ -94,15 +94,13 @@ class Url
         $this->changeFreq = $changeFreq;
     }
 
-    public function getChangeFreq()
+    public function getChangeFreq(): ?string
     {
         return $this->changeFreq;
     }
 
-    public function setPriority($priority)
+    public function setPriority(float $priority)
     {
-        $priority = (float) $priority;
-
         if ($priority < 0 || $priority > 1) {
             throw new \DomainException('The priority must be between 0 and 1');
         }
@@ -110,12 +108,12 @@ class Url
         $this->priority = $priority;
     }
 
-    public function getPriority()
+    public function getPriority(): ?float
     {
         return $this->priority;
     }
 
-    public function addVideo(Video $video)
+    public function addVideo(Video $video): void
     {
         $this->videos[] = $video;
     }
@@ -123,7 +121,7 @@ class Url
     /**
      * @param Video[] $videos
      */
-    public function setVideos(array $videos)
+    public function setVideos(iterable $videos)
     {
         $this->videos = $videos;
     }
@@ -131,17 +129,17 @@ class Url
     /**
      * @return Video[]
      */
-    public function getVideos(): array
+    public function getVideos(): iterable
     {
         return $this->videos;
     }
 
-    public function addImage(Image $image)
+    public function addImage(Image $image): void
     {
         $this->images[] = $image;
     }
 
-    public function setImages(array $images)
+    public function setImages(iterable $images): void
     {
         $this->images = $images;
     }
@@ -149,7 +147,7 @@ class Url
     /**
      * @return Image[]
      */
-    public function getImages(): array
+    public function getImages(): iterable
     {
         return $this->images;
     }

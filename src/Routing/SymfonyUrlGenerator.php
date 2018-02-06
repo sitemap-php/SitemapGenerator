@@ -7,7 +7,7 @@ namespace SitemapGenerator\Routing;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface as SymfonyUrlGeneratorInterface;
 use SitemapGenerator\UrlGenerator;
 
-class SymfonyUrlGenerator implements UrlGenerator
+final class SymfonyUrlGenerator implements UrlGenerator
 {
     private $originalGenerator;
 

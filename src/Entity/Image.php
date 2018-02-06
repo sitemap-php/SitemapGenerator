@@ -9,7 +9,7 @@ namespace SitemapGenerator\Entity;
  *
  * @see http://support.google.com/webmasters/bin/answer.py?hl=fr&answer=178636
  */
-class Image
+final class Image
 {
     /**
      * The URL of the image.
@@ -37,52 +37,52 @@ class Image
      */
     private $license;
 
-    public function setLoc($loc)
+    public function __construct(string $loc)
     {
         $this->loc = $loc;
     }
 
-    public function getLoc()
+    public function getLoc(): string
     {
         return $this->loc;
     }
 
-    public function setCaption($caption)
+    public function setCaption(?string $caption)
     {
         $this->caption = $caption;
     }
 
-    public function getCaption()
+    public function getCaption(): ?string
     {
         return $this->caption;
     }
 
-    public function setGeoLocation($geoLocation)
+    public function setGeoLocation(?string $geoLocation)
     {
         $this->geoLocation = $geoLocation;
     }
 
-    public function getGeoLocation()
+    public function getGeoLocation(): ?string
     {
         return $this->geoLocation;
     }
 
-    public function setTitle($title)
+    public function setTitle(?string $title)
     {
         $this->title = $title;
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setLicense($license)
+    public function setLicense(?string $license)
     {
         $this->license = $license;
     }
 
-    public function getLicense()
+    public function getLicense(): ?string
     {
         return $this->license;
     }

@@ -9,7 +9,7 @@ namespace SitemapGenerator\Entity;
  *
  * @see http://support.google.com/webmasters/bin/answer.py?hl=en&answer=2620865
  */
-class RichUrl extends Url
+final class RichUrl extends Url
 {
     /**
      * Alternate urls list, locale indexed.
@@ -30,12 +30,12 @@ class RichUrl extends Url
      *
      * @param string $locale The url's language (and optionnaly region. Ex: en, en-us).
      */
-    public function addAlternateUrl(string $locale, string $url)
+    public function addAlternateUrl(string $locale, string $url): void
     {
         $this->alternateUrl[$locale] = $url;
     }
 
-    public function getAlternateUrls(): array
+    public function getAlternateUrls(): iterable
     {
         return $this->alternateUrl;
     }

@@ -9,9 +9,9 @@ use SitemapGenerator\FileDumper;
 /**
  * Dump the sitemap into a compressed file.
  *
- * @see \SitemapGenerator\Dumper\File
+ * @see File
  */
-class GzFile extends File
+final class GzFile extends File
 {
     public function __construct(string $filename)
     {
