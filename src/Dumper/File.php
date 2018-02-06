@@ -40,7 +40,7 @@ class File implements FileDumper
     /**
      * {@inheritdoc}
      */
-    public function dump(string $string)
+    public function dump(string $string): void
     {
         if ($this->handle === null) {
             $this->openFile();

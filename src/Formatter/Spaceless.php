@@ -10,7 +10,7 @@ use SitemapGenerator\SitemapIndexFormatter;
 
 final class Spaceless implements SitemapIndexFormatter
 {
-    protected $formatter;
+    private $formatter;
 
     public function __construct(SitemapFormatter $formatter)
     {
@@ -59,7 +59,7 @@ final class Spaceless implements SitemapIndexFormatter
         return $this->stripSpaces($this->formatter->formatSitemapIndex($entry));
     }
 
-    protected function stripSpaces($string): string
+    private function stripSpaces($string): string
     {
         return str_replace(["\t", "\r", "\n"], '', $string);
     }

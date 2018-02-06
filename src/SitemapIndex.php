@@ -56,7 +56,7 @@ final class SitemapIndex
         $chunkedProviders = $this->chunk(iter\chain(...$this->providers), $this->limit);
         foreach ($chunkedProviders as $i => $provider) {
             // Modify the filename of the dumper, add the filename to the sitemap indexes
-            $entryFilename = $this->getSitemapIndexFilename($this->dumper->getFilename(), $i+1);
+            $entryFilename = $this->getSitemapIndexFilename($this->dumper->getFilename(), $i + 1);
 
             // dump the entry in the sitemap index
             $entry = $this->createIndexEntry($entryFilename);
@@ -93,7 +93,7 @@ final class SitemapIndex
     private function chunk(\Iterator $iterable, $size): \Iterator
     {
         while ($iterable->valid()) {
-            $closure = function() use ($iterable, $size) {
+            $closure = function () use ($iterable, $size) {
                 $count = $size;
 
                 while ($count-- && $iterable->valid()) {

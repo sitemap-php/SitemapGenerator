@@ -15,7 +15,7 @@ final class DefaultValues
     /** @var \DateTimeInterface|null */
     private $lastmod;
 
-    final private function __construct()
+    private function __construct()
     {
     }
 

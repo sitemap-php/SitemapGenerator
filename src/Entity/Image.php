@@ -47,7 +47,7 @@ final class Image
         return $this->loc;
     }
 
-    public function setCaption(?string $caption)
+    public function setCaption(?string $caption): void
     {
         $this->caption = $caption;
     }
@@ -57,7 +57,7 @@ final class Image
         return $this->caption;
     }
 
-    public function setGeoLocation(?string $geoLocation)
+    public function setGeoLocation(?string $geoLocation): void
     {
         $this->geoLocation = $geoLocation;
     }
@@ -67,7 +67,7 @@ final class Image
         return $this->geoLocation;
     }
 
-    public function setTitle(?string $title)
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -77,7 +77,7 @@ final class Image
         return $this->title;
     }
 
-    public function setLicense(?string $license)
+    public function setLicense(?string $license): void
     {
         $this->license = $license;
     }

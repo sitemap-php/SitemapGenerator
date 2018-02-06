@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SitemapGenerator\Provider;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
-
 use SitemapGenerator\Entity\Url;
 use SitemapGenerator\UrlGenerator;
 

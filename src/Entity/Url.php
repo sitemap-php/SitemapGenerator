@@ -67,7 +67,7 @@ class Url
         return $this->loc;
     }
 
-    public function setLastmod(\DateTimeInterface $lastmod)
+    public function setLastmod(\DateTimeInterface $lastmod): void
     {
         $this->lastmod = $lastmod;
     }
@@ -85,7 +85,7 @@ class Url
         return $this->lastmod->format('Y-m-d');
     }
 
-    public function setChangeFreq(string $changeFreq)
+    public function setChangeFreq(string $changeFreq): void
     {
         if ($changeFreq !== null && !ChangeFrequency::isValid($changeFreq)) {
             throw new \DomainException(sprintf('Invalid changefreq given ("%s"). Valid values are: %s', $changeFreq, implode(', ', ChangeFrequency::KNOWN_FREQUENCIES)));
@@ -99,7 +99,7 @@ class Url
         return $this->changeFreq;
     }
 
-    public function setPriority(float $priority)
+    public function setPriority(float $priority): void
     {
         if ($priority < 0 || $priority > 1) {
             throw new \DomainException('The priority must be between 0 and 1');
@@ -121,7 +121,7 @@ class Url
     /**
      * @param Video[] $videos
      */
-    public function setVideos(iterable $videos)
+    public function setVideos(iterable $videos): void
     {
         $this->videos = $videos;
     }

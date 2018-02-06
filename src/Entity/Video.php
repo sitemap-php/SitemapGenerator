@@ -185,7 +185,7 @@ final class Video
         return $this->description;
     }
 
-    public function setContentLoc(string $loc)
+    public function setContentLoc(string $loc): void
     {
         $this->contentLoc = $loc;
     }
