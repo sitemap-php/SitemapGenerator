@@ -8,17 +8,17 @@ use SitemapGenerator\Formatter;
 
 class RichXmlFormatterTest extends XmlFormatterTest
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->formatter = new Formatter\RichXml();
     }
 
-    public function testSitemapStart()
+    public function testSitemapStart(): void
     {
         $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n", $this->formatter->getSitemapStart());
     }
 
-    public function testFormatRichUrl()
+    public function testFormatRichUrl(): void
     {
         $url = new RichUrl('http://www.google.fr');
         $url->setPriority(0.2);

@@ -8,7 +8,7 @@ use SitemapGenerator\Provider\DefaultValues;
 
 class DefaultValuesTest extends TestCase
 {
-    public function testEmptyDefaultValuesCanBeCreated()
+    public function testEmptyDefaultValuesCanBeCreated(): void
     {
         $values = DefaultValues::none();
 
@@ -21,7 +21,7 @@ class DefaultValuesTest extends TestCase
         $this->assertNull($values->getChangeFreq());
     }
 
-    public function testDefaultValuesCanBeGiven()
+    public function testDefaultValuesCanBeGiven(): void
     {
         $priority = 0.4;
         $changeFreq = ChangeFrequency::ALWAYS;

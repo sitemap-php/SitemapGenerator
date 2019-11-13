@@ -13,7 +13,7 @@ use SitemapGenerator\SitemapFormatter;
 
 class SitemapTest extends TestCase
 {
-    public function testAddProvider()
+    public function testAddProvider(): void
     {
         $sitemap = new class($this->getDumper(), $this->getFormatter()) extends Sitemap {
             public function getProviders()
@@ -27,11 +27,11 @@ class SitemapTest extends TestCase
         $this->assertCount(1, $sitemap->getProviders());
     }
 
-    public function testRelativeUrlsAreKeptIntact()
+    public function testRelativeUrlsAreKeptIntact(): void
     {
         $dumper = new Dumper\Memory();
         $sitemap = new class($dumper, new Formatter\Text()) extends Sitemap {
-            public function testableAdd(Url $url)
+            public function testableAdd(Url $url): void
             {
                 $this->add($url, DefaultValues::none());
             }
@@ -44,7 +44,7 @@ class SitemapTest extends TestCase
         $this->assertSame('/search' . "\n", $dumper->getBuffer());
     }
 
-    public function testAddWithDefaultValues()
+    public function testAddWithDefaultValues(): void
     {
         $formatter = $this->getFormatter();
         $sitemap = new Sitemap($this->getDumper(), $formatter);
@@ -61,7 +61,7 @@ class SitemapTest extends TestCase
         $sitemap->build();
     }
 
-    public function testBuild()
+    public function testBuild(): void
     {
         $sitemap = new Sitemap(new Dumper\Memory(), new Formatter\Text());
         $sitemap->addProvider(new \ArrayIterator([new Url('http://www.google.fr/search')]));

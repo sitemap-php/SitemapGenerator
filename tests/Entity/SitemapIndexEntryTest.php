@@ -7,15 +7,14 @@ use SitemapGenerator\Entity\SitemapIndexEntry;
 
 class SitemapIndexEntryTest extends TestCase
 {
-    /**
-     * @expectedException \DomainException
-     */
-    public function testLocMaxLength()
+    public function testLocMaxLength(): void
     {
+        $this->expectException(\DomainException::class);
+
         new SitemapIndexEntry('http://google.fr/?q=' . str_repeat('o', 2048));
     }
 
-    public function testConstructionWithASingleArgument()
+    public function testConstructionWithASingleArgument(): void
     {
         $entry = new SitemapIndexEntry('http://google.fr/');
 
@@ -23,7 +22,7 @@ class SitemapIndexEntryTest extends TestCase
         $this->assertNull($entry->getLastmod());
     }
 
-    public function testConstructionWithAllTheArguments()
+    public function testConstructionWithAllTheArguments(): void
     {
         $entry = new SitemapIndexEntry('http://google.fr/', \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2016-02-28 14:34:25', new \DateTimeZone('Europe/Paris')));
 

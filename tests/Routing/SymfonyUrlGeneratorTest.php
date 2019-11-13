@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SymfonyUrlGeneratorTest extends TestCase
 {
-    public function testGenerateDelegatesToTheUrlGenerator()
+    public function testGenerateDelegatesToTheUrlGenerator(): void
     {
         $route = 'route_name';
         $routeParameters = ['foo' => 'bar'];

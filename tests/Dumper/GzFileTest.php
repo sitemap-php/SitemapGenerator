@@ -11,12 +11,12 @@ class GzFileTest extends FileTestCase
         return new GzFile($this->dummyFile());
     }
 
-    public function testDumper()
+    public function testDumper(): void
     {
         $this->dumper->dump('joe');
         $this->dumper->dump('-hell yeah!');
 
-        $this->assertTrue(file_exists($this->dummyFile()));
+        $this->assertFileExists($this->dummyFile());
         unset($this->dumper); // force the dumper to close the file
 
         $this->assertSame('joe-hell yeah!', file_get_contents('compress.zlib://' . $this->dummyFile()));
