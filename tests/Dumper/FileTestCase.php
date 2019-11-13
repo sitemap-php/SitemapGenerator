@@ -14,7 +14,7 @@ abstract class FileTestCase extends TestCase
 
     abstract protected function createDumper();
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->file = sys_get_temp_dir() . '/dummy_file';
         $this->otherFile = sys_get_temp_dir() . '/other_file';
@@ -26,7 +26,7 @@ abstract class FileTestCase extends TestCase
         $this->dumper = $this->createDumper();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         file_exists($this->file) && unlink($this->file);
         file_exists($this->otherFile) && unlink($this->otherFile);

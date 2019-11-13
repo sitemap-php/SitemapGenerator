@@ -7,22 +7,20 @@ use SitemapGenerator\Entity\Video;
 
 class VideoTest extends TestCase
 {
-    /**
-     * @expectedException \DomainException
-     */
-    public function testTitleMaxLength()
+    public function testTitleMaxLength(): void
     {
+        $this->expectException(\DomainException::class);
+
         new Video(str_repeat('o', 100), 'Description.', 'https://thumbnail.loc/img.jpg');
         $this->assertTrue(true);
 
         new Video(str_repeat('o', 101), 'Description.', 'https://thumbnail.loc/img.jpg');
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testDescriptionMaxLength()
+    public function testDescriptionMaxLength(): void
     {
+        $this->expectException(\DomainException::class);
+
         new Video('title', str_repeat('o', 2048), 'https://thumbnail.loc/img.jpg');
         $this->assertTrue(true);
 
@@ -31,10 +29,11 @@ class VideoTest extends TestCase
 
     /**
      * @dataProvider invalidDurationProvider
-     * @expectedException \DomainException
      */
-    public function testInvalidDuration($duration)
+    public function testInvalidDuration($duration): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setDuration($duration);
     }
@@ -42,7 +41,7 @@ class VideoTest extends TestCase
     /**
      * @dataProvider dateProvider
      */
-    public function testExpirationDate($date, $expectedDate)
+    public function testExpirationDate($date, $expectedDate): void
     {
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setExpirationDate($date);
@@ -52,7 +51,7 @@ class VideoTest extends TestCase
     /**
      * @dataProvider dateProvider
      */
-    public function testPublicationDate($date, $expectedDate)
+    public function testPublicationDate($date, $expectedDate): void
     {
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPublicationDate($date);
@@ -61,37 +60,35 @@ class VideoTest extends TestCase
 
     /**
      * @dataProvider invalidRatingProvider
-     * @expectedException \DomainException
      */
-    public function testInvalidRating($rating)
+    public function testInvalidRating($rating): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setRating($rating);
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testInvalidViewCount()
+    public function testInvalidViewCount(): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setViewCount(-1);
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testInvalidTagsCount()
+    public function testInvalidTagsCount(): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setTags(array_pad([], 33, 'tag'));
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testCategoryMaxLength()
+    public function testCategoryMaxLength(): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setCategory(str_repeat('o', 256));
         $this->assertTrue(true);
@@ -99,29 +96,26 @@ class VideoTest extends TestCase
         $video->setCategory(str_repeat('o', 257));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testInvalidRestriction()
+    public function testInvalidRestriction(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setRestrictions(['fr', 'en'], 'foo');
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testInvalidPlatform()
+    public function testInvalidPlatform(): void
     {
+        $this->expectException(\DomainException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, 'foo' => Video::RESTRICTION_DENY]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testInvalidPlatformRelationship()
+    public function testInvalidPlatformRelationship(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $video = new Video('title', 'Description', 'https://thumbnail.loc/img.jpg');
         $video->setPlatforms([Video::PLATFORM_TV => Video::RESTRICTION_DENY, Video::PLATFORM_MOBILE => 'foo']);
     }

@@ -8,19 +8,19 @@ use SitemapGenerator\Formatter;
 
 class TextFormatterTest extends TestCase
 {
-    public function testSitemapStart()
+    public function testSitemapStart(): void
     {
         $formatter = new Formatter\Text();
         $this->assertSame('', $formatter->getSitemapStart());
     }
 
-    public function testSitemapEnd()
+    public function testSitemapEnd(): void
     {
         $formatter = new Formatter\Text();
         $this->assertSame('', $formatter->getSitemapEnd());
     }
 
-    public function testFormatUrl()
+    public function testFormatUrl(): void
     {
         $formatter = new Formatter\Text();
 

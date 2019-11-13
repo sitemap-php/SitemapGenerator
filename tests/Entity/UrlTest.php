@@ -10,29 +10,28 @@ use SitemapGenerator\Entity\Video;
 
 class UrlTest extends TestCase
 {
-    /**
-     * @expectedException \DomainException
-     */
-    public function testLocMaxLength()
+    public function testLocMaxLength(): void
     {
+        $this->expectException(\DomainException::class);
+
         new Url('http://google.fr/?q=' . str_repeat('o', 2048));
     }
 
     /**
      * @dataProvider invalidPriorityProvider
-     * @expectedException \DomainException
      */
-    public function testInvalidPriority($priority)
+    public function testInvalidPriority($priority): void
     {
+        $this->expectException(\DomainException::class);
+
         $url = new Url('http://www.google.fr/');
         $url->setPriority($priority);
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testInvalidChangefreq()
+    public function testInvalidChangefreq(): void
     {
+        $this->expectException(\DomainException::class);
+
         $url = new Url('http://www.google.fr/');
         $url->setChangeFreq('foo');
     }
@@ -40,7 +39,7 @@ class UrlTest extends TestCase
     /**
      * @dataProvider changefreqProvider
      */
-    public function testChangefreq($changefreq)
+    public function testChangefreq($changefreq): void
     {
         $url = new Url('http://www.google.fr/');
         $url->setChangeFreq($changefreq);
@@ -51,7 +50,7 @@ class UrlTest extends TestCase
     /**
      * @dataProvider lastmodProvider
      */
-    public function testLastmodFormatting($lastmod, $changefreq, $expectedLastmod)
+    public function testLastmodFormatting($lastmod, $changefreq, $expectedLastmod): void
     {
         $url = new Url('http://www.google.fr/');
         $url->setLastmod($lastmod);
@@ -60,7 +59,7 @@ class UrlTest extends TestCase
         $this->assertSame($expectedLastmod, $url->getLastmod());
     }
 
-    public function testImages()
+    public function testImages(): void
     {
         $url = new Url('http://www.google.fr/');
         $image = new Image('https://www.google.fr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
@@ -70,7 +69,7 @@ class UrlTest extends TestCase
         $this->assertSame([$image], $url->getImages());
     }
 
-    public function testVideos()
+    public function testVideos(): void
     {
         $url = new Url('http://www.google.fr/');
         $video = new Video('Title', 'Description.', 'https://thumbnail.loc/img.jpg');

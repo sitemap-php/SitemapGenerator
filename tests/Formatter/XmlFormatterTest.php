@@ -25,32 +25,32 @@ class XmlFormatterTest extends TestCase
      */
     protected $formatter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->formatter = new Formatter\Xml();
     }
 
-    public function testSitemapStart()
+    public function testSitemapStart(): void
     {
         $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n", $this->formatter->getSitemapStart());
     }
 
-    public function testSitemapEnd()
+    public function testSitemapEnd(): void
     {
         $this->assertSame('</urlset>', $this->formatter->getSitemapEnd());
     }
 
-    public function testSitemapIndexStart()
+    public function testSitemapIndexStart(): void
     {
         $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n", $this->formatter->getSitemapIndexStart());
     }
 
-    public function testSitemapIndexEnd()
+    public function testSitemapIndexEnd(): void
     {
         $this->assertSame('</sitemapindex>', $this->formatter->getSitemapIndexEnd());
     }
 
-    public function testFormatUrlOnlyLoc()
+    public function testFormatUrlOnlyLoc(): void
     {
         $url = new Url('http://www.google.fr');
 
@@ -59,7 +59,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatUrl()
+    public function testFormatUrl(): void
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
@@ -72,7 +72,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatUrlWithLastMod()
+    public function testFormatUrlWithLastMod(): void
     {
         $lastmod = new \DateTimeImmutable('2016-02-28 14:51:22', new \DateTimeZone('Europe/Paris'));
         $url = new Url('http://www.google.fr');
@@ -84,7 +84,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatUrlWithVideo()
+    public function testFormatUrlWithVideo(): void
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
@@ -114,7 +114,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatUrlWithImage()
+    public function testFormatUrlWithImage(): void
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
@@ -136,7 +136,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatUrlWithVideos()
+    public function testFormatUrlWithVideos(): void
     {
         $url = new Url('http://www.google.fr');
         $url->setPriority(0.2);
@@ -165,7 +165,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatFullVideo()
+    public function testFormatFullVideo(): void
     {
         $formatter = new TestableXml();
 
@@ -214,7 +214,7 @@ class XmlFormatterTest extends TestCase
 "\t</video:video>\n", $formatter->testFormatVideo($video));
     }
 
-    public function testFormatUrlWithFullImage()
+    public function testFormatUrlWithFullImage(): void
     {
         $url = new Url('http://www.google.fr/?s=joe"');
         $url->setPriority(0.2);
@@ -242,7 +242,7 @@ class XmlFormatterTest extends TestCase
 "</url>\n", $this->formatter->formatUrl($url));
     }
 
-    public function testFormatSitemapIndexEntry()
+    public function testFormatSitemapIndexEntry(): void
     {
         $sitemapIndex = new SitemapIndexEntry('http://www.example.com/sitemap-1.xml', new \DateTime('2016-02-28 23:42:00', new \DateTimeZone('Europe/Paris')));
 
@@ -252,7 +252,7 @@ class XmlFormatterTest extends TestCase
 "</sitemap>\n", $this->formatter->formatSitemapIndex($sitemapIndex));
     }
 
-    public function testFormatSitemapIndexEntryNoLastMod()
+    public function testFormatSitemapIndexEntryNoLastMod(): void
     {
         $sitemapIndex = new SitemapIndexEntry('http://www.example.com/sitemap-1.xml');
 

@@ -11,10 +11,10 @@ class FileTest extends FileTestCase
         return new File($this->dummyFile());
     }
 
-    public function testDumper()
+    public function testDumper(): void
     {
         $this->dumper->dump('joe');
-        $this->assertTrue(file_exists($this->dummyFile()));
+        $this->assertFileExists($this->dummyFile());
 
         $this->assertSame('joe', file_get_contents($this->dummyFile()));
 
@@ -22,21 +22,20 @@ class FileTest extends FileTestCase
         $this->assertSame('joe-hell yeah!', file_get_contents($this->dummyFile()));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testAnExceptionIsThrownForNonWriteableFiles()
+    public function testAnExceptionIsThrownForNonWriteableFiles(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $dumper = new File($this->nonWriteableFile());
         $dumper->dump('foo');
     }
 
-    public function testCurrentFilenameIsAccessible()
+    public function testCurrentFilenameIsAccessible(): void
     {
         $this->assertSame($this->dummyFile(), $this->dumper->getFilename());
     }
 
-    public function testFilenameCanBeChanged()
+    public function testFilenameCanBeChanged(): void
     {
         $newDumper = $this->dumper->changeFile($this->otherDummyFile());
 

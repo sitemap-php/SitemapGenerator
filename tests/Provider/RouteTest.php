@@ -13,7 +13,7 @@ class RouteTest extends TestCase
     /**
      * @dataProvider newsDataProvider
      */
-    public function testPopulateWithNoResults(array $news, array $newsUrls)
+    public function testPopulateWithNoResults(array $news, array $newsUrls): void
     {
         $provider = $this->getNewsProvider($news);
 

@@ -7,7 +7,7 @@ use SitemapGenerator\Dumper\Memory;
 
 class MemoryTest extends TestCase
 {
-    public function testDumper()
+    public function testDumper(): void
     {
         $dumper = new Memory();
         $this->assertSame('foo', $dumper->dump('foo'));

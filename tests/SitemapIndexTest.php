@@ -12,7 +12,7 @@ class SitemapIndexTest extends TestCase
 {
     const BASE_HOST = 'http://www.some-host.com/';
 
-    public function testProvidersCanBeRegistered()
+    public function testProvidersCanBeRegistered(): void
     {
         $sitemap = new SitemapIndex($this->getFileDumper(), $this->getFormatter(), self::BASE_HOST);
         $sitemap->addProvider(new \ArrayIterator([]));
@@ -20,7 +20,7 @@ class SitemapIndexTest extends TestCase
         $this->assertTrue(true, 'It did NOT fail \o/');
     }
 
-    public function testBuild()
+    public function testBuild(): void
     {
         $dumper = $this->getFileDumper();
         $formatter = $this->getFormatter();
