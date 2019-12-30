@@ -75,6 +75,8 @@ class DoctrineProvider extends AbstractProvider
 
             $this->em->detach($result[0]);
         }
+        
+        $this->em->clear();
     }
 
     protected function getQuery($entity, $method = null)
